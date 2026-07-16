@@ -1,0 +1,28 @@
+/* Reset - minimal, let core-style.css handle the rest */
+body {
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  text-align: left;
+  border: none;
+  min-height: 100vh;
+}
+
+/* Cart sidebar active state */
+.cart-bg-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.right-side-cart-area.active {
+  right: 0;
+}
+
+.right-side-cart-area {
+  transition: right 0.3s ease;
+}
