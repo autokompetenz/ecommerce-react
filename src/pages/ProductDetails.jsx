@@ -59,7 +59,7 @@ export default function ProductDetails() {
   ];
 
   return (
-    <div className="section" style={{ background: "#fff" }}>
+    <div className="section" style={{ background: "var(--bg)" }}>
       <div className="container">
         {/* Breadcrumb */}
         <nav style={{ fontSize: 13, color: "var(--text-muted)", marginBottom: 24 }}>

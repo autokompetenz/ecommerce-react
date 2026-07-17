@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from "react-router-dom";
 import { CartProvider, useCart } from "./context/CartContext";
 import { AuthProvider, useAuth } from "./context/AuthContext";
@@ -35,14 +35,28 @@ function ProtectedRoute({ children }) {
 
 function SiteLayout() {
   const [cartOpen, setCartOpen] = useState(false);
+  const [theme, setTheme] = useState(() => {
+    const saved = localStorage.getItem("theme");
+    if (saved) return saved;
+    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  });
   const location = useLocation();
   const { count } = useCart();
 
   useEffect(() => { setCartOpen(false); }, [location.pathname]);
 
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
+  const toggleTheme = useCallback(() => {
+    setTheme((prev) => (prev === "dark" ? "light" : "dark"));
+  }, []);
+
   return (
     <>
-      <Header cartCount={count} onCartToggle={() => setCartOpen(!cartOpen)} />
+      <Header cartCount={count} onCartToggle={() => setCartOpen(!cartOpen)} theme={theme} onToggleTheme={toggleTheme} />
       <CartSidebar isOpen={cartOpen} onClose={() => setCartOpen(false)} />
       <Routes>
         <Route path="/" element={<Home />} />

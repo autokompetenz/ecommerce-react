@@ -12,7 +12,7 @@ export default function Footer() {
               Tournevis, perceuses, clés à choc, riveteurs et meuleuses haute performance.
             </p>
             <p style={{ marginTop: 12 }}>
-              <strong style={{ color: "#fff" }}>POWER Tools GmbH</strong><br />
+              <strong style={{ color: "var(--text)" }}>POWER Tools GmbH</strong><br />
               Am Winkel 4, 15528 Spreenhagen<br />
               HRB 11523 FF | TVA : DE232530007
             </p>

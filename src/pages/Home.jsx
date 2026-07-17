@@ -57,7 +57,7 @@ export default function Home() {
       </div>
 
       {/* Categories */}
-      <div className="section" style={{ background: "#fff" }}>
+      <div className="section" style={{ background: "var(--bg)" }}>
         <div className="container">
           <div className="section-heading">
             <h2>Nos Catégories</h2>
@@ -88,7 +88,7 @@ export default function Home() {
       </div>
 
       {/* Popular Products */}
-      <div className="section" style={{ background: "#fff" }}>
+      <div className="section" style={{ background: "var(--bg)" }}>
         <div className="container">
           <div className="section-heading">
             <h2>Produits Populaires</h2>

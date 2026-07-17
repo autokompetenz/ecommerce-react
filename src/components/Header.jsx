@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
-export default function Header({ cartCount = 0, onCartToggle }) {
+export default function Header({ cartCount = 0, onCartToggle, theme, onToggleTheme }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
 
@@ -43,6 +43,10 @@ export default function Header({ cartCount = 0, onCartToggle }) {
           </nav>
 
           <div className="header-actions">
+            <button className="theme-toggle-btn" onClick={onToggleTheme} title={theme === "dark" ? "Mode clair" : "Mode sombre"}>
+              <i className={`fa-solid ${theme === "dark" ? "fa-sun" : "fa-moon"}`}></i>
+            </button>
+
             <button className="header-cart-btn" onClick={onCartToggle}>
               <i className="fa-solid fa-bag-shopping cart-icon"></i>
               {cartCount > 0 && <span className="cart-badge">{cartCount}</span>}
