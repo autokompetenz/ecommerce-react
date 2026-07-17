@@ -39,8 +39,18 @@ export default function Footer() {
               <li><Link to="/contact">Contact</Link></li>
               <li><Link to="/blog">Actualités</Link></li>
               <li><Link to="/tracking">Suivi de commande</Link></li>
-              <li><a href="#">Conditions générales</a></li>
+            </ul>
+          </div>
+          <div>
+            <h6>Mentions légales</h6>
+            <ul className="footer-links">
+              <li><a href="#">Mentions légales</a></li>
+              <li><a href="#">Conditions générales de vente</a></li>
               <li><a href="#">Politique de confidentialité</a></li>
+              <li><a href="#">Droit de rétractation</a></li>
+              <li><a href="#">Conditions d'expédition et de livraison</a></li>
+              <li><a href="#">Politique de retour et de remboursement</a></li>
+              <li><a href="#">Politique en matière de cookies</a></li>
             </ul>
           </div>
           <div>
