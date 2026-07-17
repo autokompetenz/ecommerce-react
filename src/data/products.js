@@ -1,21 +1,174 @@
 export const products = [
-  { id: 1, name: "Tournevis sans fil", brand: "POWER Tools", price: 89.00, old_price: 109.00, image: "/img/product-img/product-1.jpg", hover_image: "/img/product-img/product-2.jpg", badge: "-18%", category: "Tournevis", description: "Tournevis sans fil haute performance pour vissage industriel. couple réglable, ergonomie optimale pour un usage prolongé." },
-  { id: 2, name: "Tournevis à cliquets sans fil", brand: "POWER Tools", price: 115.00, old_price: null, image: "/img/product-img/product-2.jpg", hover_image: "/img/product-img/product-3.jpg", badge: "New", category: "Tournevis", description: "Tournevis à cliquets sans fil avec système de embrayage à 2 vitesses et torseur variable. Idéal pour les travaux de maintenance industrielle." },
-  { id: 3, name: "Tournevis de construction sans fil", brand: "POWER Tools", price: 99.00, old_price: 125.00, image: "/img/product-img/product-3.jpg", hover_image: "/img/product-img/product-4.jpg", badge: "-21%", category: "Tournevis", description: "Tournevis de construction robuste conçu pour les environnements exigeants. Corps renforcé et moteur sans charbon." },
-  { id: 4, name: "Tournevis articulé sans fil", brand: "POWER Tools", price: 129.00, old_price: null, image: "/img/product-img/product-4.jpg", hover_image: "/img/product-img/product-5.jpg", badge: "New", category: "Tournevis", description: "Tournevis articulé sans fil permettant l'accès dans des espaces confinés. Tête orientable à 3 positions pour une polyvalence maximale." },
-  { id: 5, name: "Tournevis à dégagement rapide", brand: "POWER Tools", price: 69.00, old_price: 85.00, image: "/img/product-img/product-5.jpg", hover_image: "/img/product-img/product-6.jpg", badge: "-19%", category: "Tournevis", description: "Tournevis avec mandrin à dégagement rapide 6.35mm. Changement de foret en une seule main, idéal pour la productivité." },
-  { id: 6, name: "Clé à choc sans fil", brand: "POWER Tools", price: 189.00, old_price: null, image: "/img/product-img/product-6.jpg", hover_image: "/img/product-img/product-7.jpg", badge: null, category: "Clés à choc", description: "Clé à choc sans fil 1/2\" avec moteur brushless. Couple max 400 Nm pour le serrage et desserrage de boulons industriels." },
-  { id: 7, name: "Clé à choc rotative sans fil", brand: "POWER Tools", price: 215.00, old_price: 249.00, image: "/img/product-img/product-7.jpg", hover_image: "/img/product-img/product-8.jpg", badge: "-14%", category: "Clés à choc", description: "Clé à choc rotative sans fil avec tête orientable 360°. Accès facilité dans les espaces restreints des lignes de production." },
-  { id: 8, name: "Tournevis de magazine sans fil", brand: "POWER Tools", price: 145.00, old_price: null, image: "/img/product-img/product-8.jpg", hover_image: "/img/product-img/product-9.jpg", badge: "New", category: "Tournevis", description: "Tournevis à magazine intégré pour vissage en série. Capacité de 50 vis, gain de temps considérable en production." },
-  { id: 9, name: "Pistolet à noix de rivet sans fil", brand: "POWER Tools", price: 249.00, old_price: 289.00, image: "/img/product-img/product-9.jpg", hover_image: "/img/product-img/product-1.jpg", badge: "-14%", category: "Rivets", description: "Pistolet à rivets sans fil avec système de noix intégré. Traction de 20 kN pour rivets jusqu'à M6 en acier inoxydable." },
-  { id: 10, name: "Perceuse à fil", brand: "POWER Tools", price: 139.00, old_price: null, image: "/img/product-img/product-1.jpg", hover_image: "/img/product-img/product-2.jpg", badge: null, category: "Perceuses", description: "Perceuse à fil professionnelle 750W. Mandrin auto-serrant 1.5-13mm, 2 vitesses mécaniques, idéale pour un usage continu en atelier." },
-  { id: 11, name: "Cliquets de batterie", brand: "POWER Tools", price: 159.00, old_price: null, image: "/img/product-img/product-2.jpg", hover_image: "/img/product-img/product-3.jpg", badge: "New", category: "Clés à choc", description: "Ensemble de cliquets à batterie avec 2 torseurs réglables. Kit complet pour le serrage précis en maintenance industrielle." },
-  { id: 12, name: "Tournevis et ensemble de forage", brand: "POWER Tools", price: 179.00, old_price: 210.00, image: "/img/product-img/product-3.jpg", hover_image: "/img/product-img/product-4.jpg", badge: "-15%", category: "Tournevis", description: "Ensemble tournevis et forage avec coffret de 50 accessoires. Moteur brushless 20V, idéal pour tous vos projets industriels." },
-  { id: 13, name: "Pistolet de rivet de batterie", brand: "POWER Tools", price: 199.00, old_price: null, image: "/img/product-img/product-4.jpg", hover_image: "/img/product-img/product-5.jpg", badge: null, category: "Rivets", description: "Pistolet de rivet à batterie avec éclairage LED intégré. Éjection automatique des tiges, confort d'utilisation optimisé." },
-  { id: 14, name: "Tournevis à angle sans fil", brand: "POWER Tools", price: 119.00, old_price: 145.00, image: "/img/product-img/product-5.jpg", hover_image: "/img/product-img/product-6.jpg", badge: "-18%", category: "Tournevis", description: "Tournevis à angle droit sans fil. Profil fin pour accès dans les espaces étroits. Couple de 30 Nm, vitesse variable." },
-  { id: 15, name: "Tourneur à vis électronique", brand: "POWER Tools", price: 165.00, old_price: null, image: "/img/product-img/product-6.jpg", hover_image: "/img/product-img/product-7.jpg", badge: "New", category: "Tournevis", description: "Tourneur à vis électronique avec contrôle numérique du couple. 20 niveaux de précision pour un vissage parfait à chaque fois." },
-  { id: 16, name: "Meuleuse d'angle", brand: "POWER Tools", price: 149.00, old_price: 175.00, image: "/img/product-img/product-7.jpg", hover_image: "/img/product-img/product-8.jpg", badge: "-15%", category: "Meulage", description: "Meuleuse d'angle professionnelle 125mm. Moteur 900W, démarrage progressif, disque de protection réglable sans outil." },
-  { id: 17, name: "Marteau de forage sans fil", brand: "POWER Tools", price: 289.00, old_price: null, image: "/img/product-img/product-8.jpg", hover_image: "/img/product-img/product-9.jpg", badge: "New", category: "Perceuses", description: "Marteau de forage sans fil SDS-Plus 26mm. 3 modes : perçage, perçage avec frappe, frappe uniquement. Énergie 18V Li-Ion." },
+  {
+    id: 1, name: "Tournevis sans fil", brand: "POWER Tools", price: 89.00, old_price: 109.00,
+    image: "/img/product-img/product-1.jpg", hover_image: "/img/product-img/product-2.jpg",
+    badge: "-18%", category: "Tournevis",
+    description: "Le tournevis sans fil POWER Tools est conçu pour les professionnels exigeants. Son moteur sans charbon offre une puissance constante et une longévité accrue. Le couple réglable avec embrayage à 20 positions permet un vissage précis dans tous les matériaux. L'ergonomie légère (1.2 kg) réduit la fatigue lors d'un usage prolongé.",
+    features: ["Moteur brushless sans charbon", "Couple max 35 Nm", "2 vitesses mécaniques", "Mandrin 6.35mm auto-serrant", "Éclairage LED intégré", "Batterie Li-Ion 20V 2.0Ah incluse"],
+    specs: { "Couple max": "35 Nm", "Vitesse": "0 - 1 700 tr/min", "Mandrin": "6.35 mm", "Tension batterie": "20 V Li-Ion", "Poids": "1.2 kg", "Bruit sonore": "72 dB(A)", "Norme EU": "2006/42/CE" },
+    delivery: "Livré avec 1 tournevis, 1 batterie 2.0Ah, 1 chargeur rapide, coffret de transport",
+    stock: 24, ref: "PT-TSD-20V"
+  },
+  {
+    id: 2, name: "Tournevis à cliquets sans fil", brand: "POWER Tools", price: 115.00, old_price: null,
+    image: "/img/product-img/product-2.jpg", hover_image: "/img/product-img/product-3.jpg",
+    badge: "New", category: "Tournevis",
+    description: "Le tournevis à cliquets POWER Tools combine précision et rapidité. Le système de cliquet réversible permet des rotations en espace confiné. L'embrayage à 2 vitesses et le torseur variable s'adaptent à chaque situation de travail. Idéal pour la maintenance industrielle et le montage en série.",
+    features: ["Système de cliquet réversible", "Embrayage 2 vitesses", "Torseur variable 20 positions", "Moteur brushless", "Indicateur de charge LED", "Poignée antidérapante"],
+    specs: { "Couple max": "40 Nm", "Vitesse": "0 - 1 500 tr/min", "Mandrin": "6.35 mm", "Tension batterie": "20 V Li-Ion", "Poids": "1.35 kg", "Bruit sonore": "74 dB(A)", "Norme EU": "2006/42/CE" },
+    delivery: "Livré avec 1 tournevis, 1 batterie 2.0Ah, 1 chargeur rapide, coffret de transport",
+    stock: 18, ref: "PT-TSC-20V"
+  },
+  {
+    id: 3, name: "Tournevis de construction sans fil", brand: "POWER Tools", price: 99.00, old_price: 125.00,
+    image: "/img/product-img/product-3.jpg", hover_image: "/img/product-img/product-4.jpg",
+    badge: "-21%", category: "Tournevis",
+    description: "Robuste et fiable, le tournevis de construction POWER Tools est pensé pour les environnements exigeants du BTP. Son corps renforcé en aluminium et sa protection IP54 le rendent résistant à la poussière et aux éclaboussures. Le moteur sans charbon garantit des performances constantes même en conditions difficiles.",
+    features: ["Corps aluminium renforcé", "Protection IP54", "Moteur brushless", "Éclairage LED large", "Chargeur rapide 1h", "Coffret étanche inclus"],
+    specs: { "Couple max": "45 Nm", "Vitesse": "0 - 1 800 tr/min", "Mandrin": "10 mm auto-serrant", "Tension batterie": "20 V Li-Ion", "Poids": "1.5 kg", "Protection": "IP54", "Norme EU": "2006/42/CE" },
+    delivery: "Livré avec 1 tournevis, 2 batteries 2.0Ah, 1 chargeur rapide, coffret étanche",
+    stock: 12, ref: "PT-TSCON-20V"
+  },
+  {
+    id: 4, name: "Tournevis articulé sans fil", brand: "POWER Tools", price: 129.00, old_price: null,
+    image: "/img/product-img/product-4.jpg", hover_image: "/img/product-img/product-5.jpg",
+    badge: "New", category: "Tournevis",
+    description: "Le tournevis articulé POWER Tools permet l'accès dans des espaces confinés grâce à sa tête orientable à 3 positions (0° / 45° / 90°). Le système de vitesse variable et l'embrayage à 20 positions assurent un vissage précis même dans les zones les plus inaccessibles de vos installations industrielles.",
+    features: ["Tête orientable 3 positions", "Profil ultra-fin 38mm", "Vitesse variable", "Embrayage 20 positions", "Moteur brushless", "Éclairage LED pivotant"],
+    specs: { "Couple max": "30 Nm", "Vitesse": "0 - 1 300 tr/min", "Mandrin": "6.35 mm", "Tension batterie": "20 V Li-Ion", "Poids": "1.1 kg", "Hauteur profile": "38 mm", "Norme EU": "2006/42/CE" },
+    delivery: "Livré avec 1 tournevis articulé, 1 batterie 2.0Ah, 1 chargeur rapide, coffret de transport",
+    stock: 15, ref: "PT-TSA-20V"
+  },
+  {
+    id: 5, name: "Tournevis à dégagement rapide", brand: "POWER Tools", price: 69.00, old_price: 85.00,
+    image: "/img/product-img/product-5.jpg", hover_image: "/img/product-img/product-6.jpg",
+    badge: "-19%", category: "Tournevis",
+    description: "Le tournevis à dégagement rapide POWER Tools optimise votre productivité. Le mandrin auto-serrant 6.35mm permet le changement de foret en une seule main, sans outil supplémentaire. Parfait pour les opérations de perçage et vissage en alternance rapide sur les lignes de production.",
+    features: ["Mandrin à dégagement rapide", "Changement une main", "Embrayage 18 positions", "Moteur 18V", "Chargeur rapide 45 min", "Poignée ergonomique"],
+    specs: { "Couple max": "28 Nm", "Vitesse": "0 - 1 400 tr/min", "Mandrin": "6.35 mm dégagement rapide", "Tension batterie": "18 V Li-Ion", "Poids": "1.0 kg", "Charge rapide": "45 min", "Norme EU": "2006/42/CE" },
+    delivery: "Livré avec 1 tournevis, 1 batterie 2.0Ah, 1 chargeur rapide",
+    stock: 30, ref: "PT-TSDR-18V"
+  },
+  {
+    id: 6, name: "Clé à choc sans fil", brand: "POWER Tools", price: 189.00, old_price: null,
+    image: "/img/product-img/product-6.jpg", hover_image: "/img/product-img/product-7.jpg",
+    badge: null, category: "Clés à choc",
+    description: "La clé à choc sans fil POWER Tools est l'outil indispensable pour le serrage et desserrage de boulons industriels. Son moteur brushless délivre un couple max de 400 Nm avec 3 vitesses et 5 modes de travail. Le frein de moteur arrête instantanément la rotation pour un contrôle total.",
+    features: ["Moteur brushless", "Couple max 400 Nm", "3 vitesses + 5 modes", "Frein de moteur", "Torseur variable", "Éclairage LED triple"],
+    specs: { "Couple max": "400 Nm", "Couple desserrage": "600 Nm", "Vitesse": "0 - 2 300 tr/min", "Carré d'entraînement": "1/2\"", "Tension batterie": "20 V Li-Ion", "Poids": "2.1 kg", "Norme EU": "2006/42/CE" },
+    delivery: "Livré avec 1 clé à choc, 2 batteries 4.0Ah, 1 chargeur rapide, coffret de transport",
+    stock: 8, ref: "PT-CKC-20V"
+  },
+  {
+    id: 7, name: "Clé à choc rotative sans fil", brand: "POWER Tools", price: 215.00, old_price: 249.00,
+    image: "/img/product-img/product-7.jpg", hover_image: "/img/product-img/product-8.jpg",
+    badge: "-14%", category: "Clés à choc",
+    description: "La clé à choc rotative POWER Tools combine puissance et polyvalence. Sa tête orientable 360° permet l'accès facilité dans les espaces restreints des lignes de production. Le moteur brushless offre un couple constant et une autonomie prolongée pour les sessions de travail longues.",
+    features: ["Tête orientable 360°", "Moteur brushless", "Couple max 450 Nm", "6 positions angulaires", "Frein de moteur", "Batterie grande capacité"],
+    specs: { "Couple max": "450 Nm", "Couple desserrage": "650 Nm", "Vitesse": "0 - 2 200 tr/min", "Carré d'entraînement": "1/2\"", "Positions tête": "6 (0° à 180°)", "Tension batterie": "20 V Li-Ion", "Poids": "2.3 kg" },
+    delivery: "Livré avec 1 clé à choc rotative, 2 batteries 4.0Ah, 1 chargeur rapide, coffret de transport",
+    stock: 6, ref: "PT-CKCR-20V"
+  },
+  {
+    id: 8, name: "Tournevis de magazine sans fil", brand: "POWER Tools", price: 145.00, old_price: null,
+    image: "/img/product-img/product-8.jpg", hover_image: "/img/product-img/product-9.jpg",
+    badge: "New", category: "Tournevis",
+    description: "Le tournevis de magazine POWER Tools révolutionne le vissage en série. Le chargeur à vis intégré à 50 positions permet un enchaînement rapide sans rechargement manuel. Gain de productivité de 40% sur les opérations de fixation en production industrielle.",
+    features: ["Magazine 50 vis intégré", "Alimentation automatique", "Vitesse de vissage 1 800 tr/min", "Moteur brushless", "Détection de fin de vis", "Économie de 40% de temps"],
+    specs: { "Couple max": "32 Nm", "Vitesse": "0 - 1 800 tr/min", "Capacité magazine": "50 vis", "Diamètre vis max": "4.2 mm", "Tension batterie": "20 V Li-Ion", "Poids": "1.6 kg", "Norme EU": "2006/42/CE" },
+    delivery: "Livré avec 1 tournevis magazine, 2 batteries 2.0Ah, 1 chargeur rapide, coffret de transport",
+    stock: 10, ref: "PT-TSM-20V"
+  },
+  {
+    id: 9, name: "Pistolet à noix de rivet sans fil", brand: "POWER Tools", price: 249.00, old_price: 289.00,
+    image: "/img/product-img/product-9.jpg", hover_image: "/img/product-img/product-1.jpg",
+    badge: "-14%", category: "Rivets",
+    description: "Le pistolet à rivets sans fil POWER Tools est équipé d'un système de noix intégré pour un enchaînement rapide des opérations. La traction de 20 kN permet de poser des rivets aveugles jusqu'à M6 en acier inoxydable. L'angle de tête pivotant facilite l'accès dans les positions difficiles.",
+    features: ["Système de noix intégré", "Traction 20 kN", "Tête pivotante 360°", "Éjection auto des tiges", "Éclairage LED", "Batterie grande capacité"],
+    specs: { "Traction": "20 kN", "Rivets max": "M6 inox / M8 alu", "Course": "25 mm", "Débit": "3 rivets/min", "Tension batterie": "20 V Li-Ion", "Poids": "2.0 kg", "Norme EU": "2006/42/CE" },
+    delivery: "Livré avec 1 pistolet à rivets, 2 batteries 2.0Ah, 1 chargeur rapide, coffret, set de noix",
+    stock: 5, ref: "PT-PNR-20V"
+  },
+  {
+    id: 10, name: "Perceuse à fil", brand: "POWER Tools", price: 139.00, old_price: null,
+    image: "/img/product-img/product-1.jpg", hover_image: "/img/product-img/product-2.jpg",
+    badge: null, category: "Perceuses",
+    description: "La perceuse à fil professionnelle POWER Tools offre une puissance constante de 750W pour un usage continu en atelier. Le mandrin auto-serrant 1.5-13mm et les 2 vitesses mécaniques couvrent tous les besoins de perçage dans l'acier, le bois et les matériaux de construction.",
+    features: ["Puissance 750W", "Mandrin auto-serrant 1.5-13mm", "2 vitesses mécaniques", "Embrayage anti-vibration", "Poignée auxiliaire", "Support de fixation"],
+    specs: { "Puissance": "750 W", "Vitesse": "0 - 2 800 tr/min", "Mandrin": "1.5 - 13 mm auto-serrant", "Vitesse 1": "0 - 1 100 tr/min", "Vitesse 2": "0 - 2 800 tr/min", "Poids": "2.8 kg", "Norme EU": "2006/42/CE" },
+    delivery: "Livré avec 1 perceuse, poignée auxiliaire, support de fixation, coffret",
+    stock: 20, ref: "PT-PER-750W"
+  },
+  {
+    id: 11, name: "Cliquets de batterie", brand: "POWER Tools", price: 159.00, old_price: null,
+    image: "/img/product-img/product-2.jpg", hover_image: "/img/product-img/product-3.jpg",
+    badge: "New", category: "Clés à choc",
+    description: "L'ensemble de cliquets à batterie POWER Tools comprend 2 torseurs réglables pour le serrage précis en maintenance industrielle. Le cliquet 1/4\" pour les petits serrages et le cliquet 1/2\" pour les boulons de plus grande taille couvrent 90% des besoins en atelier.",
+    features: ["2 torseurs réglables", "Cliquet 1/4\" + 1/2\"", "Embrayage finement réglable", "Moteur sans charbon", "Chargeur rapide", "Coffret de transport"],
+    specs: { "Couple cliquet 1/4\"": "5 - 25 Nm", "Couple cliquet 1/2\"": "20 - 100 Nm", "Vitesse": "0 - 2 000 tr/min", "Tension batterie": "20 V Li-Ion", "Poids total": "2.5 kg", "Norme EU": "2006/42/CE" },
+    delivery: "Livré avec 2 cliquets, 2 batteries 2.0Ah, 1 chargeur rapide, coffret",
+    stock: 14, ref: "PT-CLQ-20V"
+  },
+  {
+    id: 12, name: "Tournevis et ensemble de forage", brand: "POWER Tools", price: 179.00, old_price: 210.00,
+    image: "/img/product-img/product-3.jpg", hover_image: "/img/product-img/product-4.jpg",
+    badge: "-15%", category: "Tournevis",
+    description: "L'ensemble tournevis et forage POWER Tools est le kit complet pour les professionnels. Le coffret contient le tournevis brushless 20V, 50 accessoires (forets, mèches, bits) et 2 batteries. Un seul achat pour couvrir tous vos besoins de vissage et perçage.",
+    features: ["50 accessoires inclus", "Moteur brushless 20V", "Coffret organisateur", "Forets HSS", "Mèches à bois", "Bits torx/phillips/plat"],
+    specs: { "Couple max": "35 Nm", "Vitesse": "0 - 1 700 tr/min", "Accessoires": "50 pièces", "Tension batterie": "20 V Li-Ion", "Poids coffret": "4.5 kg", "Norme EU": "2006/42/CE" },
+    delivery: "Livré avec 1 tournevis, 50 accessoires, 2 batteries 2.0Ah, 1 chargeur, coffret organisateur",
+    stock: 9, ref: "PT-TSFE-20V"
+  },
+  {
+    id: 13, name: "Pistolet de rivet de batterie", brand: "POWER Tools", price: 199.00, old_price: null,
+    image: "/img/product-img/product-4.jpg", hover_image: "/img/product-img/product-5.jpg",
+    badge: null, category: "Rivets",
+    description: "Le pistolet de rivet à batterie POWER Tools offre un confort d'utilisation optimal avec son éclairage LED intégré et son système d'éjection automatique des tiges. La poignée ergonomique en caoutchouc antidérapant réduit la fatigue même lors de sessions de rivetage prolongées.",
+    features: ["Éclairage LED intégré", "Éjection automatique des tiges", "Poignée ergonomique", "Vitesse variable", "Tête pivotante", "Batterie longue durée"],
+    specs: { "Traction": "18 kN", "Rivets max": "M5 inox / M6 alu", "Course": "22 mm", "Débit": "2.5 rivets/min", "Tension batterie": "20 V Li-Ion", "Poids": "1.8 kg", "Norme EU": "2006/42/CE" },
+    delivery: "Livré avec 1 pistolet de rivet, 1 batterie 2.0Ah, 1 chargeur rapide",
+    stock: 16, ref: "PT-PDR-20V"
+  },
+  {
+    id: 14, name: "Tournevis à angle sans fil", brand: "POWER Tools", price: 119.00, old_price: 145.00,
+    image: "/img/product-img/product-5.jpg", hover_image: "/img/product-img/product-6.jpg",
+    badge: "-18%", category: "Tournevis",
+    description: "Le tournevis à angle droit sans fil POWER Tools est conçu pour les espaces étroits. Son profil fin de 25mm permet d'accéder là où les tournevis classiques ne peuvent pas aller. Le couple de 30 Nm avec vitesse variable assure un vissage précis en toute situation.",
+    features: ["Profil fin 25mm", "Angle droit 90°", "Couple 30 Nm", "Vitesse variable", "Moteur brushless", "Éclairage LED orientable"],
+    specs: { "Couple max": "30 Nm", "Vitesse": "0 - 1 300 tr/min", "Profil": "25 mm", "Tension batterie": "20 V Li-Ion", "Poids": "0.95 kg", "Norme EU": "2006/42/CE" },
+    delivery: "Livré avec 1 tournevis à angle, 1 batterie 2.0Ah, 1 chargeur rapide",
+    stock: 22, ref: "PT-TSAng-20V"
+  },
+  {
+    id: 15, name: "Tourneur à vis électronique", brand: "POWER Tools", price: 165.00, old_price: null,
+    image: "/img/product-img/product-6.jpg", hover_image: "/img/product-img/product-7.jpg",
+    badge: "New", category: "Tournevis",
+    description: "Le tourneur à vis électronique POWER Tools intègre un contrôle numérique du couple avec 20 niveaux de précision. L'affichage LED permet de vérifier le niveau sélectionné. Idéal pour le vissage de précision dans l'assemblage électronique et la mécanique fine.",
+    features: ["Contrôle numérique du couple", "20 niveaux de précision", "Affichage LED", "Moteur brushless", "Démarrage progressif", "Fonction mémoire"],
+    specs: { "Couple max": "25 Nm", "Vitesse": "0 - 1 000 tr/min", "Niveaux couple": "20", "Précision": "±5%", "Tension batterie": "20 V Li-Ion", "Poids": "1.0 kg", "Norme EU": "2006/42/CE" },
+    delivery: "Livré avec 1 tourneur à vis, 1 batterie 2.0Ah, 1 chargeur rapide, coffret",
+    stock: 11, ref: "PT-TEV-20V"
+  },
+  {
+    id: 16, name: "Meuleuse d'angle", brand: "POWER Tools", price: 149.00, old_price: 175.00,
+    image: "/img/product-img/product-7.jpg", hover_image: "/img/product-img/product-8.jpg",
+    badge: "-15%", category: "Meulage",
+    description: "La meuleuse d'angle professionnelle POWER Tools offre une puissance de 900W pour le meulage, l'ébarbage et le découpage. Le démarrage progressif protège les pièces, et le carter de protection réglable sans outil s'adapte à chaque angle de travail. Le système de ventilation optimisé prolonge la durée de vie du moteur.",
+    features: ["Puissance 900W", "Démarrage progressif", "Carter réglable sans outil", "Moteur ventilé", "Poignée auxiliaire", "Disque 125mm inclus"],
+    specs: { "Puissance": "900 W", "Vitesse": "0 - 11 000 tr/min", "Diamètre disque": "125 mm", "Filetage": "M14", "Poids": "2.2 kg", "Bruit sonore": "86 dB(A)", "Norme EU": "2006/42/CE" },
+    delivery: "Livré avec 1 meuleuse d'angle, 1 disque multi-matériaux, poignée auxiliaire, clef, coffret",
+    stock: 19, ref: "PT-MEA-900W"
+  },
+  {
+    id: 17, name: "Marteau de forage sans fil", brand: "POWER Tools", price: 289.00, old_price: null,
+    image: "/img/product-img/product-8.jpg", hover_image: "/img/product-img/product-9.jpg",
+    badge: "New", category: "Perceuses",
+    description: "Le marteau de forage sans fil POWER Tools est l'outil le plus puissant de la gamme. Le système SDS-Plus permet le changement rapide de foret sans outil. 3 modes de fonctionnement (perçage, perçage avec frappe, frappe uniquement) couvrent tous les besoins de perçage dans le béton, la pierre et les matériaux durs.",
+    features: ["Système SDS-Plus", "3 modes de fonctionnement", "Frappe 2.5 J", "Moteur brushless", "Anti-vibration", "Éclairage LED large"],
+    specs: { "Énergie de frappe": "2.5 J", "Diamètre max béton": "26 mm", "Diamètre max bois": "30 mm", "Vitesse": "0 - 1 100 tr/min", "Tension batterie": "18 V Li-Ion", "Poids": "3.2 kg", "Norme EU": "2006/42/CE" },
+    delivery: "Livré avec 1 marteau de forage, 2 batteries 4.0Ah, 1 chargeur rapide, coffret, forets SDS-Plus",
+    stock: 4, ref: "PT-MFS-18V"
+  },
 ];
 
 export const blogPosts = [
@@ -33,6 +186,6 @@ export const singleProduct = {
   brand: "POWER Tools",
   price: 89.00,
   old_price: 109.00,
-  description: "Tournevis sans fil haute performance pour vissage industriel. Couple réglable, ergonomie optimale pour un usage prolongé. Moteur sans charbon pour une durabilité maximale.",
+  description: "Tournevis sans fil haute performance pour vissage industriel.",
   category: "Tournevis",
 };
