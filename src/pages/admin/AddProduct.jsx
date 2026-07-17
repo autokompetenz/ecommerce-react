@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "../../lib/supabase";
+import ImageUpload from "../../components/ImageUpload";
 
 const emptyProduct = {
   name: "", brand: "", price: "", old_price: "", image: "", hover_image: "", badge: "", category: "", description: "",
@@ -68,11 +69,11 @@ export default function AddProduct() {
 
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "16px" }}>
           <div>
-            <label style={labelStyle}>Prix ($) *</label>
+            <label style={labelStyle}>Prix (€) *</label>
             <input name="price" type="number" step="0.01" value={form.price} onChange={handleChange} required style={inputStyle} />
           </div>
           <div>
-            <label style={labelStyle}>Ancien prix ($)</label>
+            <label style={labelStyle}>Ancien prix (€)</label>
             <input name="old_price" type="number" step="0.01" value={form.old_price} onChange={handleChange} style={inputStyle} />
           </div>
           <div>
@@ -81,26 +82,29 @@ export default function AddProduct() {
               <option value="">Aucun</option>
               <option value="New">New</option>
               <option value="-10%">-10%</option>
+              <option value="-15%">-15%</option>
               <option value="-20%">-20%</option>
               <option value="-30%">-30%</option>
-              <option value="-50%">-50%</option>
             </select>
           </div>
         </div>
 
         <div>
           <label style={labelStyle}>Catégorie</label>
-          <input name="category" value={form.category} onChange={handleChange} placeholder="ex: Lames Industrielles" style={inputStyle} />
+          <input name="category" value={form.category} onChange={handleChange} placeholder="ex: Tournevis, Clés à choc, Perceuses..." style={inputStyle} />
         </div>
 
-        <div>
-          <label style={labelStyle}>URL Image principale</label>
-          <input name="image" value={form.image} onChange={handleChange} placeholder="/img/product-img/product-1.jpg" style={inputStyle} />
-        </div>
-
-        <div>
-          <label style={labelStyle}>URL Image secondaire (hover)</label>
-          <input name="hover_image" value={form.hover_image} onChange={handleChange} style={inputStyle} />
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }}>
+          <ImageUpload
+            label="Image principale"
+            value={form.image}
+            onChange={(url) => setForm((prev) => ({ ...prev, image: url }))}
+          />
+          <ImageUpload
+            label="Image secondaire (hover)"
+            value={form.hover_image}
+            onChange={(url) => setForm((prev) => ({ ...prev, hover_image: url }))}
+          />
         </div>
 
         <div>

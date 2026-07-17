@@ -58,4 +58,20 @@ CREATE POLICY "Update orders" ON orders FOR UPDATE USING (true);
 
 CREATE POLICY "Insert order_items" ON order_items FOR INSERT WITH CHECK (true);
 CREATE POLICY "Read order_items" ON order_items FOR SELECT USING (true);
+
+-- ====== SUPABASE STORAGE (exécuter dans le SQL Editor) ======
+-- Créer un bucket pour les images produits
+INSERT INTO storage.buckets (id, name, public) VALUES ('product-images', 'product-images', true);
+
+-- Politique de lecture publique
+CREATE POLICY "Public read product-images" ON storage.objects
+  FOR SELECT USING (bucket_id = 'product-images');
+
+-- Politique d'upload ouverte (à sécuriser plus tard)
+CREATE POLICY "Upload product-images" ON storage.objects
+  FOR INSERT WITH CHECK (bucket_id = 'product-images');
+
+-- Politique de suppression ouverte
+CREATE POLICY "Delete product-images" ON storage.objects
+  FOR DELETE USING (bucket_id = 'product-images');
 */
