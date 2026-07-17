@@ -10,7 +10,6 @@ const KNOWN_CATEGORIES = [
   "Perceuses",
   "Rivets",
   "Meulage",
-  "Accessoires",
 ];
 
 export default function Shop() {
