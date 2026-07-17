@@ -26,70 +26,101 @@ export default function Dashboard() {
   };
 
   const filtered = products.filter(
-    (p) => p.name.toLowerCase().includes(search.toLowerCase()) || p.brand.toLowerCase().includes(search.toLowerCase()) || p.category.toLowerCase().includes(search.toLowerCase())
+    (p) => (p.name && p.name.toLowerCase().includes(search.toLowerCase())) ||
+      (p.brand && p.brand.toLowerCase().includes(search.toLowerCase())) ||
+      (p.category && p.category.toLowerCase().includes(search.toLowerCase()))
   );
 
   return (
     <div>
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "24px" }}>
-        <h1 style={{ margin: 0, fontSize: "24px", color: "#333" }}>Produits ({products.length})</h1>
-        <Link to="/admin/add" style={{ padding: "10px 20px", background: "#333", color: "#fff", textDecoration: "none", borderRadius: "6px", fontSize: "14px" }}>
-          <i className="fa fa-plus" style={{ marginRight: "6px" }}></i>Ajouter
+      <div className="admin-header-row">
+        <h1>Produits ({products.length})</h1>
+        <Link to="/admin/add" className="btn btn-primary admin-add-btn">
+          <i className="fa-solid fa-plus"></i> Ajouter
         </Link>
       </div>
 
-      {/* Search */}
       <input
         type="text"
         placeholder="Rechercher un produit..."
         value={search}
         onChange={(e) => setSearch(e.target.value)}
-        style={{ width: "100%", padding: "12px 16px", border: "1px solid #ddd", borderRadius: "8px", marginBottom: "20px", fontSize: "14px", boxSizing: "border-box" }}
+        className="admin-search-input"
       />
 
       {loading ? (
-        <p style={{ color: "#888" }}>Chargement...</p>
+        <p className="admin-loading">Chargement...</p>
       ) : filtered.length === 0 ? (
-        <p style={{ color: "#888" }}>Aucun produit trouvé.</p>
+        <p className="admin-loading">Aucun produit trouvé.</p>
       ) : (
-        <div style={{ background: "#fff", borderRadius: "8px", overflow: "hidden", border: "1px solid #e5e5e5" }}>
-          <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "14px" }}>
-            <thead>
-              <tr style={{ background: "#f8f9fa", borderBottom: "1px solid #e5e5e5" }}>
-                <th style={{ padding: "12px 16px", textAlign: "left" }}>Image</th>
-                <th style={{ padding: "12px 16px", textAlign: "left" }}>Nom</th>
-                <th style={{ padding: "12px 16px", textAlign: "left" }}>Marque</th>
-                <th style={{ padding: "12px 16px", textAlign: "left" }}>Catégorie</th>
-                <th style={{ padding: "12px 16px", textAlign: "right" }}>Prix</th>
-                <th style={{ padding: "12px 16px", textAlign: "center" }}>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {filtered.map((product) => (
-                <tr key={product.id} style={{ borderBottom: "1px solid #f0f0f0" }}>
-                  <td style={{ padding: "12px 16px" }}>
-                    <img src={product.image || "/img/product-img/product-1.jpg"} alt="" style={{ width: "50px", height: "50px", objectFit: "cover", borderRadius: "4px" }} />
-                  </td>
-                  <td style={{ padding: "12px 16px", fontWeight: "500" }}>{product.name}</td>
-                  <td style={{ padding: "12px 16px", color: "#666" }}>{product.brand}</td>
-                  <td style={{ padding: "12px 16px", color: "#666" }}>{product.category || "-"}</td>
-                  <td style={{ padding: "12px 16px", textAlign: "right", fontWeight: "600" }}>
-                    {product.old_price && <span style={{ textDecoration: "line-through", color: "#999", marginRight: "6px" }}>${product.old_price}</span>}
-                    ${product.price}
-                  </td>
-                  <td style={{ padding: "12px 16px", textAlign: "center" }}>
-                    <Link to={`/admin/edit/${product.id}`} style={{ marginRight: "12px", color: "#3498db", textDecoration: "none" }}>
-                      <i className="fa fa-pencil"></i>
-                    </Link>
-                    <button onClick={() => handleDelete(product.id)} disabled={deleting === product.id} style={{ background: "none", border: "none", color: "#e74c3c", cursor: "pointer", fontSize: "14px" }}>
-                      <i className="fa fa-trash"></i>
-                    </button>
-                  </td>
+        <>
+          {/* Desktop table */}
+          <div className="admin-table-wrap">
+            <table className="admin-table">
+              <thead>
+                <tr>
+                  <th>Image</th>
+                  <th>Nom</th>
+                  <th>Marque</th>
+                  <th>Catégorie</th>
+                  <th className="text-right">Prix</th>
+                  <th className="text-center">Actions</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+              </thead>
+              <tbody>
+                {filtered.map((product) => (
+                  <tr key={product.id}>
+                    <td>
+                      <img src={product.image || "/img/product-img/product-1.jpg"} alt="" className="admin-table-img" />
+                    </td>
+                    <td className="font-medium">{product.name}</td>
+                    <td className="text-muted">{product.brand}</td>
+                    <td className="text-muted">{product.category || "-"}</td>
+                    <td className="text-right font-semibold">
+                      {product.old_price && <span className="old-price">${product.old_price}</span>}
+                      ${product.price}
+                    </td>
+                    <td className="text-center">
+                      <div className="admin-actions">
+                        <Link to={`/admin/edit/${product.id}`} className="admin-action-edit">
+                          <i className="fa-solid fa-pen"></i>
+                        </Link>
+                        <button onClick={() => handleDelete(product.id)} disabled={deleting === product.id} className="admin-action-delete">
+                          <i className="fa-solid fa-trash"></i>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          {/* Mobile cards */}
+          <div className="admin-product-cards">
+            {filtered.map((product) => (
+              <div key={product.id} className="admin-product-card">
+                <img src={product.image || "/img/product-img/product-1.jpg"} alt="" className="admin-product-card-img" />
+                <div className="admin-product-card-info">
+                  <h4>{product.name}</h4>
+                  <p className="text-muted">{product.brand} — {product.category || "-"}</p>
+                  <p className="admin-product-card-price">
+                    {product.old_price && <span className="old-price">${product.old_price}</span>}
+                    ${product.price}
+                  </p>
+                </div>
+                <div className="admin-product-card-actions">
+                  <Link to={`/admin/edit/${product.id}`} className="admin-action-edit">
+                    <i className="fa-solid fa-pen"></i>
+                  </Link>
+                  <button onClick={() => handleDelete(product.id)} disabled={deleting === product.id} className="admin-action-delete">
+                    <i className="fa-solid fa-trash"></i>
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </>
       )}
     </div>
   );

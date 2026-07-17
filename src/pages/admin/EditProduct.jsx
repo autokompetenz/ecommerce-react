@@ -69,42 +69,42 @@ export default function EditProduct() {
     }
   };
 
-  if (loading) return <p style={{ color: "#888" }}>Chargement...</p>;
+  if (loading) return <p className="admin-loading">Chargement...</p>;
 
   return (
-    <div style={{ maxWidth: "600px" }}>
-      <h1 style={{ fontSize: "24px", color: "#333", marginBottom: "24px" }}>Modifier le produit</h1>
+    <div className="admin-form-wrap">
+      <h1 className="admin-page-title">Modifier le produit</h1>
 
       {message && (
-        <div style={{ padding: "12px 16px", borderRadius: "8px", marginBottom: "20px", fontSize: "14px", background: message.type === "error" ? "#fdecea" : "#e8f5e9", color: message.type === "error" ? "#c62828" : "#2e7d32" }}>
+        <div className={`admin-alert ${message.type === "error" ? "error" : "success"}`}>
           {message.text}
         </div>
       )}
 
-      <form onSubmit={handleSubmit} style={{ background: "#fff", padding: "24px", borderRadius: "8px", border: "1px solid #e5e5e5" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }}>
+      <form onSubmit={handleSubmit} className="admin-form">
+        <div className="admin-form-grid admin-form-grid-2">
           <div>
-            <label style={labelStyle}>Nom du produit *</label>
-            <input name="name" value={form.name} onChange={handleChange} required style={inputStyle} />
+            <label className="admin-label">Nom du produit *</label>
+            <input name="name" value={form.name} onChange={handleChange} required className="admin-input" />
           </div>
           <div>
-            <label style={labelStyle}>Marque</label>
-            <input name="brand" value={form.brand} onChange={handleChange} style={inputStyle} />
+            <label className="admin-label">Marque</label>
+            <input name="brand" value={form.brand} onChange={handleChange} className="admin-input" />
           </div>
         </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "16px" }}>
+        <div className="admin-form-grid admin-form-grid-3">
           <div>
-            <label style={labelStyle}>Prix (€) *</label>
-            <input name="price" type="number" step="0.01" value={form.price} onChange={handleChange} required style={inputStyle} />
+            <label className="admin-label">Prix (€) *</label>
+            <input name="price" type="number" step="0.01" value={form.price} onChange={handleChange} required className="admin-input" />
           </div>
           <div>
-            <label style={labelStyle}>Ancien prix (€)</label>
-            <input name="old_price" type="number" step="0.01" value={form.old_price} onChange={handleChange} style={inputStyle} />
+            <label className="admin-label">Ancien prix (€)</label>
+            <input name="old_price" type="number" step="0.01" value={form.old_price} onChange={handleChange} className="admin-input" />
           </div>
           <div>
-            <label style={labelStyle}>Badge</label>
-            <select name="badge" value={form.badge} onChange={handleChange} style={inputStyle}>
+            <label className="admin-label">Badge</label>
+            <select name="badge" value={form.badge} onChange={handleChange} className="admin-input">
               <option value="">Aucun</option>
               <option value="New">New</option>
               <option value="-10%">-10%</option>
@@ -116,11 +116,11 @@ export default function EditProduct() {
         </div>
 
         <div>
-          <label style={labelStyle}>Catégorie</label>
-          <input name="category" value={form.category} onChange={handleChange} style={inputStyle} />
+          <label className="admin-label">Catégorie</label>
+          <input name="category" value={form.category} onChange={handleChange} className="admin-input" />
         </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }}>
+        <div className="admin-form-grid admin-form-grid-2">
           <ImageUpload
             label="Image principale"
             value={form.image}
@@ -134,26 +134,26 @@ export default function EditProduct() {
         </div>
 
         <div>
-          <label style={labelStyle}>Description</label>
-          <textarea name="description" value={form.description} onChange={handleChange} rows="4" style={{ ...inputStyle, resize: "vertical" }} />
+          <label className="admin-label">Description</label>
+          <textarea name="description" value={form.description} onChange={handleChange} rows="4" className="admin-input admin-textarea" />
         </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }}>
+        <div className="admin-form-grid admin-form-grid-2">
           <div>
-            <label style={labelStyle}>EAN</label>
-            <input name="ean" value={form.ean} onChange={handleChange} placeholder="ex: 7392248567205" style={inputStyle} />
+            <label className="admin-label">EAN</label>
+            <input name="ean" value={form.ean} onChange={handleChange} placeholder="ex: 7392248567205" className="admin-input" />
           </div>
           <div>
-            <label style={labelStyle}>N° de pièce</label>
-            <input name="part_number" value={form.part_number} onChange={handleChange} placeholder="ex: MT320B, WR14-125" style={inputStyle} />
+            <label className="admin-label">N° de pièce</label>
+            <input name="part_number" value={form.part_number} onChange={handleChange} placeholder="ex: MT320B, WR14-125" className="admin-input" />
           </div>
         </div>
 
-        <div style={{ display: "flex", gap: "12px", marginTop: "8px" }}>
-          <button type="submit" disabled={saving} style={{ padding: "12px 24px", background: "#333", color: "#fff", border: "none", borderRadius: "6px", cursor: "pointer", fontSize: "14px" }}>
+        <div className="admin-form-actions">
+          <button type="submit" disabled={saving} className="btn btn-primary">
             {saving ? "Enregistrement..." : "Enregistrer"}
           </button>
-          <button type="button" onClick={() => navigate("/admin")} style={{ padding: "12px 24px", background: "#f0f0f0", color: "#333", border: "none", borderRadius: "6px", cursor: "pointer", fontSize: "14px" }}>
+          <button type="button" onClick={() => navigate("/admin")} className="btn btn-outline">
             Annuler
           </button>
         </div>
@@ -161,6 +161,3 @@ export default function EditProduct() {
     </div>
   );
 }
-
-const labelStyle = { display: "block", fontSize: "13px", fontWeight: "600", color: "#555", marginBottom: "6px" };
-const inputStyle = { width: "100%", padding: "10px 12px", border: "1px solid #ddd", borderRadius: "6px", fontSize: "14px", boxSizing: "border-box" };

@@ -45,28 +45,28 @@ export default function Orders() {
 
   return (
     <div>
-      <h1 style={{ fontSize: "24px", color: "#333", marginBottom: "24px" }}>Commandes ({orders.length})</h1>
+      <h1 className="admin-page-title">Commandes ({orders.length})</h1>
 
       {loading ? (
-        <p style={{ color: "#888" }}>Chargement...</p>
+        <p className="admin-loading">Chargement...</p>
       ) : orders.length === 0 ? (
-        <div style={{ background: "#fff", padding: "40px", borderRadius: "8px", textAlign: "center", border: "1px solid #e5e5e5" }}>
-          <p style={{ color: "#888" }}>Aucune commande pour le moment.</p>
+        <div className="admin-empty">
+          <p>Aucune commande pour le moment.</p>
         </div>
       ) : (
-        <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+        <div className="admin-orders-list">
           {orders.map((order) => {
             const sc = statusColors[order.status] || statusColors.pending;
             return (
-              <div key={order.id} style={{ background: "#fff", borderRadius: "8px", border: "1px solid #e5e5e5", overflow: "hidden" }}>
+              <div key={order.id} className="admin-order-card">
                 {/* Header */}
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "16px 20px", borderBottom: "1px solid #f0f0f0", flexWrap: "wrap", gap: "8px" }}>
+                <div className="admin-order-header">
                   <div>
-                    <strong style={{ fontSize: "15px" }}>{order.customer_name}</strong>
-                    <span style={{ marginLeft: "12px", color: "#888", fontSize: "13px" }}>{new Date(order.created_at).toLocaleDateString("fr-FR")}</span>
+                    <strong>{order.customer_name}</strong>
+                    <span className="admin-order-date">{new Date(order.created_at).toLocaleDateString("fr-FR")}</span>
                   </div>
-                  <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-                    <span style={{ background: sc.bg, color: sc.text, padding: "4px 12px", borderRadius: "20px", fontSize: "12px", fontWeight: "600" }}>
+                  <div className="admin-order-header-right">
+                    <span className="admin-order-status" style={{ background: sc.bg, color: sc.text }}>
                       {statusLabels[order.status] || order.status}
                     </span>
                     <strong>${order.total.toFixed(2)}</strong>
@@ -74,38 +74,33 @@ export default function Orders() {
                 </div>
 
                 {/* Details */}
-                <div style={{ padding: "16px 20px", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }}>
-                  <div style={{ fontSize: "13px", color: "#666", lineHeight: "1.8" }}>
+                <div className="admin-order-details">
+                  <div className="admin-order-info">
                     <p><strong>Email :</strong> {order.customer_email}</p>
-                    <p><strong>Téléphone :</strong> {order.customer_phone || "-"}</p>
+                    <p><strong>Tél :</strong> {order.customer_phone || "-"}</p>
                     <p><strong>Adresse :</strong> {order.customer_address}</p>
                   </div>
-                  <div>
-                    <p style={{ fontSize: "13px", fontWeight: "600", marginBottom: "8px" }}>Produits :</p>
+                  <div className="admin-order-products">
+                    <p className="admin-order-products-label">Produits :</p>
                     {order.order_items?.map((item) => (
-                      <div key={item.id} style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "6px", fontSize: "13px" }}>
-                        <img src={item.products?.image || ""} alt="" style={{ width: "32px", height: "32px", objectFit: "cover", borderRadius: "4px" }} />
+                      <div key={item.id} className="admin-order-product-item">
+                        <img src={item.products?.image || ""} alt="" />
                         <span>{item.products?.name || "Produit supprimé"}</span>
-                        <span style={{ color: "#888" }}>x{item.quantity}</span>
-                        <span style={{ fontWeight: "600" }}>${(item.price * item.quantity).toFixed(2)}</span>
+                        <span className="text-muted">x{item.quantity}</span>
+                        <strong>${(item.price * item.quantity).toFixed(2)}</strong>
                       </div>
                     ))}
                   </div>
                 </div>
 
-                {/* Status update */}
-                <div style={{ padding: "12px 20px", borderTop: "1px solid #f0f0f0", display: "flex", gap: "8px", flexWrap: "wrap" }}>
+                {/* Status buttons */}
+                <div className="admin-order-status-bar">
                   {Object.entries(statusLabels).map(([key, label]) => (
                     <button
                       key={key}
                       onClick={() => updateStatus(order.id, key)}
                       disabled={updating === order.id || order.status === key}
-                      style={{
-                        padding: "6px 14px", fontSize: "12px", border: order.status === key ? "2px solid #333" : "1px solid #ddd",
-                        borderRadius: "20px", cursor: order.status === key ? "default" : "pointer",
-                        background: order.status === key ? "#333" : "#fff",
-                        color: order.status === key ? "#fff" : "#555",
-                      }}
+                      className={`admin-status-btn ${order.status === key ? "active" : ""}`}
                     >
                       {label}
                     </button>
