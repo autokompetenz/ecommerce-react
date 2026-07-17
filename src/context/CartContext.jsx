@@ -13,14 +13,14 @@ export function CartProvider({ children }) {
     localStorage.setItem("cart", JSON.stringify(items));
   }, [items]);
 
-  const addItem = (product, size = "M", color = "Black", quantity = 1) => {
+  const addItem = (product, quantity = 1) => {
     setItems((prev) => {
       const existing = prev.find(
-        (i) => i.product_id === product.id && i.size === size && i.color === color
+        (i) => i.product_id === product.id
       );
       if (existing) {
         return prev.map((i) =>
-          i.product_id === product.id && i.size === size && i.color === color
+          i.product_id === product.id
             ? { ...i, quantity: i.quantity + quantity }
             : i
         );
@@ -33,8 +33,6 @@ export function CartProvider({ children }) {
           name: product.name,
           brand: product.brand,
           image: product.image,
-          size,
-          color,
           price: product.price,
           quantity,
         },

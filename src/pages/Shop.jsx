@@ -100,8 +100,8 @@ export default function Shop() {
                         <p>Trier par :</p>
                         <select value={sort} onChange={(e) => setSort(e.target.value)}>
                           <option value="newest">Plus récents</option>
-                          <option value="price-asc">Prix : $ - $$</option>
-                          <option value="price-desc">Prix : $$ - $</option>
+                          <option value="price-asc">Prix : € - €€</option>
+                          <option value="price-desc">Prix : €€ - €</option>
                         </select>
                       </div>
                     </div>

@@ -5,12 +5,23 @@ export default function Contact() {
         <div id="googleMap"></div>
       </div>
       <div className="contact-info">
-        <h2>How to Find Us</h2>
-        <p>Mauris viverra cursus ante laoreet eleifend. Donec vel fringilla ante. Aenean finibus velit id urna vehicula, nec maximus est sollicitudin.</p>
+        <h2>Nous Contacter</h2>
+        <p>
+          Nous serions ravis de répondre à vos questions concernant nos outils de
+          coupe industriels, nos services ou tout autre sujet.
+        </p>
         <div className="contact-address mt-50">
-          <p><span>address:</span> 10 Suffolk st Soho, London, UK</p>
-          <p><span>telephone:</span> +12 34 567 890</p>
-          <p><a href="mailto:contact@essence.com">contact@essence.com</a></p>
+          <p>
+            <span>Adresse :</span> Am Winkel 4, 15528 Spreenhagen, Allemagne
+          </p>
+          <p>
+            <span>Téléphone :</span> +49 (0)33652 499 888 0
+          </p>
+          <p>
+            <a href="mailto:info@powertools-gmbh.de">
+              info@powertools-gmbh.de
+            </a>
+          </p>
         </div>
       </div>
     </div>

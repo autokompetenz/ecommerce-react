@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 export default function Blog() {
   return (
     <>
-      <Breadcrumb title="Fashion Blog" backgroundImage="/img/bg-img/breadcumb2.jpg" style2 />
+      <Breadcrumb title="Blog" backgroundImage="/img/bg-img/breadcumb2.jpg" style2 />
 
       <div className="blog-wrapper section-padding-80">
         <div className="container">
@@ -22,7 +22,7 @@ export default function Blog() {
                       <Link to={`/blog/${post.id}`}>{post.title}</Link>
                     </div>
                     <p>{post.excerpt}</p>
-                    <Link to={`/blog/${post.id}`}>Continue reading <i className="fa fa-angle-right"></i></Link>
+                    <Link to={`/blog/${post.id}`}>Lire la suite <i className="fa fa-angle-right"></i></Link>
                   </div>
                 </div>
               </div>

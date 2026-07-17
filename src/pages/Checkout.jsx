@@ -163,13 +163,13 @@ export default function Checkout() {
                 {items.map((item) => (
                   <li key={item.id}>
                     <span>{item.name} x{item.quantity}</span>
-                    <span>${(item.price * item.quantity).toFixed(2)}</span>
+                    <span>{(item.price * item.quantity).toFixed(2)} €</span>
                   </li>
                 ))}
-                <li><span>Sous-total</span> <span>${subtotal.toFixed(2)}</span></li>
+                <li><span>Sous-total</span> <span>{subtotal.toFixed(2)} €</span></li>
                 <li><span>Livraison</span> <span>Gratuite</span></li>
                 <li><span>Remise</span> <span>-{discount}%</span></li>
-                <li><span>Total</span> <span>${total.toFixed(2)}</span></li>
+                <li><span>Total</span> <span>{total.toFixed(2)} €</span></li>
               </ul>
 
               <button onClick={handleSubmit} disabled={loading} className="btn essence-btn" style={{ width: "100%" }}>

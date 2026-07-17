@@ -30,7 +30,7 @@ export default function ProductCard({ product }) {
           <h6>{product.name}</h6>
         </Link>
         <p className="product-price">
-          {product.old_price && <span className="old-price">${product.old_price.toFixed(2)}</span>} ${product.price.toFixed(2)}
+          {product.old_price && <span className="old-price">{product.old_price.toFixed(2)} €</span>} {product.price.toFixed(2)} €
         </p>
         <div className="hover-content">
           <div className="add-to-cart-btn">

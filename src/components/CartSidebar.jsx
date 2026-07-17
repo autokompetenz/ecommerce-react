@@ -31,9 +31,7 @@ export default function CartSidebar({ isOpen, onClose }) {
                       </span>
                       <span className="badge">{item.brand}</span>
                       <h6>{item.name}</h6>
-                      <p className="size">Taille: {item.size}</p>
-                      <p className="color">Couleur: {item.color}</p>
-                      <p className="price">${(item.price * item.quantity).toFixed(2)}</p>
+                      <p className="price">{(item.price * item.quantity).toFixed(2)} €</p>
                     </div>
                   </a>
                 </div>
@@ -44,10 +42,10 @@ export default function CartSidebar({ isOpen, onClose }) {
           <div className="cart-amount-summary">
             <h2>Résumé</h2>
             <ul className="summary-table">
-              <li><span>sous-total:</span> <span>${subtotal.toFixed(2)}</span></li>
+              <li><span>sous-total:</span> <span>{subtotal.toFixed(2)} €</span></li>
               <li><span>livraison:</span> <span>Gratuite</span></li>
               <li><span>remise:</span> <span>-{discount}%</span></li>
-              <li><span>total:</span> <span>${total.toFixed(2)}</span></li>
+              <li><span>total:</span> <span>{total.toFixed(2)} €</span></li>
             </ul>
             <div className="checkout-btn mt-100">
               <Link to="/checkout" className="btn essence-btn" onClick={onClose}>Commander</Link>

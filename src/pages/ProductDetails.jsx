@@ -7,13 +7,8 @@ export default function ProductDetails() {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [selectedSize, setSelectedSize] = useState("M");
-  const [selectedColor, setSelectedColor] = useState("Black");
   const [added, setAdded] = useState(false);
   const { addItem } = useCart();
-
-  const sizes = ["XL", "X", "M", "S"];
-  const colors = ["Black", "White", "Red", "Purple"];
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -28,7 +23,7 @@ export default function ProductDetails() {
   const handleAddToCart = (e) => {
     e.preventDefault();
     if (!product) return;
-    addItem(product, selectedSize, selectedColor);
+    addItem(product);
     setAdded(true);
     setTimeout(() => setAdded(false), 2000);
   };
@@ -49,23 +44,11 @@ export default function ProductDetails() {
         <span>{product.brand}</span>
         <h2>{product.name}</h2>
         <p className="product-price">
-          {product.old_price && <span className="old-price">${product.old_price.toFixed(2)}</span>} ${product.price.toFixed(2)}
+          {product.old_price && <span className="old-price">{product.old_price.toFixed(2)} €</span>} {product.price.toFixed(2)} €
         </p>
         <p className="product-desc">{product.description}</p>
 
         <form className="cart-form clearfix" onSubmit={handleAddToCart}>
-          <div className="select-box d-flex mt-50 mb-30">
-            <select value={selectedSize} onChange={(e) => setSelectedSize(e.target.value)} className="mr-5">
-              {sizes.map((size) => (
-                <option key={size} value={size}>Taille: {size}</option>
-              ))}
-            </select>
-            <select value={selectedColor} onChange={(e) => setSelectedColor(e.target.value)}>
-              {colors.map((color) => (
-                <option key={color} value={color}>Couleur: {color}</option>
-              ))}
-            </select>
-          </div>
           <div className="cart-fav-box d-flex align-items-center">
             <button type="submit" className="btn essence-btn">
               {added ? "Ajouté !" : "Ajouter au panier"}
