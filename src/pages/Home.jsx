@@ -60,14 +60,6 @@ function Hero() {
           {/* Right Widget */}
           <ScrollReveal direction="right" delay={200}>
             <div className="hero-right">
-              <div className="hero-welcome">
-                <h3>Bienvenue sur POWER Tools</h3>
-                <p>Accédez à votre espace pour gérer vos commandes et devis.</p>
-                <div className="hero-auth-btns">
-                  <Link to="/login" className="btn btn-brand btn-block">Connexion</Link>
-                  <Link to="/register" className="btn btn-outline btn-block">Créer un compte</Link>
-                </div>
-              </div>
               <div className="hero-trust">
                 <div className="hero-trust-item">
                   <i className="fa-solid fa-truck-fast"></i>
@@ -80,6 +72,10 @@ function Hero() {
                 <div className="hero-trust-item">
                   <i className="fa-solid fa-headset"></i>
                   <span>Support technique</span>
+                </div>
+                <div className="hero-trust-item">
+                  <i className="fa-solid fa-shield-halved"></i>
+                  <span>Paiement sécurisé</span>
                 </div>
               </div>
             </div>
