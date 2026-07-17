@@ -54,7 +54,7 @@ export default function Tracking() {
           {/* Search */}
           <div style={{ maxWidth: 600, margin: "0 auto 40px" }}>
             <div className="tracking-card">
-              <h3 style={{ textAlign: "center", marginBottom: 8, fontSize: 20 }}>Rechercher votre commande</h3>
+              <h3 style={{ textAlign: "center", marginBottom: 8, fontFamily: "var(--font-display)", fontSize: 20, textTransform: "uppercase", letterSpacing: "0.5px" }}>Suivi de commande</h3>
               <p style={{ textAlign: "center", color: "var(--text-muted)", fontSize: 14, marginBottom: 24 }}>
                 Entrez votre numéro de commande ou l'email utilisé.
               </p>
@@ -73,13 +73,13 @@ export default function Tracking() {
             <div className="tracking-card">
               <div className="tracking-header">
                 <div>
-                  <h3 style={{ margin: 0, fontSize: 18 }}>Commande confirmée</h3>
-                  <p style={{ margin: "4px 0 0", color: "var(--text-muted)", fontSize: 13 }}>
-                    N° <strong style={{ color: "var(--text)", fontFamily: "monospace" }}>{order.id.slice(0, 8).toUpperCase()}</strong>
+                  <h3 style={{ margin: 0, fontSize: 18, fontFamily: "var(--font-display)", textTransform: "uppercase", letterSpacing: "0.5px" }}>Commande</h3>
+                  <p style={{ margin: "4px 0 0", color: "var(--text-muted)", fontSize: 13, fontFamily: "var(--font-mono)" }}>
+                    N° {order.id.slice(0, 8).toUpperCase()}
                   </p>
                 </div>
                 <div style={{ textAlign: "right" }}>
-                  <p style={{ margin: 0, fontSize: 22, fontWeight: 700 }}>{order.total.toFixed(2)} €</p>
+                  <p style={{ margin: 0, fontSize: 22, fontWeight: 700, fontFamily: "var(--font-mono)" }}>{order.total.toFixed(2)} €</p>
                   <p style={{ margin: "2px 0 0", fontSize: 12, color: "var(--text-muted)" }}>
                     {new Date(order.created_at).toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" })}
                   </p>
@@ -122,9 +122,10 @@ export default function Tracking() {
                   <p><strong>Adresse :</strong> {order.customer_address}</p>
                   <p><strong>Statut :</strong>{" "}
                     <span style={{
-                      background: order.status === "delivered" ? "var(--success-bg)" : order.status === "shipped" ? "#dbeafe" : order.status === "confirmed" ? "#dbeafe" : "var(--warning-bg)",
-                      color: order.status === "delivered" ? "var(--success)" : order.status === "shipped" ? "#1d4ed8" : order.status === "confirmed" ? "#1d4ed8" : "var(--warning)",
-                      padding: "2px 10px", borderRadius: 12, fontSize: 12, fontWeight: 600,
+                      background: order.status === "delivered" ? "rgba(5,150,105,0.1)" : order.status === "shipped" ? "var(--cut-amber-light)" : order.status === "confirmed" ? "var(--cut-amber-light)" : "var(--signal-red-light)",
+                      color: order.status === "delivered" ? "var(--success)" : order.status === "shipped" ? "var(--cut-amber)" : order.status === "confirmed" ? "var(--cut-amber)" : "var(--signal-red)",
+                      padding: "2px 10px", borderRadius: 3, fontSize: 12, fontWeight: 600,
+                      fontFamily: "var(--font-mono)", textTransform: "uppercase", letterSpacing: "0.5px",
                     }}>
                       {order.status === "pending" ? "En attente" : order.status === "confirmed" ? "Confirmée" : order.status === "shipped" ? "Expédiée" : order.status === "delivered" ? "Livrée" : order.status}
                     </span>
@@ -134,7 +135,7 @@ export default function Tracking() {
 
               {order.order_items && order.order_items.length > 0 && (
                 <div style={{ marginTop: 24, paddingTop: 20, borderTop: "1px solid var(--border)" }}>
-                  <h4 style={{ fontSize: 16, marginBottom: 16 }}>Produits commandés</h4>
+                  <h4 style={{ fontFamily: "var(--font-display)", fontSize: 14, marginBottom: 16, textTransform: "uppercase", letterSpacing: "0.5px" }}>Produits commandés</h4>
                   {order.order_items.map((item) => (
                     <div key={item.id} className="tracking-item-row">
                       <img src={item.products?.image || "/img/product-img/product-1.jpg"} alt="" />

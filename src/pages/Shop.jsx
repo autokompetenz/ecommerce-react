@@ -5,6 +5,7 @@ import ProductCard from "../components/ProductCard";
 import { supabase } from "../lib/supabase";
 
 const KNOWN_CATEGORIES = ["Tournevis", "Clés à choc", "Perceuses", "Rivets", "Meulage"];
+const MATERIALS = ["Acier rapide (HSS)", "Carbure de tungstène", "Acier au carbone", "Alliage spécial"];
 
 export default function Shop() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -12,6 +13,7 @@ export default function Shop() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [category, setCategory] = useState(initialCat);
+  const [material, setMaterial] = useState("all");
   const [categories, setCategories] = useState(KNOWN_CATEGORIES);
   const [sort, setSort] = useState("newest");
 
@@ -30,6 +32,7 @@ export default function Shop() {
 
   const filtered = products
     .filter((p) => category === "all" || p.category === category)
+    .filter((p) => material === "all" || p.material === material)
     .sort((a, b) => {
       if (sort === "price-asc") return a.price - b.price;
       if (sort === "price-desc") return b.price - a.price;
@@ -64,10 +67,29 @@ export default function Shop() {
                   ))}
                 </ul>
               </div>
-              <div className="sidebar-widget" style={{ background: "var(--bg-alt)", padding: 20, borderRadius: "var(--radius-lg)" }}>
+              <div className="sidebar-widget">
+                <h6>Matière</h6>
+                <ul className="sidebar-links">
+                  <li>
+                    <a href="#" onClick={(e) => { e.preventDefault(); setMaterial("all"); }}
+                      className={material === "all" ? "active" : ""}>
+                      Toutes
+                    </a>
+                  </li>
+                  {MATERIALS.map((mat) => (
+                    <li key={mat}>
+                      <a href="#" onClick={(e) => { e.preventDefault(); setMaterial(mat); }}
+                        className={material === mat ? "active" : ""}>
+                        {mat}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="sidebar-widget" style={{ background: "var(--bg-alt)", padding: 16, borderLeft: "3px solid var(--cut-amber)" }}>
                 <h6>POWER Tools GmbH</h6>
-                <p style={{ fontSize: 13, color: "var(--text-sec)", lineHeight: 1.6, margin: 0 }}>
-                  Tournevis, perceuses, clés à choc, riveteurs et meuleuses haute performance pour professionnels.
+                <p style={{ fontSize: 12, color: "var(--text-sec)", lineHeight: 1.6, margin: 0 }}>
+                  Outils de coupe haute performance pour broyage industriel et agroalimentaire.
                 </p>
               </div>
             </aside>

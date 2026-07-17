@@ -8,17 +8,21 @@ export default function Footer() {
           <div>
             <h6>POWER Tools</h6>
             <p>
-              Distributeur spécialisé en outils de coupe industriels pour professionnels.
-              Tournevis, perceuses, clés à choc, riveteurs et meuleuses haute performance.
+              Développement, fabrication et distribution d'outils de coupe haute
+              performance pour machines industrielles de broyage et industrie
+              agroalimentaire.
             </p>
             <p style={{ marginTop: 12 }}>
-              <strong style={{ color: "var(--text)" }}>POWER Tools GmbH</strong><br />
+              <strong style={{ color: "#fff", fontFamily: "var(--font-display)", textTransform: "uppercase", letterSpacing: "0.5px" }}>
+                POWER Tools GmbH
+              </strong><br />
               Am Winkel 4, 15528 Spreenhagen<br />
-              HRB 11523 FF | TVA : DE232530007
+              HRB 11523 FF — Amtsgericht Frankfurt (Oder)<br />
+              TVA : DE232530007
             </p>
           </div>
           <div>
-            <h6>Boutique</h6>
+            <h6>Catalogue</h6>
             <ul className="footer-links">
               <li><Link to="/shop">Tous les produits</Link></li>
               <li><Link to="/shop?cat=Tournevis">Tournevis</Link></li>
@@ -41,10 +45,10 @@ export default function Footer() {
           </div>
           <div>
             <h6>Contact</h6>
-            <p><i className="fa-solid fa-phone" style={{ color: "var(--brand)", marginRight: 8 }}></i> +49 (0) 33652 / 45 0</p>
-            <p><i className="fa-solid fa-envelope" style={{ color: "var(--brand)", marginRight: 8 }}></i> info@powertools.de</p>
-            <p><i className="fa-solid fa-clock" style={{ color: "var(--brand)", marginRight: 8 }}></i> Lun-Ven : 8h - 17h</p>
-            <h6 style={{ marginTop: 20 }}>Newsletter</h6>
+            <p><i className="fa-solid fa-phone" style={{ color: "var(--cut-amber)", marginRight: 8 }}></i> +49 (0) 33652 / 45 0</p>
+            <p><i className="fa-solid fa-envelope" style={{ color: "var(--cut-amber)", marginRight: 8 }}></i> info@powertools.de</p>
+            <p><i className="fa-solid fa-clock" style={{ color: "var(--cut-amber)", marginRight: 8 }}></i> Lun–Ven : 8h–17h</p>
+            <h6 style={{ marginTop: 16 }}>Newsletter</h6>
             <div className="footer-newsletter">
               <input type="email" placeholder="Votre email" />
               <button className="btn btn-brand btn-sm btn-block">S'abonner</button>
@@ -52,7 +56,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="footer-bottom">
-          &copy; {new Date().getFullYear()} POWER Tools GmbH. Tous droits réservés. | Geschäftsführer : Oliver Haack
+          &copy; {new Date().getFullYear()} POWER Tools GmbH — Geschäftsführer : Oliver Haack — Tous droits réservés
         </div>
       </div>
     </footer>

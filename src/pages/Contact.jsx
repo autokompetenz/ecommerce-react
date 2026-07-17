@@ -9,15 +9,15 @@ export default function Contact() {
           <div className="contact-layout">
             <div className="contact-map">
               <div style={{ textAlign: "center", padding: 40 }}>
-                <i className="fa-solid fa-location-dot" style={{ fontSize: 48, color: "var(--brand)", marginBottom: 16, display: "block" }}></i>
+                <i className="fa-solid fa-location-dot" style={{ fontSize: 48, color: "var(--cut-amber)", marginBottom: 16, display: "block" }}></i>
                 <p>Am Winkel 4<br />15528 Spreenhagen, Allemagne</p>
               </div>
             </div>
             <div className="contact-form-area">
-              <h2>Nous Contacter</h2>
+              <h2>Contact</h2>
               <p>
-                Nous serions ravis de répondre à vos questions concernant nos outils de
-                coupe industriels, nos services ou tout autre sujet.
+                Questions sur nos outils de coupe, demandes de devis ou
+                renseignements techniques — nous répondons sous 24 h.
               </p>
               <div className="contact-info-list">
                 <div className="contact-info-item">
@@ -31,21 +31,28 @@ export default function Contact() {
                   <i className="fa-solid fa-phone"></i>
                   <div>
                     <strong>Téléphone</strong>
-                    <a href="tel:+49336524990">+49 (0) 33652 499 888 0</a>
+                    <a href="tel:+4933652450">+49 (0) 33652 / 45 0</a>
                   </div>
                 </div>
                 <div className="contact-info-item">
                   <i className="fa-solid fa-envelope"></i>
                   <div>
                     <strong>Email</strong>
-                    <a href="mailto:info@powertools-gmbh.de">info@powertools-gmbh.de</a>
+                    <a href="mailto:info@powertools.de">info@powertools.de</a>
                   </div>
                 </div>
                 <div className="contact-info-item">
                   <i className="fa-solid fa-clock"></i>
                   <div>
                     <strong>Horaires</strong>
-                    <span>Lundi - Vendredi : 8h00 - 17h00</span>
+                    <span>Lun–Ven : 8 h–17 h</span>
+                  </div>
+                </div>
+                <div className="contact-info-item">
+                  <i className="fa-solid fa-building-columns"></i>
+                  <div>
+                    <strong>POWER Tools GmbH</strong>
+                    <span>HRB 11523 FF — Geschäftsführer : Oliver Haack</span>
                   </div>
                 </div>
               </div>

@@ -1,0 +1,71 @@
+# Prompt complet — Professionnaliser le site POWER Tools GmbH
+
+## Contexte
+Site e-commerce React/Vite pour **POWER Tools GmbH**, fabricant allemand
+(Spreenhagen) d'outils de coupe haute performance pour machines de broyage
+industrielles et l'industrie agroalimentaire. Cible : acheteurs B2B,
+responsables maintenance, ingénieurs achats. Stack : React 19 + Vite +
+React Router 7 + Supabase (DB + Storage), déployé sur Vercel.
+
+Le panier (`CartSidebar.jsx`) et le résumé de commande (`Checkout.jsx`) ont
+déjà été redesignés selon la direction ci-dessous : ils servent de référence,
+ne pas en dévier sur le reste du site.
+
+Objectif : que le site donne confiance à un acheteur professionnel — design
+cohérent, contenu factuel, et back-end sécurisé. Trois chantiers dans l'ordre.
+
+---
+
+## 1. Identité visuelle (déjà posée dans `src/index.css` et `index.html` — à réutiliser partout, pas à réinventer)
+
+**Tokens couleur**
+```css
+--graphite: #15181b;      /* fonds sombres, en-têtes de panneaux */
+--steel: #464c52;
+--silver: #c8cdd2;
+--cut-amber: #e2861f;     /* accent signature = var(--brand) */
+--cut-amber-dark: #c46f14;
+--signal-red: #c23b22;    /* = var(--danger), rare : erreurs, rupture de stock */
+```
+
+**Typographie**
+- `--font-display`: "Barlow Condensed" — titres, CTA, prix totaux, majuscules, letter-spacing léger.
+- `--font-body`: "IBM Plex Sans" — texte courant.
+- `--font-mono`: "IBM Plex Mono" — prix, quantités, références produit, cotes/tolérances. Jamais en font-body.
+
+**Signature visuelle : le coin coupé à 45°**
+`clip-path` déjà utilisé sur `.cart-sidebar-header`, `.order-summary`,
+`.btn-brand`, `.cart-item`. Un seul niveau hiérarchique par section peut le
+porter — ne pas l'appliquer à tout, sinon il perd son sens de marqueur.
+
+**Rayons et esprit général**
+`--radius: 3px` — angles sobres, pas de style arrondi/lifestyle. Bordure ambre
+de 3px comme marqueur d'accent sur les panneaux clés.
+
+## 2. Pages/composants à aligner sur cette identité (par priorité)
+1. **Header / Footer** — logo et nav en `--font-display`, harmoniser les couleurs avec `--graphite`/`--cut-amber`, garder la structure actuelle.
+2. **Home** — hero : remplacer la bannière lifestyle actuelle par une silhouette technique d'outil en line-art avec annotations de cotes (Ø, tolérances ±0.02mm), titre factuel court, bandeau de confiance juste en dessous (GmbH, n° HRB, Allemagne, effectif — infos réelles dans `infos.txt`). Puis catégories et produits vedettes avec le pattern "plaque signalétique".
+3. **ProductDetails** — fiche produit façon plaque signalétique : bordure + coin coupé bas-droit (reprendre le pattern de `.cart-item` en plus grand), specs alignées en colonnes mono (Ø, matière, poids, référence).
+4. **Shop** — cartes produits en version compacte du même pattern, filtres par catégorie/matière en plus du prix.
+5. **Contact / Tracking** — sobres, mêmes tokens, formulaires avec focus clavier visible (`outline: var(--cut-amber)`, déjà fait sur les boutons).
+
+## 3. Contenu et ton
+- Français, phrases courtes, actives, factuelles. Zéro superlatif vide ("le meilleur", "incroyable").
+- Boutons nommés par l'action exacte : "Voir la fiche technique", "Demander un devis" — pas "En savoir plus" partout.
+- Messages d'erreur/vide expliquent quoi faire, sans ton familier.
+- Reprendre les vraies informations légales de l'entreprise (`infos.txt`) plutôt que du texte de remplissage.
+
+
+## 5. Contraintes techniques transverses
+- Ne pas casser `CartSidebar.jsx` et le résumé de commande de `Checkout.jsx` : ce sont la référence à répliquer, pas à modifier sauf bug.
+- Un seul niveau d'animation par page, pas d'effets décoratifs empilés.
+- Contraste WCAG AA minimum, focus clavier visible partout.
+- Respecter `prefers-reduced-motion` (règle déjà globale dans `index.css`).
+- Responsive mobile-first sur toutes les pages retouchées.
+
+## Livrable attendu
+Pour chaque page/composant traité : le code modifié, avec une phrase
+expliquant comment chaque choix découle du système ci-dessus (pas
+d'improvisation de nouvelle couleur, police ou style de bouton). Si un point
+du prompt ne convient pas à un cas précis, le signaler avant de l'implémenter
+plutôt que de l'ignorer silencieusement.
