@@ -1,71 +1,67 @@
-# Prompt complet — Professionnaliser le site POWER Tools GmbH
+Ah, je comprends beaucoup mieux ! Si ton modèle de référence est **Alibaba**, nous changeons totalement de direction artistique. On passe d'un style "boutique de marque minimaliste" à un style **"Marketplace B2B / Énorme Catalogue"**.
 
-## Contexte
-Site e-commerce React/Vite pour **POWER Tools GmbH**, fabricant allemand
-(Spreenhagen) d'outils de coupe haute performance pour machines de broyage
-industrielles et l'industrie agroalimentaire. Cible : acheteurs B2B,
-responsables maintenance, ingénieurs achats. Stack : React 19 + Vite +
-React Router 7 + Supabase (DB + Storage), déployé sur Vercel.
+Pour faire un site qui a l'air aussi professionnel, structuré et puissant qu'Alibaba, le design doit inspirer l'**efficacité, la clarté de l'information et la densité de données**, plutôt que le vide et le luxe.
 
-Le panier (`CartSidebar.jsx`) et le résumé de commande (`Checkout.jsx`) ont
-déjà été redesignés selon la direction ci-dessous : ils servent de référence,
-ne pas en dévier sur le reste du site.
-
-Objectif : que le site donne confiance à un acheteur professionnel — design
-cohérent, contenu factuel, et back-end sécurisé. Trois chantiers dans l'ordre.
+Voici le prompt de modification complet, adapté spécifiquement pour transformer ton site React en une marketplace ultra-pro et structurée de type Alibaba :
 
 ---
 
-## 1. Identité visuelle (déjà posée dans `src/index.css` et `index.html` — à réutiliser partout, pas à réinventer)
+```markdown
+# MISSION : Refonte UI/UX Style "Grande Marketplace / Catalogue B2B" (Type Alibaba)
 
-**Tokens couleur**
-```css
---graphite: #15181b;      /* fonds sombres, en-têtes de panneaux */
---steel: #464c52;
---silver: #c8cdd2;
---cut-amber: #e2861f;     /* accent signature = var(--brand) */
---cut-amber-dark: #c46f14;
---signal-red: #c23b22;    /* = var(--danger), rare : erreurs, rupture de stock */
+Tu es un Senior UI/UX Designer spécialisé dans les plateformes E-commerce à fort volume de données (B2B/Marketplace). Ta mission est de structurer et d'optimiser l'interface pour donner l'illusion d'une puissance technologique et d'un catalogue massif, ultra-organisé et professionnel, inspiré directement d'Alibaba ou d'Amazon.
+
+Applique strictement les directives de design suivantes :
+
+---
+
+## 1. DIRECTION ARTISTIQUE & STRUCTURE DE LA PAGE d'ACCUEIL
+
+### A. Grille et Densité de Données (Data-Dense Design)
+- Le design doit maximiser l'espace écran sans faire brouillon. Réduis les marges excessives (padding) pour afficher un maximum de produits et de catégories "au-dessus de la ligne de flottaison" (Above the fold).
+- Utilise une grille de produits à 5 ou 6 colonnes sur grand écran (`grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4`).
+
+### B. Palette de Couleurs "Business & Confiance"
+- **Couleur principale d'accent (Boutons d'action, CTA, Barre de recherche) :** Un orange vif et dynamique (ex: `#FF6600` ou `bg-orange-600 hover:bg-orange-700`) ou un bleu corporate rassurant (`bg-blue-600`).
+- **Fond du site :** Un gris très clair technique (`bg-[#f4f4f4]` ou `bg-slate-100`) pour détacher proprement les blocs de produits.
+- **Blocs et Cartes :** Blanc pur (`bg-white`) avec des angles légèrement arrondis (`rounded-lg` ou `rounded-md`).
+
+---
+
+## 2. REFACTORING DES COMPOSANTS MAJEURS
+
+### A. Le Mega-Header (Moteur de recherche centralisé)
+- La barre de recherche doit être l'élément central et massif du site. Elle doit occuper au moins 50% de la largeur du header.
+- Ajoute un sélecteur de catégorie à l'intérieur même de la barre de recherche (dropdown "Toutes les catégories") et un bouton de recherche orange ou bleu très visible avec une icône de loupe.
+- **Barre supérieure (Top Bar) :** Ajoute une fine ligne tout en haut pour la sélection de la langue, de la devise (USD, EUR, etc.), et des liens professionnels ("Vendre sur le site", "Aide", "Suivre ma commande").
+
+### B. Disposition de la "Hero Section" (Layout à 3 colonnes)
+Au lieu d'une seule grande image, adopte la structure classique des grandes places de marché :
+1. **Colonne Gauche (Sidebar fixe) :** Un menu vertical épuré affichant les catégories principales (ex: Électronique, Mode, Maison) avec des icônes fines. Au survol, un menu déroulant (Flyout) affiche les sous-catégories.
+2. **Colonne Centrale (Slider principal) :** Une bannière dynamique présentant les offres majeures ou les saisons.
+3. **Colonne Droite (Widget Utilisateur / Profil) :** Un bloc de bienvenue ("Bonjour, Identifiez-vous"), des boutons rapides "S'inscrire" / "Se connecter", et un encart mettant en avant les "Garanties acheteurs" ou le service client.
+
+### C. La Carte Produit "Grossiste / Pro"
+Une carte produit style Alibaba doit donner des informations d'achat immédiates :
+- **Image :** Ratio carré parfait (`aspect-square bg-slate-50 object-contain p-2`).
+- **Titre :** Limité à deux lignes maximum (`line-clamp-2 text-sm text-slate-800 hover:text-orange-600`).
+- **Prix dégressif ou Fourchette de prix :** Affiche clairement le prix en gras (ex: **1,50 $ - 3,00 $**).
+- **Indicateur de Commande Minimum (MOQ) :** Ajoute une mention indispensable en dessous du prix (ex: `100 Pièces (Min. Order)` en taille `text-xs text-slate-500`).
+- **Évaluation :** Intègre une petite ligne avec des étoiles jaunes et le nombre d'avis (ex: ⭐ 4.8 (24)).
+
+---
+
+## 3. COMPOSANTS DE RÉASSURANCE ET FILTRES (TRUST SIGNALS)
+
+### A. Les Badges de Confiance (Verified Supplier)
+- Crée un petit badge stylisé à côté du nom du vendeur ou sur la carte produit : un logo "Vérifié" (ex: un bouclier doré ou bleu avec le texte "Verified"). Cela renforce instantanément l'aspect plateforme B2B internationale.
+
+### B. Système de Filtres Latéraux (Sidebar de Recherche)
+Sur les pages de listes de produits, intègre une colonne de filtres pro à gauche :
+- Tri par prix (Min / Max).
+- Case à cocher : "Fournisseur vérifié", "Prêt à expédier".
+- Tri par pays d'origine ou par matériau/spécification technique.
+
+Génère le code React mis à jour pour ces sections en veillant à ce que le code soit propre, modulaire et hautement performant.
+
 ```
-
-**Typographie**
-- `--font-display`: "Barlow Condensed" — titres, CTA, prix totaux, majuscules, letter-spacing léger.
-- `--font-body`: "IBM Plex Sans" — texte courant.
-- `--font-mono`: "IBM Plex Mono" — prix, quantités, références produit, cotes/tolérances. Jamais en font-body.
-
-**Signature visuelle : le coin coupé à 45°**
-`clip-path` déjà utilisé sur `.cart-sidebar-header`, `.order-summary`,
-`.btn-brand`, `.cart-item`. Un seul niveau hiérarchique par section peut le
-porter — ne pas l'appliquer à tout, sinon il perd son sens de marqueur.
-
-**Rayons et esprit général**
-`--radius: 3px` — angles sobres, pas de style arrondi/lifestyle. Bordure ambre
-de 3px comme marqueur d'accent sur les panneaux clés.
-
-## 2. Pages/composants à aligner sur cette identité (par priorité)
-1. **Header / Footer** — logo et nav en `--font-display`, harmoniser les couleurs avec `--graphite`/`--cut-amber`, garder la structure actuelle.
-2. **Home** — hero : remplacer la bannière lifestyle actuelle par une silhouette technique d'outil en line-art avec annotations de cotes (Ø, tolérances ±0.02mm), titre factuel court, bandeau de confiance juste en dessous (GmbH, n° HRB, Allemagne, effectif — infos réelles dans `infos.txt`). Puis catégories et produits vedettes avec le pattern "plaque signalétique".
-3. **ProductDetails** — fiche produit façon plaque signalétique : bordure + coin coupé bas-droit (reprendre le pattern de `.cart-item` en plus grand), specs alignées en colonnes mono (Ø, matière, poids, référence).
-4. **Shop** — cartes produits en version compacte du même pattern, filtres par catégorie/matière en plus du prix.
-5. **Contact / Tracking** — sobres, mêmes tokens, formulaires avec focus clavier visible (`outline: var(--cut-amber)`, déjà fait sur les boutons).
-
-## 3. Contenu et ton
-- Français, phrases courtes, actives, factuelles. Zéro superlatif vide ("le meilleur", "incroyable").
-- Boutons nommés par l'action exacte : "Voir la fiche technique", "Demander un devis" — pas "En savoir plus" partout.
-- Messages d'erreur/vide expliquent quoi faire, sans ton familier.
-- Reprendre les vraies informations légales de l'entreprise (`infos.txt`) plutôt que du texte de remplissage.
-
-
-## 5. Contraintes techniques transverses
-- Ne pas casser `CartSidebar.jsx` et le résumé de commande de `Checkout.jsx` : ce sont la référence à répliquer, pas à modifier sauf bug.
-- Un seul niveau d'animation par page, pas d'effets décoratifs empilés.
-- Contraste WCAG AA minimum, focus clavier visible partout.
-- Respecter `prefers-reduced-motion` (règle déjà globale dans `index.css`).
-- Responsive mobile-first sur toutes les pages retouchées.
-
-## Livrable attendu
-Pour chaque page/composant traité : le code modifié, avec une phrase
-expliquant comment chaque choix découle du système ci-dessus (pas
-d'improvisation de nouvelle couleur, police ou style de bouton). Si un point
-du prompt ne convient pas à un cas précis, le signaler avant de l'implémenter
-plutôt que de l'ignorer silencieusement.
