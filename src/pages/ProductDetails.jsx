@@ -177,15 +177,15 @@ export default function ProductDetails() {
                 <p style={{ marginBottom: 16 }}>{product.delivery || "Expédition sous 24–48 h ouvrées. Livraison gratuite dès 100 €."}</p>
                 <div className="pd-delivery-cards">
                   <div className="pd-delivery-card">
-                    <strong><i className="fa-solid fa-truck" style={{ marginRight: 6, color: "var(--cut-amber)" }}></i> Standard</strong>
+                    <strong><i className="fa-solid fa-truck" style={{ marginRight: 6, color: "var(--amber)" }}></i> Standard</strong>
                     <p>2–3 jours ouvrés — Gratuit dès 100 €</p>
                   </div>
                   <div className="pd-delivery-card">
-                    <strong><i className="fa-solid fa-bolt" style={{ marginRight: 6, color: "var(--cut-amber)" }}></i> Express</strong>
+                    <strong><i className="fa-solid fa-bolt" style={{ marginRight: 6, color: "var(--amber)" }}></i> Express</strong>
                     <p>Sous 24 h — 9,90 €</p>
                   </div>
                   <div className="pd-delivery-card">
-                    <strong><i className="fa-solid fa-rotate" style={{ marginRight: 6, color: "var(--cut-amber)" }}></i> Retour</strong>
+                    <strong><i className="fa-solid fa-rotate" style={{ marginRight: 6, color: "var(--amber)" }}></i> Retour</strong>
                     <p>14 jours pour retourner</p>
                   </div>
                 </div>

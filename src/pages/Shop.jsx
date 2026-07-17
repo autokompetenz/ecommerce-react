@@ -87,7 +87,7 @@ export default function Shop() {
                   ))}
                 </ul>
               </div>
-              <div className="sidebar-widget" style={{ background: "var(--bg-alt)", padding: 16, borderLeft: "3px solid var(--cut-amber)" }}>
+              <div className="sidebar-widget" style={{ background: "var(--bg-alt)", padding: 16, borderLeft: "3px solid var(--amber)" }}>
                 <h6>POWER Tools GmbH</h6>
                 <p style={{ fontSize: 12, color: "var(--text-sec)", lineHeight: 1.6, margin: 0 }}>
                   Outils de coupe haute performance pour broyage industriel et agroalimentaire.

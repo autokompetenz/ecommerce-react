@@ -54,7 +54,7 @@ export default function Tracking() {
           {/* Search */}
           <div style={{ maxWidth: 600, margin: "0 auto 40px" }}>
             <div className="tracking-card">
-              <h3 style={{ textAlign: "center", marginBottom: 8, fontFamily: "var(--font-display)", fontSize: 20, textTransform: "uppercase", letterSpacing: "0.5px" }}>Suivi de commande</h3>
+              <h3 style={{ textAlign: "center", marginBottom: 8, fontFamily: "var(--font-display)", fontSize: 20, letterSpacing: "0.5px" }}>Suivi de commande</h3>
               <p style={{ textAlign: "center", color: "var(--text-muted)", fontSize: 14, marginBottom: 24 }}>
                 Entrez votre numéro de commande ou l'email utilisé.
               </p>
@@ -73,7 +73,7 @@ export default function Tracking() {
             <div className="tracking-card">
               <div className="tracking-header">
                 <div>
-                  <h3 style={{ margin: 0, fontSize: 18, fontFamily: "var(--font-display)", textTransform: "uppercase", letterSpacing: "0.5px" }}>Commande</h3>
+                  <h3 style={{ margin: 0, fontSize: 18, fontFamily: "var(--font-display)", letterSpacing: "0.5px" }}>Commande</h3>
                   <p style={{ margin: "4px 0 0", color: "var(--text-muted)", fontSize: 13, fontFamily: "var(--font-mono)" }}>
                     N° {order.id.slice(0, 8).toUpperCase()}
                   </p>
@@ -122,10 +122,10 @@ export default function Tracking() {
                   <p><strong>Adresse :</strong> {order.customer_address}</p>
                   <p><strong>Statut :</strong>{" "}
                     <span style={{
-                      background: order.status === "delivered" ? "rgba(5,150,105,0.1)" : order.status === "shipped" ? "var(--cut-amber-light)" : order.status === "confirmed" ? "var(--cut-amber-light)" : "var(--signal-red-light)",
-                      color: order.status === "delivered" ? "var(--success)" : order.status === "shipped" ? "var(--cut-amber)" : order.status === "confirmed" ? "var(--cut-amber)" : "var(--signal-red)",
+                      background: order.status === "delivered" ? "rgba(5,150,105,0.1)" : order.status === "shipped" ? "var(--amber-light)" : order.status === "confirmed" ? "var(--amber-light)" : "var(--red-light)",
+                      color: order.status === "delivered" ? "var(--success)" : order.status === "shipped" ? "var(--amber)" : order.status === "confirmed" ? "var(--amber)" : "var(--red)",
                       padding: "2px 10px", borderRadius: 3, fontSize: 12, fontWeight: 600,
-                      fontFamily: "var(--font-mono)", textTransform: "uppercase", letterSpacing: "0.5px",
+                      fontFamily: "var(--font-mono)", letterSpacing: "0.5px",
                     }}>
                       {order.status === "pending" ? "En attente" : order.status === "confirmed" ? "Confirmée" : order.status === "shipped" ? "Expédiée" : order.status === "delivered" ? "Livrée" : order.status}
                     </span>
@@ -135,7 +135,7 @@ export default function Tracking() {
 
               {order.order_items && order.order_items.length > 0 && (
                 <div style={{ marginTop: 24, paddingTop: 20, borderTop: "1px solid var(--border)" }}>
-                  <h4 style={{ fontFamily: "var(--font-display)", fontSize: 14, marginBottom: 16, textTransform: "uppercase", letterSpacing: "0.5px" }}>Produits commandés</h4>
+                  <h4 style={{ fontFamily: "var(--font-display)", fontSize: 14, marginBottom: 16, letterSpacing: "0.5px" }}>Produits commandés</h4>
                   {order.order_items.map((item) => (
                     <div key={item.id} className="tracking-item-row">
                       <img src={item.products?.image || "/img/product-img/product-1.jpg"} alt="" />

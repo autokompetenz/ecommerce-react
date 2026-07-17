@@ -8,7 +8,7 @@ export default function RegularPage() {
       <div className="section">
         <div className="container" style={{ maxWidth: 800 }}>
           <ScrollReveal>
-            <h2 style={{ fontFamily: "var(--font-display)", fontSize: 28, fontWeight: 800, marginBottom: 20, textTransform: "uppercase", letterSpacing: "1px" }}>
+            <h2 style={{ fontFamily: "var(--font-display)", fontSize: 28, fontWeight: 800, marginBottom: 20, letterSpacing: "0.5px" }}>
             POWER Tools GmbH
           </h2>
           <p style={{ fontSize: 14, lineHeight: 1.8, color: "var(--text-sec)", marginBottom: 24 }}>
@@ -17,14 +17,14 @@ export default function RegularPage() {
             agroalimentaire.
           </p>
 
-          <blockquote style={{ borderLeft: "3px solid var(--cut-amber)", padding: "14px 20px", background: "var(--bg-alt)", marginBottom: 28 }}>
+          <blockquote style={{ borderLeft: "3px solid var(--amber)", padding: "14px 20px", background: "var(--bg-alt)", marginBottom: 28 }}>
             <p style={{ fontStyle: "italic", fontSize: 15, color: "var(--text)", margin: "0 0 6px" }}>
               « La précision allemande au service de vos machines industrielles. »
             </p>
             <span style={{ fontFamily: "var(--font-mono)", fontSize: 12, color: "var(--text-muted)" }}>— Oliver Haack, Geschäftsführer</span>
           </blockquote>
 
-          <h3 style={{ fontFamily: "var(--font-display)", fontSize: 18, fontWeight: 700, marginBottom: 10, textTransform: "uppercase", letterSpacing: "0.5px" }}>
+          <h3 style={{ fontFamily: "var(--font-display)", fontSize: 18, fontWeight: 700, marginBottom: 10, letterSpacing: "0.5px" }}>
             Informations Légales
           </h3>
           <div style={{ fontSize: 13, lineHeight: 1.8, color: "var(--text-sec)", marginBottom: 28 }}>
@@ -35,7 +35,7 @@ export default function RegularPage() {
             <p><strong style={{ color: "var(--text)" }}>N° de TVA :</strong> DE232530007</p>
           </div>
 
-          <h3 style={{ fontFamily: "var(--font-display)", fontSize: 18, fontWeight: 700, marginBottom: 10, textTransform: "uppercase", letterSpacing: "0.5px" }}>
+          <h3 style={{ fontFamily: "var(--font-display)", fontSize: 18, fontWeight: 700, marginBottom: 10, letterSpacing: "0.5px" }}>
             Adresse
           </h3>
           <p style={{ fontSize: 13, lineHeight: 1.8, color: "var(--text-sec)", marginBottom: 28 }}>
@@ -43,7 +43,7 @@ export default function RegularPage() {
             Adresse enregistrée : Am Winkel 2d, 15528 Spreenhagen
           </p>
 
-          <h3 style={{ fontFamily: "var(--font-display)", fontSize: 18, fontWeight: 700, marginBottom: 10, textTransform: "uppercase", letterSpacing: "0.5px" }}>
+          <h3 style={{ fontFamily: "var(--font-display)", fontSize: 18, fontWeight: 700, marginBottom: 10, letterSpacing: "0.5px" }}>
             Activité
           </h3>
           <p style={{ fontSize: 13, lineHeight: 1.8, color: "var(--text-sec)", marginBottom: 12 }}>
@@ -57,7 +57,7 @@ export default function RegularPage() {
             <li>Travail du bois</li>
           </ul>
 
-          <h3 style={{ fontFamily: "var(--font-display)", fontSize: 18, fontWeight: 700, marginBottom: 10, textTransform: "uppercase", letterSpacing: "0.5px" }}>
+          <h3 style={{ fontFamily: "var(--font-display)", fontSize: 18, fontWeight: 700, marginBottom: 10, letterSpacing: "0.5px" }}>
             L'Équipe
           </h3>
           <p style={{ fontSize: 13, lineHeight: 1.8, color: "var(--text-sec)" }}>

@@ -11,7 +11,7 @@ export default function Contact() {
             <div className="contact-layout">
               <div className="contact-map">
                 <div style={{ textAlign: "center", padding: 40 }}>
-                  <i className="fa-solid fa-location-dot" style={{ fontSize: 48, color: "var(--cut-amber)", marginBottom: 16, display: "block" }}></i>
+                  <i className="fa-solid fa-location-dot" style={{ fontSize: 48, color: "var(--amber)", marginBottom: 16, display: "block" }}></i>
                   <p>Am Winkel 4<br />15528 Spreenhagen, Allemagne</p>
                 </div>
               </div>

@@ -13,7 +13,7 @@ export default function Footer() {
               agroalimentaire.
             </p>
             <p style={{ marginTop: 12 }}>
-              <strong style={{ color: "#fff", fontFamily: "var(--font-display)", textTransform: "uppercase", letterSpacing: "0.5px" }}>
+              <strong style={{ color: "#fff", fontFamily: "var(--font-display)" }}>
                 POWER Tools GmbH
               </strong><br />
               Am Winkel 4, 15528 Spreenhagen<br />
@@ -55,14 +55,9 @@ export default function Footer() {
           </div>
           <div>
             <h6>Contact</h6>
-            <p><i className="fa-solid fa-phone" style={{ color: "var(--cut-amber)", marginRight: 8 }}></i> +49 (0) 33652 / 45 0</p>
-            <p><i className="fa-solid fa-envelope" style={{ color: "var(--cut-amber)", marginRight: 8 }}></i> info@powertools.de</p>
-            <p><i className="fa-solid fa-clock" style={{ color: "var(--cut-amber)", marginRight: 8 }}></i> Lun–Ven : 8h–17h</p>
-            <h6 style={{ marginTop: 16 }}>Newsletter</h6>
-            <div className="footer-newsletter">
-              <input type="email" placeholder="Votre email" />
-              <button className="btn btn-brand btn-sm btn-block">S'abonner</button>
-            </div>
+            <p><i className="fa-solid fa-phone" style={{ color: "var(--amber)", marginRight: 8 }}></i> +49 (0) 33652 / 45 0</p>
+            <p><i className="fa-solid fa-envelope" style={{ color: "var(--amber)", marginRight: 8 }}></i> info@powertools.de</p>
+            <p><i className="fa-solid fa-clock" style={{ color: "var(--amber)", marginRight: 8 }}></i> Lun–Ven : 8h–17h</p>
           </div>
         </div>
         <div className="footer-bottom">

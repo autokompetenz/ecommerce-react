@@ -5,25 +5,25 @@ import ScrollReveal from "../components/ScrollReveal";
 import { supabase } from "../lib/supabase";
 
 const CATEGORIES = [
-  { name: "Tournevis", icon: "\uD83D\uDD27", link: "/shop?cat=Tournevis", desc: "Sans fil, à cliquets, articulés" },
-  { name: "Clés à choc", icon: "\u26A1", link: "/shop?cat=Clés à choc", desc: "Sans fil, rotatives, pneumatiques" },
-  { name: "Perceuses", icon: "\uD83D\uDD29", link: "/shop?cat=Perceuses", desc: "À fil, sans fil, marteau" },
-  { name: "Rivets", icon: "\uD83D\uDD17", link: "/shop?cat=Rivets", desc: "Pistolets à rivets batterie" },
-  { name: "Meulage", icon: "\u2699\uFE0F", link: "/shop?cat=Meulage", desc: "Meuleuses d'angle, disques" },
+  { name: "Tournevis", icon: <i className="fa-solid fa-screwdriver-wrench"></i>, link: "/shop?cat=Tournevis", desc: "Sans fil, à cliquets, articulés" },
+  { name: "Clés à choc", icon: <i className="fa-solid fa-wrench"></i>, link: "/shop?cat=Clés à choc", desc: "Sans fil, rotatives, pneumatiques" },
+  { name: "Perceuses", icon: <i className="fa-solid fa-bolt"></i>, link: "/shop?cat=Perceuses", desc: "À fil, sans fil, marteau" },
+  { name: "Rivets", icon: <i className="fa-solid fa-link"></i>, link: "/shop?cat=Rivets", desc: "Pistolets à rivets batterie" },
+  { name: "Meulage", icon: <i className="fa-solid fa-gear"></i>, link: "/shop?cat=Meulage", desc: "Meuleuses d'angle, disques" },
 ];
 
 const WHY_US = [
-  { icon: "fa-certificate", title: "Normes CE / DIN", desc: "Tous nos outils certifiés pour une utilisation industrielle conforme." },
-  { icon: "fa-star", title: "Marques de référence", desc: "Bosch, Makita, Hilti, DeWalt, Festool — distributeur agréé." },
-  { icon: "fa-boxes-stacked", title: "Stock permanent", desc: "5 000+ références en stock, expédiées sous 24 h." },
-  { icon: "fa-headset", title: "Conseil technique", desc: "Experts dédiés pour le choix des outils adaptés à vos procédés." },
+  { icon: "fa-certificate", title: "Conforme aux normes", desc: "Tous nos outils répondent aux normes européennes en vigueur." },
+  { icon: "fa-industry", title: "Fabrication allemande", desc: "Développement et fabrication en Allemagne, qualité certifiée." },
+  { icon: "fa-boxes-stacked", title: "Stock permanent", desc: "Large gamme de produits disponibles, expédition sous 24–48 h." },
+  { icon: "fa-headset", title: "Support technique", desc: "Une équipe d'experts pour vous conseiller sur le choix de vos outils." },
 ];
 
 function TechnicalHero() {
   return (
     <section className="hero">
       <div className="container hero-container">
-        <div className="hero-content" style={{ flex: 1 }}>
+        <div className="hero-content">
           <ScrollReveal direction="up">
             <div className="hero-badge">POWER Tools GmbH — Spreenhagen, DE</div>
           </ScrollReveal>
@@ -43,28 +43,6 @@ function TechnicalHero() {
             </div>
           </ScrollReveal>
         </div>
-        <ScrollReveal direction="right" delay={200} className="hero-svg-wrap">
-          <div style={{ flex: "0 0 auto", opacity: 0.6 }}>
-            <svg width="320" height="280" viewBox="0 0 320 280" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <line x1="160" y1="20" x2="160" y2="200" stroke="#e2861f" strokeWidth="2" strokeDasharray="4 4"/>
-              <rect x="140" y="20" width="40" height="60" rx="2" stroke="#e2861f" strokeWidth="1.5" fill="none"/>
-              <rect x="145" y="80" width="30" height="120" rx="1" stroke="#e2861f" strokeWidth="1.5" fill="none"/>
-              <line x1="145" y1="100" x2="155" y2="95" stroke="#e2861f" strokeWidth="1" opacity="0.6"/>
-              <line x1="145" y1="120" x2="155" y2="115" stroke="#e2861f" strokeWidth="1" opacity="0.6"/>
-              <line x1="145" y1="140" x2="155" y2="135" stroke="#e2861f" strokeWidth="1" opacity="0.6"/>
-              <line x1="145" y1="160" x2="155" y2="155" stroke="#e2861f" strokeWidth="1" opacity="0.6"/>
-              <line x1="145" y1="180" x2="155" y2="175" stroke="#e2861f" strokeWidth="1" opacity="0.6"/>
-              <line x1="120" y1="20" x2="120" y2="200" stroke="#c8cdd2" strokeWidth="0.8"/>
-              <line x1="115" y1="20" x2="125" y2="20" stroke="#c8cdd2" strokeWidth="0.8"/>
-              <line x1="115" y1="200" x2="125" y2="200" stroke="#c8cdd2" strokeWidth="0.8"/>
-              <text x="108" y="115" fill="#c8cdd2" fontSize="10" fontFamily="IBM Plex Mono" textAnchor="middle" transform="rotate(-90 108 115)">Ø 12mm</text>
-              <line x1="190" y1="80" x2="240" y2="80" stroke="#c8cdd2" strokeWidth="0.8" strokeDasharray="2 2"/>
-              <text x="245" y="84" fill="#c8cdd2" fontSize="9" fontFamily="IBM Plex Mono">±0.02</text>
-              <text x="160" y="245" fill="#e2861f" fontSize="11" fontFamily="Barlow Condensed" textAnchor="middle" letterSpacing="2">FRAISE À BOIS DUR</text>
-              <text x="160" y="260" fill="#c8cdd2" fontSize="9" fontFamily="IBM Plex Mono" textAnchor="middle" opacity="0.6">HSS-E · DIN 842</text>
-            </svg>
-          </div>
-        </ScrollReveal>
       </div>
     </section>
   );
@@ -88,11 +66,11 @@ export default function Home() {
       {/* Trust Bar */}
       <div className="trust-bar">
         <div className="container">
-          <div className="trust-item"><i className="fa-solid fa-building-columns"></i> GmbH — HRB 11523 FF</div>
-          <div className="trust-item"><i className="fa-solid fa-map-pin"></i> Spreenhagen, Allemagne</div>
-          <div className="trust-item"><i className="fa-solid fa-users"></i> 10–19 employés</div>
+          <div className="trust-item"><i className="fa-solid fa-building-columns"></i> GmbH — Allemagne</div>
+          <div className="trust-item"><i className="fa-solid fa-map-pin"></i> Spreenhagen, DE</div>
           <div className="trust-item"><i className="fa-solid fa-truck-fast"></i> Livraison 24–48 h</div>
           <div className="trust-item"><i className="fa-solid fa-shield-halved"></i> Paiement sécurisé</div>
+          <div className="trust-item"><i className="fa-solid fa-clock-rotate-left"></i> Retour 14 jours</div>
         </div>
       </div>
 
