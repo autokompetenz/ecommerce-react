@@ -60,17 +60,17 @@ export default function ProductDetails() {
   ];
 
   return (
-    <div className="section" style={{ background: "var(--bg)" }}>
+    <div className="section pd-section">
       <div className="container">
         {/* Breadcrumb */}
-        <nav style={{ fontSize: 13, color: "var(--text-muted)", marginBottom: 24 }}>
-          <Link to="/" style={{ color: "var(--text-muted)" }}>Accueil</Link>
-          <span style={{ margin: "0 8px" }}>/</span>
-          <Link to="/shop" style={{ color: "var(--text-muted)" }}>Boutique</Link>
-          <span style={{ margin: "0 8px" }}>/</span>
-          <Link to={`/shop?cat=${product.category}`} style={{ color: "var(--text-muted)" }}>{product.category}</Link>
-          <span style={{ margin: "0 8px" }}>/</span>
-          <span style={{ color: "var(--text)" }}>{product.name}</span>
+        <nav className="pd-breadcrumb">
+          <Link to="/">Accueil</Link>
+          <span className="sep">/</span>
+          <Link to="/shop">Boutique</Link>
+          <span className="sep">/</span>
+          <Link to={`/shop?cat=${product.category}`}>{product.category}</Link>
+          <span className="sep">/</span>
+          <span className="current">{product.name}</span>
         </nav>
 
         {/* Main */}
@@ -95,138 +95,138 @@ export default function ProductDetails() {
 
           {/* Info */}
           <ScrollReveal direction="right">
-          <div>
-            <div className="pd-brand">{product.brand} — Réf: {product.ref || "N/A"}</div>
-            <h1 className="pd-title">{product.name}</h1>
+            <div>
+              <div className="pd-brand">{product.brand} — Réf: {product.ref || "N/A"}</div>
+              <h1 className="pd-title">{product.name}</h1>
 
-            {product.badge && (
-              <span className={`product-badge ${product.badge === "New" ? "new" : "promo"}`} style={{ marginBottom: 12, display: "inline-block" }}>
-                {product.badge === "New" ? "Nouveau" : product.badge}
-              </span>
-            )}
-
-            <div className="pd-price-block" style={{ marginBottom: 16 }}>
-              {product.old_price && (
-                <span className="pd-price old" style={{ textDecoration: "line-through", color: "var(--text-muted)", fontSize: 16 }}>
-                  {product.old_price.toFixed(2)} €
+              {product.badge && (
+                <span className={`pd-badge-tag ${product.badge === "New" ? "shipping" : "moq"}`} style={{ marginBottom: 12 }}>
+                  {product.badge === "New" ? "Nouveau" : product.badge}
                 </span>
               )}
-              <span className="pd-price" style={{ fontSize: 28, fontWeight: 800, color: product.old_price ? "var(--orange)" : "var(--text)", display: "block", marginTop: 4 }}>
-                {product.price.toFixed(2)} €
-              </span>
-              <span className="ttc" style={{ fontSize: 12, color: "var(--text-muted)" }}>TTC</span>
-            </div>
 
-            <div className="pd-stock" style={{ marginBottom: 12 }}>
-              <span className={`pd-stock-dot ${stockStatus}`}></span>
-              <span className={`pd-stock-text ${stockStatus}`}>{stockLabel}</span>
-            </div>
-
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 10, marginBottom: 16 }}>
-              <span style={{ display: "inline-flex", alignItems: "center", gap: 6, padding: "5px 12px", background: "var(--orange-lighter)", borderRadius: 4, fontSize: 12, fontWeight: 600, color: "var(--orange)" }}>
-                <i className="fa-solid fa-truck-fast"></i> Expédié sous 24h
-              </span>
-              <span style={{ display: "inline-flex", alignItems: "center", gap: 6, padding: "5px 12px", background: "rgba(5,150,105,0.06)", borderRadius: 4, fontSize: 12, fontWeight: 600, color: "var(--success)" }}>
-                <i className="fa-solid fa-shield-halved"></i> Vendeur vérifié
-              </span>
-              {product.moq && (
-                <span style={{ display: "inline-flex", alignItems: "center", gap: 6, padding: "5px 12px", background: "var(--bg-alt)", borderRadius: 4, fontSize: 12, fontWeight: 600, color: "var(--text-sec)" }}>
-                  <i className="fa-solid fa-boxes-stacked"></i> MOQ : {product.moq} pièces
+              <div className="pd-price-block">
+                {product.old_price && (
+                  <span className="pd-price old">
+                    {product.old_price.toFixed(2)} €
+                  </span>
+                )}
+                <span className={`pd-price ${product.old_price ? "pd-price-sale" : ""}`}>
+                  {product.price.toFixed(2)} €
                 </span>
-              )}
-            </div>
+                <span className="ttc">TTC</span>
+              </div>
 
-            <div style={{ padding: "12px 16px", background: "var(--bg-alt)", borderRadius: 6, marginBottom: 16, borderLeft: "3px solid var(--orange)" }}>
-              <p style={{ fontSize: 12, color: "var(--text-muted)", margin: "0 0 4px" }}>Fournisseur</p>
-              <p style={{ fontSize: 14, fontWeight: 700, margin: 0, display: "flex", alignItems: "center", gap: 6 }}>
-                POWER Tools <i className="fa-solid fa-circle-check" style={{ color: "var(--success)", fontSize: 13 }}></i>
+              <div className={`pd-stock`}>
+                <span className={`pd-stock-dot ${stockStatus}`}></span>
+                <span className={`pd-stock-text ${stockStatus}`}>{stockLabel}</span>
+              </div>
+
+              <div className="pd-badges">
+                <span className="pd-badge-tag shipping">
+                  <i className="fa-solid fa-truck-fast"></i> Expédié sous 24h
+                </span>
+                <span className="pd-badge-tag verified">
+                  <i className="fa-solid fa-shield-halved"></i> Vendeur vérifié
+                </span>
+                {product.moq && (
+                  <span className="pd-badge-tag moq">
+                    <i className="fa-solid fa-boxes-stacked"></i> MOQ : {product.moq} pièces
+                  </span>
+                )}
+              </div>
+
+              <div className="pd-supplier-box">
+                <p className="pd-supplier-box-label">Fournisseur</p>
+                <p className="pd-supplier-box-name">
+                  POWER Tools <i className="fa-solid fa-circle-check" style={{ color: "var(--success)", fontSize: 13 }}></i>
+                </p>
+              </div>
+
+              <div className="pd-delivery">
+                <strong>Livraison :</strong> Expédié sous 24–48 h. Livraison gratuite dès 100 €.
+              </div>
+
+              <form onSubmit={handleAddToCart}>
+                <div className="pd-qty-row">
+                  <span className="pd-qty-label">Quantité :</span>
+                  <div className="pd-qty">
+                    <button type="button" onClick={() => setQuantity(Math.max(1, quantity - 1))}>−</button>
+                    <input type="number" min="1" value={quantity} onChange={(e) => setQuantity(Math.max(1, parseInt(e.target.value) || 1))} />
+                    <button type="button" onClick={() => setQuantity(quantity + 1)}>+</button>
+                  </div>
+                </div>
+                <button type="submit" className="btn btn-brand btn-lg btn-block">
+                  {added ? <><i className="fa-solid fa-check"></i> Ajouté !</> : <><i className="fa-solid fa-cart-plus"></i> Ajouter au panier</>}
+                </button>
+              </form>
+
+              <p className="pd-return-note">
+                14 jours de retour inclus
               </p>
             </div>
-
-            <div className="pd-delivery" style={{ marginBottom: 20 }}>
-              <strong>Livraison :</strong> Expédié sous 24–48 h. Livraison gratuite dès 100 €.
-            </div>
-
-            <form onSubmit={handleAddToCart}>
-              <div className="pd-qty-row">
-                <span className="pd-qty-label">Quantité :</span>
-                <div className="pd-qty">
-                  <button type="button" onClick={() => setQuantity(Math.max(1, quantity - 1))}>−</button>
-                  <input type="number" min="1" value={quantity} onChange={(e) => setQuantity(Math.max(1, parseInt(e.target.value) || 1))} />
-                  <button type="button" onClick={() => setQuantity(quantity + 1)}>+</button>
-                </div>
-              </div>
-              <button type="submit" className="btn btn-brand btn-lg btn-block">
-                {added ? <><i className="fa-solid fa-check"></i> Ajouté !</> : <><i className="fa-solid fa-cart-plus"></i> Ajouter au panier</>}
-              </button>
-            </form>
-
-            <p style={{ textAlign: "center", fontSize: 12, color: "var(--text-muted)", marginTop: 16 }}>
-              14 jours de retour inclus
-            </p>
-          </div>
           </ScrollReveal>
         </div>
 
         {/* Tabs */}
         <ScrollReveal>
           <div className="pd-tabs">
-          <div className="pd-tabs-header">
-            {TABS.map((tab) => (
-              <button key={tab.key} className={`pd-tab-btn ${activeTab === tab.key ? "active" : ""}`} onClick={() => setActiveTab(tab.key)}>
-                {tab.label}
-              </button>
-            ))}
-          </div>
+            <div className="pd-tabs-header">
+              {TABS.map((tab) => (
+                <button key={tab.key} className={`pd-tab-btn ${activeTab === tab.key ? "active" : ""}`} onClick={() => setActiveTab(tab.key)}>
+                  {tab.label}
+                </button>
+              ))}
+            </div>
 
-          <div className="pd-tab-content">
-            {activeTab === "description" && <p>{product.description}</p>}
-            {activeTab === "features" && product.features && (
-              <ul className="pd-features-list">
-                {product.features.map((f, i) => (
-                  <li key={i}><span>✓</span> {f}</li>
-                ))}
-              </ul>
-            )}
-            {activeTab === "specs" && product.specs && (
-              <table className="pd-specs-table">
-                <tbody>
-                  {Object.entries(product.specs).map(([key, val], i) => (
-                    <tr key={key}><td>{key}</td><td>{val}</td></tr>
+            <div className="pd-tab-content">
+              {activeTab === "description" && <p>{product.description}</p>}
+              {activeTab === "features" && product.features && (
+                <ul className="pd-features-list">
+                  {product.features.map((f, i) => (
+                    <li key={i}><span>✓</span> {f}</li>
                   ))}
-                </tbody>
-              </table>
-            )}
-            {activeTab === "delivery" && (
-              <div>
-                <p style={{ marginBottom: 16 }}>{product.delivery || "Expédition sous 24–48 h ouvrées. Livraison gratuite dès 100 €."}</p>
-                <div className="pd-delivery-cards">
-                  <div className="pd-delivery-card">
-                    <strong><i className="fa-solid fa-truck" style={{ marginRight: 6, color: "var(--amber)" }}></i> Standard</strong>
-                    <p>2–3 jours ouvrés — Gratuit dès 100 €</p>
-                  </div>
-                  <div className="pd-delivery-card">
-                    <strong><i className="fa-solid fa-bolt" style={{ marginRight: 6, color: "var(--amber)" }}></i> Express</strong>
-                    <p>Sous 24 h — 9,90 €</p>
-                  </div>
-                  <div className="pd-delivery-card">
-                    <strong><i className="fa-solid fa-rotate" style={{ marginRight: 6, color: "var(--amber)" }}></i> Retour</strong>
-                    <p>14 jours pour retourner</p>
+                </ul>
+              )}
+              {activeTab === "specs" && product.specs && (
+                <table className="pd-specs-table">
+                  <tbody>
+                    {Object.entries(product.specs).map(([key, val]) => (
+                      <tr key={key}><td>{key}</td><td>{val}</td></tr>
+                    ))}
+                  </tbody>
+                </table>
+              )}
+              {activeTab === "delivery" && (
+                <div>
+                  <p style={{ marginBottom: 16 }}>{product.delivery || "Expédition sous 24–48 h ouvrées. Livraison gratuite dès 100 €."}</p>
+                  <div className="pd-delivery-cards">
+                    <div className="pd-delivery-card">
+                      <strong><i className="fa-solid fa-truck" style={{ marginRight: 6, color: "var(--orange)" }}></i> Standard</strong>
+                      <p>2–3 jours ouvrés — Gratuit dès 100 €</p>
+                    </div>
+                    <div className="pd-delivery-card">
+                      <strong><i className="fa-solid fa-bolt" style={{ marginRight: 6, color: "var(--orange)" }}></i> Express</strong>
+                      <p>Sous 24 h — 9,90 €</p>
+                    </div>
+                    <div className="pd-delivery-card">
+                      <strong><i className="fa-solid fa-rotate" style={{ marginRight: 6, color: "var(--orange)" }}></i> Retour</strong>
+                      <p>14 jours pour retourner</p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            )}
+              )}
+            </div>
           </div>
-        </div>
         </ScrollReveal>
 
         {/* Related */}
         {relatedProducts.length > 0 && (
           <div className="pd-related">
             <h3>Produits similaires</h3>
-            <div className="product-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 24 }}>
+            <div className="pd-related-grid">
               {relatedProducts.map((p) => (
-                <Link key={p.id} to={`/product/${p.id}`} className="product-card" style={{ textDecoration: "none" }}>
+                <Link key={p.id} to={`/product/${p.id}`} className="product-card pd-related-card">
                   <div className="product-card-img">
                     <img src={p.image} alt={p.name} />
                   </div>

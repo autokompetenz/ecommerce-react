@@ -22,6 +22,7 @@ export default function Shop() {
   const [filterVerified, setFilterVerified] = useState(false);
   const [filterOrigin, setFilterOrigin] = useState(false);
   const [filterShipping, setFilterShipping] = useState(false);
+  const [filterOpen, setFilterOpen] = useState(false);
 
   useEffect(() => { fetchProducts(); }, []);
 
@@ -126,8 +127,22 @@ export default function Shop() {
 
       <div className="section">
         <div className="container">
+          {/* Mobile Filter Toggle */}
+          <button className="shop-filter-toggle" onClick={() => setFilterOpen(true)}>
+            <i className="fa-solid fa-sliders"></i> Filtres
+          </button>
+
+          {/* Mobile Filter Overlay */}
+          <div className={`shop-filter-overlay ${filterOpen ? "active" : ""}`} onClick={() => setFilterOpen(false)} />
+
           <div className="shop-layout">
-            <aside className="shop-sidebar">
+            <aside className={`shop-sidebar ${filterOpen ? "active" : ""}`}>
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 16 }}>
+                <h6 style={{ margin: 0, fontFamily: "var(--font-display)", fontSize: 14, fontWeight: 700 }}>Filtres</h6>
+                <button className="shop-sidebar-close" onClick={() => setFilterOpen(false)} style={{ border: "none", background: "none", fontSize: 18, cursor: "pointer", color: "var(--text-sec)" }}>
+                  <i className="fa-solid fa-xmark"></i>
+                </button>
+              </div>
               <div className="sidebar-widget">
                 <h6>Catégorie</h6>
                 <div className="sidebar-filter-group">
@@ -232,13 +247,13 @@ export default function Shop() {
               <div className="sidebar-actions">
                 <button
                   className="btn btn-orange"
-                  onClick={() => {}}
+                  onClick={() => setFilterOpen(false)}
                 >
                   Appliquer
                 </button>
                 <button
                   className="btn btn-outline"
-                  onClick={clearFilters}
+                  onClick={() => { clearFilters(); setFilterOpen(false); }}
                 >
                   Effacer
                 </button>

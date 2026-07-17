@@ -27,6 +27,8 @@ export default function EditProduct() {
           badge: data.badge || "",
           category: data.category || "",
           description: data.description || "",
+          ean: data.ean || "",
+          part_number: data.part_number || "",
         });
         setLoading(false);
       }
@@ -54,6 +56,8 @@ export default function EditProduct() {
       badge: form.badge,
       category: form.category,
       description: form.description,
+      ean: form.ean || null,
+      part_number: form.part_number || null,
     }).eq("id", id);
 
     setSaving(false);
@@ -132,6 +136,17 @@ export default function EditProduct() {
         <div>
           <label style={labelStyle}>Description</label>
           <textarea name="description" value={form.description} onChange={handleChange} rows="4" style={{ ...inputStyle, resize: "vertical" }} />
+        </div>
+
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }}>
+          <div>
+            <label style={labelStyle}>EAN</label>
+            <input name="ean" value={form.ean} onChange={handleChange} placeholder="ex: 7392248567205" style={inputStyle} />
+          </div>
+          <div>
+            <label style={labelStyle}>N° de pièce</label>
+            <input name="part_number" value={form.part_number} onChange={handleChange} placeholder="ex: MT320B, WR14-125" style={inputStyle} />
+          </div>
         </div>
 
         <div style={{ display: "flex", gap: "12px", marginTop: "8px" }}>
