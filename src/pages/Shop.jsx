@@ -116,7 +116,7 @@ export default function Shop() {
               ) : (
                 <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 24 }}>
                   {filtered.map((product, i) => (
-                    <ScrollReveal key={product.id} direction="up" delay={i * 50}>
+                    <ScrollReveal key={product.id} direction="up" delay={i * 50} inline>
                       <ProductCard product={product} />
                     </ScrollReveal>
                   ))}

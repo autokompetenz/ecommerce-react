@@ -22,7 +22,7 @@ const WHY_US = [
 function TechnicalHero() {
   return (
     <section className="hero">
-      <div className="container" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 40 }}>
+      <div className="container hero-container">
         <div className="hero-content" style={{ flex: 1 }}>
           <ScrollReveal direction="up">
             <div className="hero-badge">POWER Tools GmbH — Spreenhagen, DE</div>
@@ -43,7 +43,7 @@ function TechnicalHero() {
             </div>
           </ScrollReveal>
         </div>
-        <ScrollReveal direction="right" delay={200} className="sr-no-mobile">
+        <ScrollReveal direction="right" delay={200} className="hero-svg-wrap">
           <div style={{ flex: "0 0 auto", opacity: 0.6 }}>
             <svg width="320" height="280" viewBox="0 0 320 280" fill="none" xmlns="http://www.w3.org/2000/svg">
               <line x1="160" y1="20" x2="160" y2="200" stroke="#e2861f" strokeWidth="2" strokeDasharray="4 4"/>
@@ -106,7 +106,7 @@ export default function Home() {
           </ScrollReveal>
           <div className="cat-grid">
             {CATEGORIES.map((cat, i) => (
-              <ScrollReveal key={cat.name} direction="up" delay={i * 80}>
+              <ScrollReveal key={cat.name} direction="up" delay={i * 80} inline>
                 <Link to={cat.link} className="cat-card" style={{ textDecoration: "none" }}>
                   <div className="cat-card-icon">{cat.icon}</div>
                   <h4>{cat.name}</h4>
@@ -142,9 +142,9 @@ export default function Home() {
             </div>
           </ScrollReveal>
           {products.length > 0 ? (
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 20 }}>
+            <div className="home-products-grid">
               {products.map((product, i) => (
-                <ScrollReveal key={product.id} direction="up" delay={i * 60}>
+                <ScrollReveal key={product.id} direction="up" delay={i * 60} inline>
                   <ProductCard product={product} />
                 </ScrollReveal>
               ))}
@@ -173,9 +173,9 @@ export default function Home() {
               <h2>Pourquoi POWER Tools ?</h2>
             </div>
           </ScrollReveal>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 20 }}>
+          <div className="home-why-grid">
             {WHY_US.map((item, i) => (
-              <ScrollReveal key={item.title} direction="up" delay={i * 80}>
+              <ScrollReveal key={item.title} direction="up" delay={i * 80} inline>
                 <div className="why-card">
                   <div className="why-card-icon"><i className={`fa-solid ${item.icon}`}></i></div>
                   <h4>{item.title}</h4>

@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 
-export default function ScrollReveal({ children, className = "", delay = 0, direction = "up" }) {
+export default function ScrollReveal({ children, className = "", delay = 0, direction = "up", inline = false }) {
   const ref = useRef(null);
 
   useEffect(() => {
@@ -25,7 +25,7 @@ export default function ScrollReveal({ children, className = "", delay = 0, dire
   }, [delay]);
 
   return (
-    <div ref={ref} className={`sr-${direction} ${className}`}>
+    <div ref={ref} className={`sr-${direction} ${className}`} style={inline ? { display: "contents" } : undefined}>
       {children}
     </div>
   );

@@ -704,6 +704,10 @@ input, select, textarea { font-family: inherit; }
   box-shadow: var(--shadow-sm); border: 1px solid var(--border);
 }
 
+/* HOME GRIDS */
+.home-products-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.home-why-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+
 /* RESPONSIVE */
 
 /* SCROLL REVEAL */
@@ -731,29 +735,159 @@ input, select, textarea { font-family: inherit; }
 }
 
 @media (max-width: 768px) {
+  .container { padding: 0 16px; }
+
+  /* Header */
   .header-top { display: none; }
   .header-nav { display: none; }
   .header-search { display: none; }
   .hamburger { display: block; }
-  .hero { min-height: 380px; }
-  .hero h1 { font-size: 32px; }
-  .cat-grid { grid-template-columns: repeat(2, 1fr); }
+  .header-main .container { gap: 12px; }
+  .header-logo { font-size: 18px; }
+
+  /* Hero */
+  .hero { min-height: auto; padding: 40px 0; }
+  .hero-container { flex-direction: column !important; gap: 24px !important; text-align: center; }
+  .hero-content { text-align: center; }
+  .hero h1 { font-size: 32px; letter-spacing: 1px; }
+  .hero p { margin-left: auto; margin-right: auto; }
+  .hero-actions { justify-content: center; }
+  .hero-svg-wrap { display: none !important; }
+
+  /* Trust bar */
+  .trust-bar { padding: 10px 0; }
+  .trust-bar .container { justify-content: center; gap: 8px 16px; }
+  .trust-item { font-size: 10px; gap: 5px; }
+  .trust-item i { font-size: 12px; }
+
+  /* Categories */
+  .cat-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .cat-card { padding: 20px 12px; }
+  .cat-card-icon { font-size: 24px; }
+  .cat-card h4 { font-size: 13px; }
+  .cat-card p { font-size: 10px; }
+
+  /* CTA Banner */
+  .cta-banner { min-height: auto; }
+  .cta-banner-content { padding: 28px 20px; }
+  .cta-banner-content h2 { font-size: 22px; }
+  .cta-banner-content p { font-size: 13px; margin-bottom: 16px; }
+
+  /* Products grid */
+  .home-products-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .home-why-grid { grid-template-columns: 1fr; gap: 12px; }
+  .why-card { padding: 20px 16px; text-align: left; display: flex; align-items: flex-start; gap: 14px; }
+  .why-card-icon { margin: 0; flex-shrink: 0; }
+  .why-card h4 { font-size: 14px; margin-bottom: 4px; }
+  .why-card p { font-size: 12px; }
+
+  /* Sections */
+  .section { padding: 32px 0; }
+  .section-sm { padding: 20px 0; }
+  .section-heading { margin-bottom: 24px; }
+  .section-heading h2 { font-size: 20px; }
+
+  /* Breadcrumb */
+  .breadcrumb-banner { padding: 28px 0; }
+  .breadcrumb-banner h2 { font-size: 20px; }
+
+  /* Blog */
   .blog-grid { grid-template-columns: 1fr; }
-  .contact-layout { grid-template-columns: 1fr; }
+
+  /* Shop */
   .shop-layout { grid-template-columns: 1fr; }
   .shop-sidebar { position: static; }
-  .footer-grid { grid-template-columns: 1fr; gap: 20px; }
+  .shop-topbar { flex-wrap: wrap; gap: 8px; }
+
+  /* Product Details */
+  .pd-layout { gap: 20px; }
+  .pd-images-main { padding: 16px; }
+  .pd-images-main img { max-height: 260px; }
+  .pd-title { font-size: 20px; }
+  .pd-price { font-size: 22px; }
+  .pd-tabs { margin-top: 28px; }
+  .pd-tab-btn { padding: 10px 16px; font-size: 12px; }
+  .pd-delivery-cards { grid-template-columns: 1fr; gap: 10px; }
+  .pd-related { margin-top: 28px; padding-top: 20px; }
+
+  /* Product cards */
+  .product-card-img { height: 150px; padding: 12px; }
+  .product-card-img img { max-height: 120px; }
+  .product-card-body { padding: 12px; }
+
+  /* Contact */
+  .contact-layout { grid-template-columns: 1fr; }
+  .contact-map { min-height: 200px; }
+  .contact-form-area { padding: 24px 0; }
+
+  /* Checkout */
+  .checkout-layout { grid-template-columns: 1fr; gap: 24px; }
+  .order-summary { position: static; }
+
+  /* Tracking */
+  .tracking-card { padding: 20px 16px; margin: 0 16px; }
+
+  /* Footer */
+  .footer { padding: 32px 0 16px; }
+  .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+
+  /* Forms */
   .form-row { grid-template-columns: 1fr; }
   .checkout-form-row { grid-template-columns: 1fr; }
-  .section { padding: 36px 0; }
-  .section-heading h2 { font-size: 22px; }
-  .pd-images-main img { max-height: 260px; }
+
+  /* Buttons */
+  .btn-lg { padding: 12px 24px; font-size: 13px; }
 }
 
 @media (max-width: 480px) {
+  .container { padding: 0 14px; }
+
+  /* Hero */
   .hero h1 { font-size: 26px; }
-  .hero { min-height: 320px; }
-  .cat-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
-  .cat-card { padding: 18px 10px; }
-  .cat-card-icon { font-size: 24px; }
+  .hero-badge { font-size: 10px; padding: 4px 10px; }
+  .hero-actions { flex-direction: column; }
+  .hero-actions .btn { width: 100%; }
+
+  /* Categories */
+  .cat-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .cat-card { padding: 16px 10px; }
+  .cat-card-icon { font-size: 22px; margin-bottom: 6px; }
+  .cat-card h4 { font-size: 12px; }
+  .cat-card p { display: none; }
+
+  /* Products */
+  .home-products-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .product-card-img { height: 130px; padding: 10px; }
+  .product-card-img img { max-height: 100px; }
+  .product-card-body { padding: 10px; }
+  .product-card-name { font-size: 12px; }
+  .product-card-price { font-size: 14px; }
+  .product-card-add { padding: 7px; font-size: 11px; }
+
+  /* CTA */
+  .cta-banner-content { padding: 24px 16px; }
+  .cta-banner-content h2 { font-size: 20px; }
+
+  /* Sections */
+  .section { padding: 28px 0; }
+  .section-heading h2 { font-size: 18px; }
+
+  /* Breadcrumb */
+  .breadcrumb-banner { padding: 24px 0; }
+  .breadcrumb-banner h2 { font-size: 18px; }
+
+  /* Product Details */
+  .pd-images-main img { max-height: 220px; }
+  .pd-title { font-size: 18px; }
+  .pd-price { font-size: 20px; }
+  .pd-tab-btn { padding: 10px 12px; font-size: 11px; }
+  .pd-specs-table td { padding: 8px 10px; font-size: 12px; }
+  .pd-specs-table td:first-child { font-size: 11px; }
+
+  /* Tracking */
+  .tracking-card { margin: 0; border-radius: 0; border-left: none; border-right: none; }
+
+  /* Trust bar */
+  .trust-bar .container { gap: 6px 12px; }
+  .trust-item { font-size: 9px; }
 }
