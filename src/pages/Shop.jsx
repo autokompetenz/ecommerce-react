@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import Breadcrumb from "../components/Breadcrumb";
 import ProductCard from "../components/ProductCard";
+import ScrollReveal from "../components/ScrollReveal";
 import { supabase } from "../lib/supabase";
 
 const KNOWN_CATEGORIES = ["Tournevis", "Clés à choc", "Perceuses", "Rivets", "Meulage"];
@@ -114,8 +115,10 @@ export default function Shop() {
                 </div>
               ) : (
                 <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 24 }}>
-                  {filtered.map((product) => (
-                    <ProductCard key={product.id} product={product} />
+                  {filtered.map((product, i) => (
+                    <ScrollReveal key={product.id} direction="up" delay={i * 50}>
+                      <ProductCard product={product} />
+                    </ScrollReveal>
                   ))}
                 </div>
               )}

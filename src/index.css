@@ -705,6 +705,20 @@ input, select, textarea { font-family: inherit; }
 }
 
 /* RESPONSIVE */
+
+/* SCROLL REVEAL */
+.sr-init { opacity: 0; transition: opacity 0.5s ease, transform 0.5s ease; }
+.sr-init.sr-visible { opacity: 1; transform: none; }
+.sr-up { transform: translateY(24px); }
+.sr-left { transform: translateX(-24px); }
+.sr-right { transform: translateX(24px); }
+.sr-fade { transform: none; }
+.sr-scale { transform: scale(0.95); }
+
+@media (prefers-reduced-motion: reduce) {
+  .sr-init { opacity: 1; transform: none; transition: none; }
+}
+
 @media (max-width: 1024px) {
   .cat-grid { grid-template-columns: repeat(3, 1fr); }
   .footer-grid { grid-template-columns: 1fr 1fr; }

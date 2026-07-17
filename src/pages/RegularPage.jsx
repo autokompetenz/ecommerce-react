@@ -1,4 +1,5 @@
 import Breadcrumb from "../components/Breadcrumb";
+import ScrollReveal from "../components/ScrollReveal";
 
 export default function RegularPage() {
   return (
@@ -6,7 +7,8 @@ export default function RegularPage() {
       <Breadcrumb title="À propos" links={[{ label: "À propos" }]} />
       <div className="section">
         <div className="container" style={{ maxWidth: 800 }}>
-          <h2 style={{ fontFamily: "var(--font-display)", fontSize: 28, fontWeight: 800, marginBottom: 20, textTransform: "uppercase", letterSpacing: "1px" }}>
+          <ScrollReveal>
+            <h2 style={{ fontFamily: "var(--font-display)", fontSize: 28, fontWeight: 800, marginBottom: 20, textTransform: "uppercase", letterSpacing: "1px" }}>
             POWER Tools GmbH
           </h2>
           <p style={{ fontSize: 14, lineHeight: 1.8, color: "var(--text-sec)", marginBottom: 24 }}>
@@ -63,6 +65,7 @@ export default function RegularPage() {
             <strong style={{ color: "var(--text)" }}>Effectif :</strong> 10 à 19 employés<br />
             <strong style={{ color: "var(--text)" }}>Statut :</strong> Entreprise active
           </p>
+          </ScrollReveal>
         </div>
       </div>
     </>

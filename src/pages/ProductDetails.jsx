@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { supabase } from "../lib/supabase";
 import { products as localProducts } from "../data/products";
 import { useCart } from "../context/CartContext";
+import ScrollReveal from "../components/ScrollReveal";
 
 export default function ProductDetails() {
   const { id } = useParams();
@@ -75,22 +76,25 @@ export default function ProductDetails() {
         {/* Main */}
         <div className="pd-layout">
           {/* Images */}
-          <div>
-            <div className="pd-images-main">
-              <img src={images[activeImage] || "/img/product-img/product-1.jpg"} alt={product.name} />
-            </div>
-            {images.length > 1 && (
-              <div className="pd-thumbnails">
-                {images.map((img, i) => (
-                  <div key={i} className={`pd-thumb ${activeImage === i ? "active" : ""}`} onClick={() => setActiveImage(i)}>
-                    <img src={img} alt="" />
-                  </div>
-                ))}
+          <ScrollReveal direction="left">
+            <div>
+              <div className="pd-images-main">
+                <img src={images[activeImage] || "/img/product-img/product-1.jpg"} alt={product.name} />
               </div>
-            )}
-          </div>
+              {images.length > 1 && (
+                <div className="pd-thumbnails">
+                  {images.map((img, i) => (
+                    <div key={i} className={`pd-thumb ${activeImage === i ? "active" : ""}`} onClick={() => setActiveImage(i)}>
+                      <img src={img} alt="" />
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          </ScrollReveal>
 
           {/* Info */}
+          <ScrollReveal direction="right">
           <div>
             <div className="pd-brand">{product.brand} — Réf: {product.ref || "N/A"}</div>
             <h1 className="pd-title">{product.name}</h1>
@@ -136,10 +140,12 @@ export default function ProductDetails() {
               14 jours de retour inclus
             </p>
           </div>
+          </ScrollReveal>
         </div>
 
         {/* Tabs */}
-        <div className="pd-tabs">
+        <ScrollReveal>
+          <div className="pd-tabs">
           <div className="pd-tabs-header">
             {TABS.map((tab) => (
               <button key={tab.key} className={`pd-tab-btn ${activeTab === tab.key ? "active" : ""}`} onClick={() => setActiveTab(tab.key)}>
@@ -187,6 +193,7 @@ export default function ProductDetails() {
             )}
           </div>
         </div>
+        </ScrollReveal>
 
         {/* Related */}
         {relatedProducts.length > 0 && (
