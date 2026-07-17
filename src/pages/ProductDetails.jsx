@@ -105,20 +105,45 @@ export default function ProductDetails() {
               </span>
             )}
 
-            <div className="pd-price-block">
-              {product.old_price && <span className="pd-price old">{product.old_price.toFixed(2)} €</span>}
-              <span className="pd-price" style={{ color: product.old_price ? "var(--danger)" : "var(--text)" }}>
+            <div className="pd-price-block" style={{ marginBottom: 16 }}>
+              {product.old_price && (
+                <span className="pd-price old" style={{ textDecoration: "line-through", color: "var(--text-muted)", fontSize: 16 }}>
+                  {product.old_price.toFixed(2)} €
+                </span>
+              )}
+              <span className="pd-price" style={{ fontSize: 28, fontWeight: 800, color: product.old_price ? "var(--orange)" : "var(--text)", display: "block", marginTop: 4 }}>
                 {product.price.toFixed(2)} €
               </span>
-              <span className="ttc">TTC</span>
+              <span className="ttc" style={{ fontSize: 12, color: "var(--text-muted)" }}>TTC</span>
             </div>
 
-            <div className="pd-stock">
+            <div className="pd-stock" style={{ marginBottom: 12 }}>
               <span className={`pd-stock-dot ${stockStatus}`}></span>
               <span className={`pd-stock-text ${stockStatus}`}>{stockLabel}</span>
             </div>
 
-            <div className="pd-delivery">
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 10, marginBottom: 16 }}>
+              <span style={{ display: "inline-flex", alignItems: "center", gap: 6, padding: "5px 12px", background: "var(--orange-lighter)", borderRadius: 4, fontSize: 12, fontWeight: 600, color: "var(--orange)" }}>
+                <i className="fa-solid fa-truck-fast"></i> Expédié sous 24h
+              </span>
+              <span style={{ display: "inline-flex", alignItems: "center", gap: 6, padding: "5px 12px", background: "rgba(5,150,105,0.06)", borderRadius: 4, fontSize: 12, fontWeight: 600, color: "var(--success)" }}>
+                <i className="fa-solid fa-shield-halved"></i> Vendeur vérifié
+              </span>
+              {product.moq && (
+                <span style={{ display: "inline-flex", alignItems: "center", gap: 6, padding: "5px 12px", background: "var(--bg-alt)", borderRadius: 4, fontSize: 12, fontWeight: 600, color: "var(--text-sec)" }}>
+                  <i className="fa-solid fa-boxes-stacked"></i> MOQ : {product.moq} pièces
+                </span>
+              )}
+            </div>
+
+            <div style={{ padding: "12px 16px", background: "var(--bg-alt)", borderRadius: 6, marginBottom: 16, borderLeft: "3px solid var(--orange)" }}>
+              <p style={{ fontSize: 12, color: "var(--text-muted)", margin: "0 0 4px" }}>Fournisseur</p>
+              <p style={{ fontSize: 14, fontWeight: 700, margin: 0, display: "flex", alignItems: "center", gap: 6 }}>
+                POWER Tools <i className="fa-solid fa-circle-check" style={{ color: "var(--success)", fontSize: 13 }}></i>
+              </p>
+            </div>
+
+            <div className="pd-delivery" style={{ marginBottom: 20 }}>
               <strong>Livraison :</strong> Expédié sous 24–48 h. Livraison gratuite dès 100 €.
             </div>
 
@@ -199,7 +224,7 @@ export default function ProductDetails() {
         {relatedProducts.length > 0 && (
           <div className="pd-related">
             <h3>Produits similaires</h3>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 24 }}>
+            <div className="product-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 24 }}>
               {relatedProducts.map((p) => (
                 <Link key={p.id} to={`/product/${p.id}`} className="product-card" style={{ textDecoration: "none" }}>
                   <div className="product-card-img">

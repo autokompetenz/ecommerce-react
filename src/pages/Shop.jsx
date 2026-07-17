@@ -1,44 +1,124 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useSearchParams } from "react-router-dom";
 import Breadcrumb from "../components/Breadcrumb";
 import ProductCard from "../components/ProductCard";
 import ScrollReveal from "../components/ScrollReveal";
 import { supabase } from "../lib/supabase";
 
-const KNOWN_CATEGORIES = ["Tournevis", "Clés à choc", "Perceuses", "Rivets", "Meulage"];
-const MATERIALS = ["Acier rapide (HSS)", "Carbure de tungstène", "Acier au carbone", "Alliage spécial"];
+const CATEGORIES = ["Tournevis", "Clés à choc", "Perceuses", "Rivets", "Meulage"];
 
 export default function Shop() {
   const [searchParams, setSearchParams] = useSearchParams();
-  const initialCat = searchParams.get("cat") || "all";
+
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [category, setCategory] = useState(initialCat);
-  const [material, setMaterial] = useState("all");
-  const [categories, setCategories] = useState(KNOWN_CATEGORIES);
+
+  const [selectedCategory, setSelectedCategory] = useState(searchParams.get("cat") || "all");
+  const [searchQuery] = useState(searchParams.get("q") || "");
   const [sort, setSort] = useState("newest");
+  const [minPrice, setMinPrice] = useState("");
+  const [maxPrice, setMaxPrice] = useState("");
+  const [filterSupplier, setFilterSupplier] = useState(true);
+  const [filterVerified, setFilterVerified] = useState(false);
+  const [filterOrigin, setFilterOrigin] = useState(false);
+  const [filterShipping, setFilterShipping] = useState(false);
 
   useEffect(() => { fetchProducts(); }, []);
 
   const fetchProducts = async () => {
     setLoading(true);
-    const { data, error } = await supabase.from("products").select("*").order("created_at", { ascending: false });
+    const { data, error } = await supabase
+      .from("products")
+      .select("*")
+      .order("created_at", { ascending: false });
     if (!error && data?.length) {
       setProducts(data);
-      const dbCats = [...new Set(data.map((p) => p.category).filter(Boolean))];
-      setCategories([...new Set([...KNOWN_CATEGORIES, ...dbCats])]);
     }
     setLoading(false);
   };
 
-  const filtered = products
-    .filter((p) => category === "all" || p.category === category)
-    .filter((p) => material === "all" || p.material === material)
-    .sort((a, b) => {
-      if (sort === "price-asc") return a.price - b.price;
-      if (sort === "price-desc") return b.price - a.price;
-      return 0;
-    });
+  const filtered = useMemo(() => {
+    let result = [...products];
+
+    if (searchQuery) {
+      const q = searchQuery.toLowerCase();
+      result = result.filter(
+        (p) =>
+          (p.name && p.name.toLowerCase().includes(q)) ||
+          (p.category && p.category.toLowerCase().includes(q)) ||
+          (p.description && p.description.toLowerCase().includes(q))
+      );
+    }
+
+    if (selectedCategory !== "all") {
+      result = result.filter((p) => p.category === selectedCategory);
+    }
+
+    if (minPrice !== "") {
+      result = result.filter((p) => p.price >= Number(minPrice));
+    }
+    if (maxPrice !== "") {
+      result = result.filter((p) => p.price <= Number(maxPrice));
+    }
+
+    if (filterSupplier) {
+      result = result.filter(
+        (p) =>
+          (p.supplier && p.supplier.toLowerCase().includes("power")) ||
+          (p.brand && p.brand.toLowerCase().includes("power"))
+      );
+    }
+
+    if (filterVerified) {
+      result = result.filter((p) => p.badge === "Verified" || p.verified === true);
+    }
+
+    if (filterOrigin) {
+      result = result.filter(
+        (p) =>
+          (p.origin && p.origin.toLowerCase().includes("allemagne")) ||
+          (p.country && p.country.toLowerCase().includes("allemagne"))
+      );
+    }
+
+    if (filterShipping) {
+      result = result.filter(
+        (p) =>
+          p.fast_shipping === true ||
+          (p.shipping_info && p.shipping_info.toLowerCase().includes("24h"))
+      );
+    }
+
+    switch (sort) {
+      case "price-asc":
+        result.sort((a, b) => a.price - b.price);
+        break;
+      case "price-desc":
+        result.sort((a, b) => b.price - a.price);
+        break;
+      case "top-rated":
+        result.sort((a, b) => (b.rating ?? 0) - (a.rating ?? 0));
+        break;
+      case "newest":
+      default:
+        result.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+        break;
+    }
+
+    return result;
+  }, [products, searchQuery, selectedCategory, minPrice, maxPrice, filterSupplier, filterVerified, filterOrigin, filterShipping, sort]);
+
+  const clearFilters = () => {
+    setSelectedCategory("all");
+    setMinPrice("");
+    setMaxPrice("");
+    setFilterSupplier(false);
+    setFilterVerified(false);
+    setFilterOrigin(false);
+    setFilterShipping(false);
+    setSort("newest");
+    setSearchParams({});
+  };
 
   return (
     <>
@@ -47,74 +127,151 @@ export default function Shop() {
       <div className="section">
         <div className="container">
           <div className="shop-layout">
-            {/* Sidebar */}
             <aside className="shop-sidebar">
               <div className="sidebar-widget">
-                <h6>Catégories</h6>
-                <ul className="sidebar-links">
-                  <li>
-                    <a href="#" onClick={(e) => { e.preventDefault(); setCategory("all"); setSearchParams({}); }}
-                      className={category === "all" ? "active" : ""}>
-                      Tous les produits
-                    </a>
-                  </li>
-                  {categories.map((cat) => (
-                    <li key={cat}>
-                      <a href="#" onClick={(e) => { e.preventDefault(); setCategory(cat); setSearchParams({ cat }); }}
-                        className={category === cat ? "active" : ""}>
-                        {cat}
-                      </a>
-                    </li>
+                <h6>Catégorie</h6>
+                <div className="sidebar-filter-group">
+                  <label className="filter-radio">
+                    <input
+                      type="radio"
+                      name="category"
+                      checked={selectedCategory === "all"}
+                      onChange={() => setSelectedCategory("all")}
+                    />
+                    <span>Tous les produits</span>
+                  </label>
+                  {CATEGORIES.map((cat) => (
+                    <label className="filter-radio" key={cat}>
+                      <input
+                        type="radio"
+                        name="category"
+                        checked={selectedCategory === cat}
+                        onChange={() => setSelectedCategory(cat)}
+                      />
+                      <span>{cat}</span>
+                    </label>
                   ))}
-                </ul>
+                </div>
               </div>
+
               <div className="sidebar-widget">
-                <h6>Matière</h6>
-                <ul className="sidebar-links">
-                  <li>
-                    <a href="#" onClick={(e) => { e.preventDefault(); setMaterial("all"); }}
-                      className={material === "all" ? "active" : ""}>
-                      Toutes
-                    </a>
-                  </li>
-                  {MATERIALS.map((mat) => (
-                    <li key={mat}>
-                      <a href="#" onClick={(e) => { e.preventDefault(); setMaterial(mat); }}
-                        className={material === mat ? "active" : ""}>
-                        {mat}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
+                <h6>Fourchette de prix</h6>
+                <div className="price-range-inputs">
+                  <input
+                    type="number"
+                    placeholder="Min €"
+                    value={minPrice}
+                    onChange={(e) => setMinPrice(e.target.value)}
+                  />
+                  <span>—</span>
+                  <input
+                    type="number"
+                    placeholder="Max €"
+                    value={maxPrice}
+                    onChange={(e) => setMaxPrice(e.target.value)}
+                  />
+                </div>
               </div>
-              <div className="sidebar-widget" style={{ background: "var(--bg-alt)", padding: 16, borderLeft: "3px solid var(--amber)" }}>
-                <h6>POWER Tools GmbH</h6>
-                <p style={{ fontSize: 12, color: "var(--text-sec)", lineHeight: 1.6, margin: 0 }}>
-                  Outils de coupe haute performance pour broyage industriel et agroalimentaire.
-                </p>
+
+              <div className="sidebar-widget">
+                <h6>Fournisseur</h6>
+                <div className="sidebar-filter-group">
+                  <label className="filter-checkbox">
+                    <input
+                      type="checkbox"
+                      checked={filterSupplier}
+                      onChange={(e) => setFilterSupplier(e.target.checked)}
+                    />
+                    <span>POWER Tools</span>
+                  </label>
+                </div>
+              </div>
+
+              <div className="sidebar-widget">
+                <h6>Vérification</h6>
+                <div className="sidebar-filter-group">
+                  <label className="filter-checkbox">
+                    <input
+                      type="checkbox"
+                      checked={filterVerified}
+                      onChange={(e) => setFilterVerified(e.target.checked)}
+                    />
+                    <span>Fournisseur vérifié</span>
+                  </label>
+                </div>
+              </div>
+
+              <div className="sidebar-widget">
+                <h6>Origine</h6>
+                <div className="sidebar-filter-group">
+                  <label className="filter-checkbox">
+                    <input
+                      type="checkbox"
+                      checked={filterOrigin}
+                      onChange={(e) => setFilterOrigin(e.target.checked)}
+                    />
+                    <span>Allemagne</span>
+                  </label>
+                </div>
+              </div>
+
+              <div className="sidebar-widget">
+                <h6>Livraison</h6>
+                <div className="sidebar-filter-group">
+                  <label className="filter-checkbox">
+                    <input
+                      type="checkbox"
+                      checked={filterShipping}
+                      onChange={(e) => setFilterShipping(e.target.checked)}
+                    />
+                    <span>Expédié sous 24h</span>
+                  </label>
+                </div>
+              </div>
+
+              <div className="sidebar-actions">
+                <button
+                  className="btn btn-orange"
+                  onClick={() => {}}
+                >
+                  Appliquer
+                </button>
+                <button
+                  className="btn btn-outline"
+                  onClick={clearFilters}
+                >
+                  Effacer
+                </button>
               </div>
             </aside>
 
-            {/* Products */}
-            <div>
+            <div className="shop-main">
               <div className="shop-topbar">
-                <p>{filtered.length} produit{filtered.length > 1 ? "s" : ""} trouvé{filtered.length > 1 ? "s" : ""}</p>
-                <select value={sort} onChange={(e) => setSort(e.target.value)}>
-                  <option value="newest">Plus récents</option>
-                  <option value="price-asc">Prix : croissant</option>
-                  <option value="price-desc">Prix : décroissant</option>
+                <p className="shop-result-count">
+                  {filtered.length} produit{filtered.length !== 1 ? "s" : ""} trouvé{filtered.length !== 1 ? "s" : ""}
+                </p>
+                <select value={sort} onChange={(e) => setSort(e.target.value)} className="shop-sort-select">
+                  <option value="price-asc">Prix croissant</option>
+                  <option value="price-desc">Prix décroissant</option>
+                  <option value="newest">Nouveautés</option>
+                  <option value="top-rated">Mieux notés</option>
                 </select>
               </div>
 
               {loading ? (
-                <div className="empty-state"><p>Chargement des produits...</p></div>
+                <div className="empty-state">
+                  <p>Chargement des produits...</p>
+                </div>
               ) : filtered.length === 0 ? (
                 <div className="empty-state">
                   <i className="fa-solid fa-box-open"></i>
-                  <p>Aucun produit trouvé.</p>
+                  <p>Aucun produit ne correspond à vos filtres.</p>
+                  <button className="btn btn-orange" onClick={clearFilters}>
+                    Réinitialiser les filtres
+                  </button>
                 </div>
               ) : (
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 24 }}>
+                <div className="product-grid">
                   {filtered.map((product, i) => (
                     <ScrollReveal key={product.id} direction="up" delay={i * 50} inline>
                       <ProductCard product={product} />

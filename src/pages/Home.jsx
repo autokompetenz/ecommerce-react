@@ -5,11 +5,11 @@ import ScrollReveal from "../components/ScrollReveal";
 import { supabase } from "../lib/supabase";
 
 const CATEGORIES = [
-  { name: "Tournevis", icon: <i className="fa-solid fa-screwdriver-wrench"></i>, link: "/shop?cat=Tournevis", desc: "Sans fil, à cliquets, articulés" },
-  { name: "Clés à choc", icon: <i className="fa-solid fa-wrench"></i>, link: "/shop?cat=Clés à choc", desc: "Sans fil, rotatives, pneumatiques" },
-  { name: "Perceuses", icon: <i className="fa-solid fa-bolt"></i>, link: "/shop?cat=Perceuses", desc: "À fil, sans fil, marteau" },
-  { name: "Rivets", icon: <i className="fa-solid fa-link"></i>, link: "/shop?cat=Rivets", desc: "Pistolets à rivets batterie" },
-  { name: "Meulage", icon: <i className="fa-solid fa-gear"></i>, link: "/shop?cat=Meulage", desc: "Meuleuses d'angle, disques" },
+  { name: "Tournevis", icon: "fa-screwdriver-wrench", link: "/shop?cat=Tournevis", desc: "Sans fil, à cliquets, articulés" },
+  { name: "Clés à choc", icon: "fa-wrench", link: "/shop?cat=Clés à choc", desc: "Sans fil, rotatives, pneumatiques" },
+  { name: "Perceuses", icon: "fa-bolt", link: "/shop?cat=Perceuses", desc: "À fil, sans fil, marteau" },
+  { name: "Rivets", icon: "fa-link", link: "/shop?cat=Rivets", desc: "Pistolets à rivets batterie" },
+  { name: "Meulage", icon: "fa-gear", link: "/shop?cat=Meulage", desc: "Meuleuses d'angle, disques" },
 ];
 
 const WHY_US = [
@@ -19,27 +19,69 @@ const WHY_US = [
   { icon: "fa-headset", title: "Support technique", desc: "Une équipe d'experts pour vous conseiller sur le choix de vos outils." },
 ];
 
-function TechnicalHero() {
+function Hero() {
   return (
-    <section className="hero">
-      <div className="container hero-container">
-        <div className="hero-content">
-          <ScrollReveal direction="up">
-            <div className="hero-badge">POWER Tools GmbH — Spreenhagen, DE</div>
+    <section className="hero-b2b">
+      <div className="container">
+        <div className="hero-grid">
+          {/* Left Sidebar */}
+          <ScrollReveal direction="left">
+            <div className="hero-sidebar">
+              <h4>Catégories</h4>
+              <ul>
+                {CATEGORIES.map((cat) => (
+                  <li key={cat.name}>
+                    <Link to={cat.link}>
+                      <i className={`fa-solid ${cat.icon}`}></i>
+                      <span>{cat.name}</span>
+                      <i className="fa-solid fa-chevron-right cat-chevron"></i>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </ScrollReveal>
+
+          {/* Center Banner */}
           <ScrollReveal direction="up" delay={100}>
-            <h1>Outils de Coupe<br /><span>Industriels</span></h1>
+            <div
+              className="hero-banner"
+              style={{ backgroundImage: "url('https://images.unsplash.com/photo-1745921204896-c2011440a4e2?w=1400&q=80&auto=format&fit=crop')" }}
+            >
+              <div className="hero-banner-overlay"></div>
+              <div className="hero-banner-content">
+                <h1>Outils de Coupe<br />Industriels</h1>
+                <p>Tournevis, perceuses, clés à choc, riveteurs et meuleuses haute performance pour professionnels.</p>
+                <Link to="/shop" className="btn btn-brand btn-lg">Voir le catalogue</Link>
+              </div>
+            </div>
           </ScrollReveal>
-          <ScrollReveal direction="up" delay={200}>
-            <p>
-              Tournevis, perceuses, clés à choc, riveteurs et meuleuses haute
-              performance. Conçus pour les professionnels de l'industrie.
-            </p>
-          </ScrollReveal>
-          <ScrollReveal direction="up" delay={300}>
-            <div className="hero-actions">
-              <Link to="/shop" className="btn btn-brand btn-lg">Voir le catalogue</Link>
-              <Link to="/contact" className="btn btn-white btn-lg">Demander un devis</Link>
+
+          {/* Right Widget */}
+          <ScrollReveal direction="right" delay={200}>
+            <div className="hero-right">
+              <div className="hero-welcome">
+                <h3>Bienvenue sur POWER Tools</h3>
+                <p>Accédez à votre espace pour gérer vos commandes et devis.</p>
+                <div className="hero-auth-btns">
+                  <Link to="/login" className="btn btn-brand btn-block">Connexion</Link>
+                  <Link to="/register" className="btn btn-outline btn-block">Créer un compte</Link>
+                </div>
+              </div>
+              <div className="hero-trust">
+                <div className="hero-trust-item">
+                  <i className="fa-solid fa-truck-fast"></i>
+                  <span>Livraison 24-48h</span>
+                </div>
+                <div className="hero-trust-item">
+                  <i className="fa-solid fa-clock-rotate-left"></i>
+                  <span>Retour 14 jours</span>
+                </div>
+                <div className="hero-trust-item">
+                  <i className="fa-solid fa-headset"></i>
+                  <span>Support technique</span>
+                </div>
+              </div>
             </div>
           </ScrollReveal>
         </div>
@@ -53,7 +95,11 @@ export default function Home() {
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const { data } = await supabase.from("products").select("*").order("created_at", { ascending: false }).limit(8);
+      const { data } = await supabase
+        .from("products")
+        .select("*")
+        .order("created_at", { ascending: false })
+        .limit(10);
       if (data) setProducts(data);
     };
     fetchProducts();
@@ -61,7 +107,7 @@ export default function Home() {
 
   return (
     <>
-      <TechnicalHero />
+      <Hero />
 
       {/* Trust Bar */}
       <div className="trust-bar">
@@ -84,9 +130,11 @@ export default function Home() {
           </ScrollReveal>
           <div className="cat-grid">
             {CATEGORIES.map((cat, i) => (
-              <ScrollReveal key={cat.name} direction="up" delay={i * 80} inline>
-                <Link to={cat.link} className="cat-card" style={{ textDecoration: "none" }}>
-                  <div className="cat-card-icon">{cat.icon}</div>
+              <ScrollReveal key={cat.name} direction="up" delay={i * 60} inline>
+                <Link to={cat.link} className="cat-card">
+                  <div className="cat-card-icon">
+                    <i className={`fa-solid ${cat.icon}`}></i>
+                  </div>
                   <h4>{cat.name}</h4>
                   <p>{cat.desc}</p>
                 </Link>
@@ -104,14 +152,14 @@ export default function Home() {
               <div className="cta-banner-content">
                 <h2>Performance Industrielle</h2>
                 <p>Outils de coupe haute performance pour broyage industriel et agroalimentaire.</p>
-                <Link to="/shop" className="btn btn-brand">Voir le catalogue</Link>
+                <Link to="/shop" className="btn btn-white btn-lg">Voir le catalogue</Link>
               </div>
             </div>
           </ScrollReveal>
         </div>
       </div>
 
-      {/* Popular Products */}
+      {/* Products Grid */}
       <div className="section">
         <div className="container">
           <ScrollReveal>
@@ -120,9 +168,9 @@ export default function Home() {
             </div>
           </ScrollReveal>
           {products.length > 0 ? (
-            <div className="home-products-grid">
+            <div className="product-grid">
               {products.map((product, i) => (
-                <ScrollReveal key={product.id} direction="up" delay={i * 60} inline>
+                <ScrollReveal key={product.id} direction="up" delay={i * 50} inline>
                   <ProductCard product={product} />
                 </ScrollReveal>
               ))}

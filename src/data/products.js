@@ -7,7 +7,8 @@ export const products = [
     features: ["Moteur brushless sans charbon", "Couple max 35 Nm", "2 vitesses mécaniques", "Mandrin 6.35mm auto-serrant", "Éclairage LED intégré", "Batterie Li-Ion 20V 2.0Ah incluse"],
     specs: { "Couple max": "35 Nm", "Vitesse": "0 - 1 700 tr/min", "Mandrin": "6.35 mm", "Tension batterie": "20 V Li-Ion", "Poids": "1.2 kg", "Bruit sonore": "72 dB(A)", "Norme EU": "2006/42/CE" },
     delivery: "Livré avec 1 tournevis, 1 batterie 2.0Ah, 1 chargeur rapide, coffret de transport",
-    stock: 24, ref: "PT-TSD-20V"
+    stock: 24, ref: "PT-TSD-20V",
+    moq: 5, rating: 4.7, reviews: 89, supplier: "POWER Tools", verified: true, origin: "Allemagne", shipping: "Expédié sous 24h"
   },
   {
     id: 2, name: "Tournevis à cliquets sans fil", brand: "POWER Tools", price: 115.00, old_price: null,
@@ -17,7 +18,8 @@ export const products = [
     features: ["Système de cliquet réversible", "Embrayage 2 vitesses", "Torseur variable 20 positions", "Moteur brushless", "Indicateur de charge LED", "Poignée antidérapante"],
     specs: { "Couple max": "40 Nm", "Vitesse": "0 - 1 500 tr/min", "Mandrin": "6.35 mm", "Tension batterie": "20 V Li-Ion", "Poids": "1.35 kg", "Bruit sonore": "74 dB(A)", "Norme EU": "2006/42/CE" },
     delivery: "Livré avec 1 tournevis, 1 batterie 2.0Ah, 1 chargeur rapide, coffret de transport",
-    stock: 18, ref: "PT-TSC-20V"
+    stock: 18, ref: "PT-TSC-20V",
+    moq: 5, rating: 4.5, reviews: 134, supplier: "POWER Tools", verified: true, origin: "Allemagne", shipping: "Expédié sous 24h"
   },
   {
     id: 3, name: "Tournevis de construction sans fil", brand: "POWER Tools", price: 99.00, old_price: 125.00,
@@ -27,7 +29,8 @@ export const products = [
     features: ["Corps aluminium renforcé", "Protection IP54", "Moteur brushless", "Éclairage LED large", "Chargeur rapide 1h", "Coffret étanche inclus"],
     specs: { "Couple max": "45 Nm", "Vitesse": "0 - 1 800 tr/min", "Mandrin": "10 mm auto-serrant", "Tension batterie": "20 V Li-Ion", "Poids": "1.5 kg", "Protection": "IP54", "Norme EU": "2006/42/CE" },
     delivery: "Livré avec 1 tournevis, 2 batteries 2.0Ah, 1 chargeur rapide, coffret étanche",
-    stock: 12, ref: "PT-TSCON-20V"
+    stock: 12, ref: "PT-TSCON-20V",
+    moq: 5, rating: 4.8, reviews: 67, supplier: "POWER Tools", verified: true, origin: "Allemagne", shipping: "Expédié sous 24h"
   },
   {
     id: 4, name: "Tournevis articulé sans fil", brand: "POWER Tools", price: 129.00, old_price: null,
@@ -37,7 +40,8 @@ export const products = [
     features: ["Tête orientable 3 positions", "Profil ultra-fin 38mm", "Vitesse variable", "Embrayage 20 positions", "Moteur brushless", "Éclairage LED pivotant"],
     specs: { "Couple max": "30 Nm", "Vitesse": "0 - 1 300 tr/min", "Mandrin": "6.35 mm", "Tension batterie": "20 V Li-Ion", "Poids": "1.1 kg", "Hauteur profile": "38 mm", "Norme EU": "2006/42/CE" },
     delivery: "Livré avec 1 tournevis articulé, 1 batterie 2.0Ah, 1 chargeur rapide, coffret de transport",
-    stock: 15, ref: "PT-TSA-20V"
+    stock: 15, ref: "PT-TSA-20V",
+    moq: 5, rating: 4.6, reviews: 45, supplier: "POWER Tools", verified: true, origin: "Allemagne", shipping: "Expédié sous 24h"
   },
   {
     id: 5, name: "Tournevis à dégagement rapide", brand: "POWER Tools", price: 69.00, old_price: 85.00,
@@ -47,7 +51,8 @@ export const products = [
     features: ["Mandrin à dégagement rapide", "Changement une main", "Embrayage 18 positions", "Moteur 18V", "Chargeur rapide 45 min", "Poignée ergonomique"],
     specs: { "Couple max": "28 Nm", "Vitesse": "0 - 1 400 tr/min", "Mandrin": "6.35 mm dégagement rapide", "Tension batterie": "18 V Li-Ion", "Poids": "1.0 kg", "Charge rapide": "45 min", "Norme EU": "2006/42/CE" },
     delivery: "Livré avec 1 tournevis, 1 batterie 2.0Ah, 1 chargeur rapide",
-    stock: 30, ref: "PT-TSDR-18V"
+    stock: 30, ref: "PT-TSDR-18V",
+    moq: 5, rating: 4.3, reviews: 112, supplier: "POWER Tools", verified: true, origin: "Allemagne", shipping: "Expédié sous 24h"
   },
   {
     id: 6, name: "Clé à choc sans fil", brand: "POWER Tools", price: 189.00, old_price: null,
@@ -57,7 +62,8 @@ export const products = [
     features: ["Moteur brushless", "Couple max 400 Nm", "3 vitesses + 5 modes", "Frein de moteur", "Torseur variable", "Éclairage LED triple"],
     specs: { "Couple max": "400 Nm", "Couple desserrage": "600 Nm", "Vitesse": "0 - 2 300 tr/min", "Carré d'entraînement": "1/2\"", "Tension batterie": "20 V Li-Ion", "Poids": "2.1 kg", "Norme EU": "2006/42/CE" },
     delivery: "Livré avec 1 clé à choc, 2 batteries 4.0Ah, 1 chargeur rapide, coffret de transport",
-    stock: 8, ref: "PT-CKC-20V"
+    stock: 8, ref: "PT-CKC-20V",
+    moq: 2, rating: 4.9, reviews: 156, supplier: "POWER Tools", verified: true, origin: "Allemagne", shipping: "Expédié sous 24h"
   },
   {
     id: 7, name: "Clé à choc rotative sans fil", brand: "POWER Tools", price: 215.00, old_price: 249.00,
@@ -67,7 +73,8 @@ export const products = [
     features: ["Tête orientable 360°", "Moteur brushless", "Couple max 450 Nm", "6 positions angulaires", "Frein de moteur", "Batterie grande capacité"],
     specs: { "Couple max": "450 Nm", "Couple desserrage": "650 Nm", "Vitesse": "0 - 2 200 tr/min", "Carré d'entraînement": "1/2\"", "Positions tête": "6 (0° à 180°)", "Tension batterie": "20 V Li-Ion", "Poids": "2.3 kg" },
     delivery: "Livré avec 1 clé à choc rotative, 2 batteries 4.0Ah, 1 chargeur rapide, coffret de transport",
-    stock: 6, ref: "PT-CKCR-20V"
+    stock: 6, ref: "PT-CKCR-20V",
+    moq: 2, rating: 4.4, reviews: 78, supplier: "POWER Tools", verified: true, origin: "Allemagne", shipping: "Expédié sous 24h"
   },
   {
     id: 8, name: "Tournevis de magazine sans fil", brand: "POWER Tools", price: 145.00, old_price: null,
@@ -77,7 +84,8 @@ export const products = [
     features: ["Magazine 50 vis intégré", "Alimentation automatique", "Vitesse de vissage 1 800 tr/min", "Moteur brushless", "Détection de fin de vis", "Économie de 40% de temps"],
     specs: { "Couple max": "32 Nm", "Vitesse": "0 - 1 800 tr/min", "Capacité magazine": "50 vis", "Diamètre vis max": "4.2 mm", "Tension batterie": "20 V Li-Ion", "Poids": "1.6 kg", "Norme EU": "2006/42/CE" },
     delivery: "Livré avec 1 tournevis magazine, 2 batteries 2.0Ah, 1 chargeur rapide, coffret de transport",
-    stock: 10, ref: "PT-TSM-20V"
+    stock: 10, ref: "PT-TSM-20V",
+    moq: 5, rating: 4.2, reviews: 23, supplier: "POWER Tools", verified: true, origin: "Allemagne", shipping: "Expédié sous 24h"
   },
   {
     id: 9, name: "Pistolet à noix de rivet sans fil", brand: "POWER Tools", price: 249.00, old_price: 289.00,
@@ -87,7 +95,8 @@ export const products = [
     features: ["Système de noix intégré", "Traction 20 kN", "Tête pivotante 360°", "Éjection auto des tiges", "Éclairage LED", "Batterie grande capacité"],
     specs: { "Traction": "20 kN", "Rivets max": "M6 inox / M8 alu", "Course": "25 mm", "Débit": "3 rivets/min", "Tension batterie": "20 V Li-Ion", "Poids": "2.0 kg", "Norme EU": "2006/42/CE" },
     delivery: "Livré avec 1 pistolet à rivets, 2 batteries 2.0Ah, 1 chargeur rapide, coffret, set de noix",
-    stock: 5, ref: "PT-PNR-20V"
+    stock: 5, ref: "PT-PNR-20V",
+    moq: 2, rating: 4.6, reviews: 91, supplier: "POWER Tools", verified: true, origin: "Allemagne", shipping: "Expédié sous 24h"
   },
   {
     id: 10, name: "Perceuse à fil", brand: "POWER Tools", price: 139.00, old_price: null,
@@ -97,7 +106,8 @@ export const products = [
     features: ["Puissance 750W", "Mandrin auto-serrant 1.5-13mm", "2 vitesses mécaniques", "Embrayage anti-vibration", "Poignée auxiliaire", "Support de fixation"],
     specs: { "Puissance": "750 W", "Vitesse": "0 - 2 800 tr/min", "Mandrin": "1.5 - 13 mm auto-serrant", "Vitesse 1": "0 - 1 100 tr/min", "Vitesse 2": "0 - 2 800 tr/min", "Poids": "2.8 kg", "Norme EU": "2006/42/CE" },
     delivery: "Livré avec 1 perceuse, poignée auxiliaire, support de fixation, coffret",
-    stock: 20, ref: "PT-PER-750W"
+    stock: 20, ref: "PT-PER-750W",
+    moq: 3, rating: 4.7, reviews: 145, supplier: "POWER Tools", verified: true, origin: "Allemagne", shipping: "Expédié sous 24h"
   },
   {
     id: 11, name: "Cliquets de batterie", brand: "POWER Tools", price: 159.00, old_price: null,
@@ -107,7 +117,8 @@ export const products = [
     features: ["2 torseurs réglables", "Cliquet 1/4\" + 1/2\"", "Embrayage finement réglable", "Moteur sans charbon", "Chargeur rapide", "Coffret de transport"],
     specs: { "Couple cliquet 1/4\"": "5 - 25 Nm", "Couple cliquet 1/2\"": "20 - 100 Nm", "Vitesse": "0 - 2 000 tr/min", "Tension batterie": "20 V Li-Ion", "Poids total": "2.5 kg", "Norme EU": "2006/42/CE" },
     delivery: "Livré avec 2 cliquets, 2 batteries 2.0Ah, 1 chargeur rapide, coffret",
-    stock: 14, ref: "PT-CLQ-20V"
+    stock: 14, ref: "PT-CLQ-20V",
+    moq: 2, rating: 4.5, reviews: 56, supplier: "POWER Tools", verified: true, origin: "Allemagne", shipping: "Expédié sous 24h"
   },
   {
     id: 12, name: "Tournevis et ensemble de forage", brand: "POWER Tools", price: 179.00, old_price: 210.00,
@@ -117,7 +128,8 @@ export const products = [
     features: ["50 accessoires inclus", "Moteur brushless 20V", "Coffret organisateur", "Forets HSS", "Mèches à bois", "Bits torx/phillips/plat"],
     specs: { "Couple max": "35 Nm", "Vitesse": "0 - 1 700 tr/min", "Accessoires": "50 pièces", "Tension batterie": "20 V Li-Ion", "Poids coffret": "4.5 kg", "Norme EU": "2006/42/CE" },
     delivery: "Livré avec 1 tournevis, 50 accessoires, 2 batteries 2.0Ah, 1 chargeur, coffret organisateur",
-    stock: 9, ref: "PT-TSFE-20V"
+    stock: 9, ref: "PT-TSFE-20V",
+    moq: 3, rating: 4.8, reviews: 102, supplier: "POWER Tools", verified: true, origin: "Allemagne", shipping: "Expédié sous 24h"
   },
   {
     id: 13, name: "Pistolet de rivet de batterie", brand: "POWER Tools", price: 199.00, old_price: null,
@@ -127,7 +139,8 @@ export const products = [
     features: ["Éclairage LED intégré", "Éjection automatique des tiges", "Poignée ergonomique", "Vitesse variable", "Tête pivotante", "Batterie longue durée"],
     specs: { "Traction": "18 kN", "Rivets max": "M5 inox / M6 alu", "Course": "22 mm", "Débit": "2.5 rivets/min", "Tension batterie": "20 V Li-Ion", "Poids": "1.8 kg", "Norme EU": "2006/42/CE" },
     delivery: "Livré avec 1 pistolet de rivet, 1 batterie 2.0Ah, 1 chargeur rapide",
-    stock: 16, ref: "PT-PDR-20V"
+    stock: 16, ref: "PT-PDR-20V",
+    moq: 2, rating: 4.3, reviews: 38, supplier: "POWER Tools", verified: true, origin: "Allemagne", shipping: "Expédié sous 24h"
   },
   {
     id: 14, name: "Tournevis à angle sans fil", brand: "POWER Tools", price: 119.00, old_price: 145.00,
@@ -137,7 +150,8 @@ export const products = [
     features: ["Profil fin 25mm", "Angle droit 90°", "Couple 30 Nm", "Vitesse variable", "Moteur brushless", "Éclairage LED orientable"],
     specs: { "Couple max": "30 Nm", "Vitesse": "0 - 1 300 tr/min", "Profil": "25 mm", "Tension batterie": "20 V Li-Ion", "Poids": "0.95 kg", "Norme EU": "2006/42/CE" },
     delivery: "Livré avec 1 tournevis à angle, 1 batterie 2.0Ah, 1 chargeur rapide",
-    stock: 22, ref: "PT-TSAng-20V"
+    stock: 22, ref: "PT-TSAng-20V",
+    moq: 5, rating: 4.6, reviews: 87, supplier: "POWER Tools", verified: true, origin: "Allemagne", shipping: "Expédié sous 24h"
   },
   {
     id: 15, name: "Tourneur à vis électronique", brand: "POWER Tools", price: 165.00, old_price: null,
@@ -147,7 +161,8 @@ export const products = [
     features: ["Contrôle numérique du couple", "20 niveaux de précision", "Affichage LED", "Moteur brushless", "Démarrage progressif", "Fonction mémoire"],
     specs: { "Couple max": "25 Nm", "Vitesse": "0 - 1 000 tr/min", "Niveaux couple": "20", "Précision": "±5%", "Tension batterie": "20 V Li-Ion", "Poids": "1.0 kg", "Norme EU": "2006/42/CE" },
     delivery: "Livré avec 1 tourneur à vis, 1 batterie 2.0Ah, 1 chargeur rapide, coffret",
-    stock: 11, ref: "PT-TEV-20V"
+    stock: 11, ref: "PT-TEV-20V",
+    moq: 5, rating: 4.4, reviews: 64, supplier: "POWER Tools", verified: true, origin: "Allemagne", shipping: "Expédié sous 24h"
   },
   {
     id: 16, name: "Meuleuse d'angle", brand: "POWER Tools", price: 149.00, old_price: 175.00,
@@ -157,7 +172,8 @@ export const products = [
     features: ["Puissance 900W", "Démarrage progressif", "Carter réglable sans outil", "Moteur ventilé", "Poignée auxiliaire", "Disque 125mm inclus"],
     specs: { "Puissance": "900 W", "Vitesse": "0 - 11 000 tr/min", "Diamètre disque": "125 mm", "Filetage": "M14", "Poids": "2.2 kg", "Bruit sonore": "86 dB(A)", "Norme EU": "2006/42/CE" },
     delivery: "Livré avec 1 meuleuse d'angle, 1 disque multi-matériaux, poignée auxiliaire, clef, coffret",
-    stock: 19, ref: "PT-MEA-900W"
+    stock: 19, ref: "PT-MEA-900W",
+    moq: 1, rating: 4.9, reviews: 134, supplier: "POWER Tools", verified: true, origin: "Allemagne", shipping: "Expédié sous 24h"
   },
   {
     id: 17, name: "Marteau de forage sans fil", brand: "POWER Tools", price: 289.00, old_price: null,
@@ -167,7 +183,8 @@ export const products = [
     features: ["Système SDS-Plus", "3 modes de fonctionnement", "Frappe 2.5 J", "Moteur brushless", "Anti-vibration", "Éclairage LED large"],
     specs: { "Énergie de frappe": "2.5 J", "Diamètre max béton": "26 mm", "Diamètre max bois": "30 mm", "Vitesse": "0 - 1 100 tr/min", "Tension batterie": "18 V Li-Ion", "Poids": "3.2 kg", "Norme EU": "2006/42/CE" },
     delivery: "Livré avec 1 marteau de forage, 2 batteries 4.0Ah, 1 chargeur rapide, coffret, forets SDS-Plus",
-    stock: 4, ref: "PT-MFS-18V"
+    stock: 4, ref: "PT-MFS-18V",
+    moq: 3, rating: 4.7, reviews: 49, supplier: "POWER Tools", verified: true, origin: "Allemagne", shipping: "Expédié sous 24h"
   },
 ];
 
@@ -188,4 +205,5 @@ export const singleProduct = {
   old_price: 109.00,
   description: "Tournevis sans fil haute performance pour vissage industriel.",
   category: "Tournevis",
+  moq: 5, rating: 4.7, reviews: 89, supplier: "POWER Tools", verified: true, origin: "Allemagne", shipping: "Expédié sous 24h",
 };
