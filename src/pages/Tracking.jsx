@@ -109,7 +109,7 @@ export default function Tracking() {
               <p style={{ textAlign: "center", color: "#888", fontSize: "14px", marginBottom: "24px" }}>
                 Entrez votre numéro de commande ou l'email utilisé lors de la commande.
               </p>
-              <form onSubmit={handleSearch} style={{ display: "flex", gap: "8px" }}>
+              <form onSubmit={handleSearch} style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
                 <input
                   type="text"
                   value={query}
@@ -152,7 +152,7 @@ export default function Tracking() {
                     </p>
                   </div>
                   <div style={{ textAlign: "right" }}>
-                    <p style={{ margin: 0, fontSize: "22px", fontWeight: "700", color: "#333" }}>${order.total.toFixed(2)}</p>
+                    <p style={{ margin: 0, fontSize: "22px", fontWeight: "700", color: "#333" }}>{order.total.toFixed(2)} €</p>
                     <p style={{ margin: "2px 0 0", fontSize: "12px", color: "#888" }}>
                       {new Date(order.created_at).toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" })}
                     </p>
@@ -205,7 +205,7 @@ export default function Tracking() {
                 )}
 
                 {/* Customer Info */}
-                <div style={{ padding: "20px 28px", borderTop: "1px solid #f0f0f0", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px", fontSize: "13px", color: "#666" }}>
+                <div style={{ padding: "20px 28px", borderTop: "1px solid #f0f0f0", display: "grid", gridTemplateColumns: "1fr", gap: "16px", fontSize: "13px", color: "#666" }}>
                   <div>
                     <p><strong>Client :</strong> {order.customer_name}</p>
                     <p><strong>Email :</strong> {order.customer_email}</p>
@@ -238,7 +238,7 @@ export default function Tracking() {
                           <p style={{ margin: 0, fontWeight: "600", fontSize: "14px", color: "#333" }}>{item.products?.name || "Produit"}</p>
                           <p style={{ margin: "2px 0 0", fontSize: "13px", color: "#888" }}>Qté: {item.quantity}</p>
                         </div>
-                        <p style={{ margin: 0, fontWeight: "600", fontSize: "14px" }}>${(item.price * item.quantity).toFixed(2)}</p>
+                        <p style={{ margin: 0, fontWeight: "600", fontSize: "14px" }}>{(item.price * item.quantity).toFixed(2)} €</p>
                       </div>
                     ))}
                   </div>

@@ -168,7 +168,7 @@ export default function ProductDetails() {
 
         {/* Tabs */}
         <div style={{ marginTop: "40px" }}>
-          <div style={{ display: "flex", borderBottom: "2px solid #eee", marginBottom: "0" }}>
+          <div className="tabs-scroll" style={{ display: "flex", overflowX: "auto", WebkitOverflowScrolling: "touch", scrollbarWidth: "none", borderBottom: "2px solid #eee" }}>
             {[
               { key: "description", label: "Description" },
               { key: "features", label: "Caractéristiques" },
@@ -179,8 +179,8 @@ export default function ProductDetails() {
                 key={tab.key}
                 onClick={() => setActiveTab(tab.key)}
                 style={{
-                  padding: "12px 24px", border: "none", background: "none", cursor: "pointer",
-                  fontSize: "14px", fontWeight: activeTab === tab.key ? 700 : 400,
+                  flexShrink: 0, padding: "12px 20px", border: "none", background: "none", cursor: "pointer",
+                  fontSize: "14px", whiteSpace: "nowrap", fontWeight: activeTab === tab.key ? 700 : 400,
                   color: activeTab === tab.key ? "#e57e25" : "#666",
                   borderBottom: activeTab === tab.key ? "2px solid #e57e25" : "2px solid transparent",
                   marginBottom: "-2px", transition: "all 0.2s",
