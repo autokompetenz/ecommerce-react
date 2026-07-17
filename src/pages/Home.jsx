@@ -4,11 +4,11 @@ import ProductCard from "../components/ProductCard";
 import { supabase } from "../lib/supabase";
 
 const CATEGORIES = [
-  { name: "Tournevis", icon: "🔧", link: "/shop?cat=Tournevis", desc: "Sans fil, à cliquets, articulés" },
-  { name: "Clés à choc", icon: "⚡", link: "/shop?cat=Clés à choc", desc: "Sans fil, rotatives, pneumatiques" },
-  { name: "Perceuses", icon: "🔩", link: "/shop?cat=Perceuses", desc: "À fil, sans fil, marteau de forage" },
-  { name: "Rivets", icon: "🔗", link: "/shop?cat=Rivets", desc: "Pistolets à rivets batterie" },
-  { name: "Meulage", icon: "⚙️", link: "/shop?cat=Meulage", desc: "Meuleuses d'angle, disques" },
+  { name: "Tournevis", icon: "\uD83D\uDD27", link: "/shop?cat=Tournevis", desc: "Sans fil, à cliquets, articulés" },
+  { name: "Clés à choc", icon: "\u26A1", link: "/shop?cat=Clés à choc", desc: "Sans fil, rotatives, pneumatiques" },
+  { name: "Perceuses", icon: "\uD83D\uDD29", link: "/shop?cat=Perceuses", desc: "À fil, sans fil, marteau de forage" },
+  { name: "Rivets", icon: "\uD83D\uDD17", link: "/shop?cat=Rivets", desc: "Pistolets à rivets batterie" },
+  { name: "Meulage", icon: "\u2699\uFE0F", link: "/shop?cat=Meulage", desc: "Meuleuses d'angle, disques" },
 ];
 
 const WHY_US = [
@@ -31,147 +31,100 @@ export default function Home() {
 
   return (
     <>
-      {/* Hero Area */}
-      <section className="welcome_area bg-img background-overlay" style={{ backgroundImage: "url(/img/bg-img/bg-1.jpg)" }}>
-        <div className="container h-100">
-          <div className="row h-100 align-items-center">
-            <div className="col-12">
-              <div className="hero-content">
-                <h6>POWER Tools GmbH — Spreenhagen, Allemagne</h6>
-                <h2>Outils de Coupe<br />Industriels</h2>
-                <p style={{ color: "#fff", fontSize: "16px", marginBottom: "28px", maxWidth: "480px", lineHeight: 1.7, textShadow: "0 1px 6px rgba(0,0,0,0.3)" }}>
-                  Tournevis, perceuses, clés à choc, riveteurs et meuleuses haute performance pour professionnels de l'industrie.
-                </p>
-                <div style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
-                  <a href="/shop" className="btn essence-btn">Voir le catalogue</a>
-                  <a href="/contact" className="btn" style={{ padding: "12px 28px", background: "rgba(255,255,255,0.15)", color: "#fff", border: "1px solid rgba(255,255,255,0.4)", borderRadius: "6px", fontSize: "14px", fontWeight: 600, backdropFilter: "blur(4px)" }}>
-                    Nous contacter
-                  </a>
-                </div>
-              </div>
+      {/* Hero */}
+      <section className="hero" style={{ backgroundImage: "url(/img/bg-img/bg-1.jpg)" }}>
+        <div className="container">
+          <div className="hero-content">
+            <div className="hero-badge">POWER Tools GmbH — Spreenhagen, Allemagne</div>
+            <h1>Outils de Coupe<br />Industriels</h1>
+            <p>Tournevis, perceuses, clés à choc, riveteurs et meuleuses haute performance pour professionnels de l'industrie.</p>
+            <div className="hero-actions">
+              <Link to="/shop" className="btn btn-brand btn-lg">Voir le catalogue</Link>
+              <Link to="/contact" className="btn btn-white btn-lg">Nous contacter</Link>
             </div>
           </div>
         </div>
       </section>
 
       {/* Trust Bar */}
-      <div style={{ background: "#1a1a2e", padding: "18px 0" }}>
+      <div className="trust-bar">
         <div className="container">
-          <div style={{ display: "flex", justifyContent: "space-around", flexWrap: "wrap", gap: "16px", textAlign: "center" }}>
-            {[
-              { icon: "fa-truck-fast", text: "Livraison 24-48h" },
-              { icon: "fa-shield-halved", text: "Paiement sécurisé" },
-              { icon: "fa-rotate-left", text: "Retour gratuit 14j" },
-              { icon: "fa-headset", text: "Support technique" },
-            ].map((item) => (
-              <div key={item.icon} style={{ display: "flex", alignItems: "center", gap: "10px", color: "#ccc", fontSize: "13px", fontWeight: 500 }}>
-                <i className={`fa-solid ${item.icon}`} style={{ color: "#e57e25", fontSize: "18px" }}></i>
-                <span>{item.text}</span>
-              </div>
-            ))}
-          </div>
+          <div className="trust-item"><i className="fa-solid fa-truck-fast"></i> Livraison 24-48h</div>
+          <div className="trust-item"><i className="fa-solid fa-shield-halved"></i> Paiement sécurisé</div>
+          <div className="trust-item"><i className="fa-solid fa-rotate-left"></i> Retour gratuit 14j</div>
+          <div className="trust-item"><i className="fa-solid fa-headset"></i> Support technique</div>
         </div>
       </div>
 
       {/* Categories */}
-      <div className="section-padding-80" style={{ background: "#fff" }}>
+      <div className="section" style={{ background: "#fff" }}>
         <div className="container">
-          <div className="section-heading text-center" style={{ marginBottom: "32px" }}>
+          <div className="section-heading">
             <h2>Nos Catégories</h2>
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: "20px" }}>
+          <div className="cat-grid">
             {CATEGORIES.map((cat) => (
-              <Link key={cat.name} to={cat.link} style={{ textDecoration: "none" }}>
-                <div style={{
-                  background: "#f8f9fa", borderRadius: "12px", padding: "28px 20px", textAlign: "center",
-                  border: "1px solid #eee", transition: "all 0.25s", cursor: "pointer",
-                }}
-                  onMouseEnter={(e) => { e.currentTarget.style.borderColor = "#e57e25"; e.currentTarget.style.transform = "translateY(-4px)"; e.currentTarget.style.boxShadow = "0 8px 24px rgba(229,126,37,0.12)"; }}
-                  onMouseLeave={(e) => { e.currentTarget.style.borderColor = "#eee"; e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "none"; }}
-                >
-                  <div style={{ fontSize: "36px", marginBottom: "12px" }}>{cat.icon}</div>
-                  <h4 style={{ fontSize: "16px", fontWeight: 700, color: "#333", margin: "0 0 6px" }}>{cat.name}</h4>
-                  <p style={{ fontSize: "12px", color: "#888", margin: 0, lineHeight: 1.4 }}>{cat.desc}</p>
-                </div>
+              <Link key={cat.name} to={cat.link} className="cat-card" style={{ textDecoration: "none" }}>
+                <div className="cat-card-icon">{cat.icon}</div>
+                <h4>{cat.name}</h4>
+                <p>{cat.desc}</p>
               </Link>
             ))}
           </div>
         </div>
       </div>
 
-      {/* CTA Area */}
-      <div className="cta-area">
+      {/* CTA Banner */}
+      <div className="section-sm">
         <div className="container">
-          <div className="row">
-            <div className="col-12">
-              <div className="cta-content bg-img background-overlay" style={{ backgroundImage: "url(/img/bg-img/bg-5.jpg)" }}>
-                <div className="h-100 d-flex align-items-center justify-content-end">
-                  <div className="cta--text">
-                    <h6>Precision</h6>
-                    <h2>Haute Performance</h2>
-                    <a href="/shop" className="btn essence-btn">Découvrir</a>
-                  </div>
-                </div>
-              </div>
+          <div className="cta-banner" style={{ backgroundImage: "url(/img/bg-img/bg-5.jpg)" }}>
+            <div className="cta-banner-content">
+              <h2>Haute Performance</h2>
+              <p>Découvrez notre gamme complète d'outils industriels pour les professionnels les plus exigeants.</p>
+              <Link to="/shop" className="btn btn-brand">Découvrir le catalogue</Link>
             </div>
           </div>
         </div>
       </div>
 
       {/* Popular Products */}
-      <section className="new_arrivals_area section-padding-80 clearfix">
+      <div className="section" style={{ background: "#fff" }}>
         <div className="container">
-          <div className="section-heading text-center" style={{ marginBottom: "32px" }}>
+          <div className="section-heading">
             <h2>Produits Populaires</h2>
           </div>
-        </div>
-        <div className="container">
-          <div className="row">
-            <div className="col-12">
-              <div className="popular-products-slides">
-                {products.length > 0 ? (
-                  products.map((product) => (
-                    <ProductCard key={product.id} product={product} />
-                  ))
-                ) : (
-                  <div style={{ textAlign: "center", padding: "40px", width: "100%" }}>
-                    <p style={{ color: "#888" }}>Ajoutez des produits depuis l'<a href="/admin">admin</a> pour les afficher ici.</p>
-                  </div>
-                )}
-              </div>
+          {products.length > 0 ? (
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 24 }}>
+              {products.map((product) => (
+                <ProductCard key={product.id} product={product} />
+              ))}
             </div>
-          </div>
+          ) : (
+            <div className="empty-state">
+              <i className="fa-solid fa-box-open"></i>
+              <p>Ajoutez des produits depuis l'<Link to="/admin">admin</Link> pour les afficher ici.</p>
+            </div>
+          )}
           {products.length > 0 && (
-            <div style={{ textAlign: "center", marginTop: "28px" }}>
-              <a href="/shop" className="btn essence-btn" style={{ padding: "12px 36px" }}>Voir tout le catalogue</a>
+            <div style={{ textAlign: "center", marginTop: 32 }}>
+              <Link to="/shop" className="btn btn-outline btn-lg">Voir tout le catalogue</Link>
             </div>
           )}
         </div>
-      </section>
+      </div>
 
-      {/* Why POWER Tools */}
-      <div style={{ background: "#f8f9fa", padding: "60px 0" }}>
+      {/* Why Us */}
+      <div className="section" style={{ background: "var(--bg-alt)" }}>
         <div className="container">
-          <div className="section-heading text-center" style={{ marginBottom: "32px" }}>
+          <div className="section-heading">
             <h2>Pourquoi POWER Tools ?</h2>
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "24px" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 24 }}>
             {WHY_US.map((item) => (
-              <div key={item.title} style={{
-                background: "#fff", borderRadius: "12px", padding: "28px 24px", textAlign: "center",
-                border: "1px solid #eee", transition: "box-shadow 0.2s",
-              }}
-                onMouseEnter={(e) => e.currentTarget.style.boxShadow = "0 6px 20px rgba(0,0,0,0.06)"}
-                onMouseLeave={(e) => e.currentTarget.style.boxShadow = "none"}
-              >
-                <div style={{
-                  width: "56px", height: "56px", borderRadius: "50%", background: "rgba(229,126,37,0.1)",
-                  display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 16px",
-                }}>
-                  <i className={`fa-solid ${item.icon}`} style={{ fontSize: "22px", color: "#e57e25" }}></i>
-                </div>
-                <h4 style={{ fontSize: "16px", fontWeight: 700, color: "#333", marginBottom: "8px" }}>{item.title}</h4>
-                <p style={{ fontSize: "13px", color: "#666", lineHeight: 1.6, margin: 0 }}>{item.desc}</p>
+              <div key={item.title} className="why-card">
+                <div className="why-card-icon"><i className={`fa-solid ${item.icon}`}></i></div>
+                <h4>{item.title}</h4>
+                <p>{item.desc}</p>
               </div>
             ))}
           </div>

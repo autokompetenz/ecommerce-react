@@ -1,33 +1,36 @@
-import Breadcrumb from "../components/Breadcrumb";
-import { blogPosts } from "../data/products";
 import { Link } from "react-router-dom";
+import Breadcrumb from "../components/Breadcrumb";
+import { blogPosts as posts } from "../data/products";
 
 export default function Blog() {
   return (
     <>
-      <Breadcrumb title="Blog" backgroundImage="/img/bg-img/breadcumb2.jpg" style2 />
-
-      <div className="blog-wrapper section-padding-80">
+      <Breadcrumb title="Actualités" links={[{ label: "Blog" }]} />
+      <div className="section">
         <div className="container">
-          <div className="row">
-            {blogPosts.map((post) => (
-              <div className="col-12 col-lg-6" key={post.id}>
-                <div className="single-blog-area mb-50">
-                  <img src={post.image} alt="" />
-                  <div className="post-title">
-                    <Link to={`/blog/${post.id}`}>{post.title}</Link>
+          {posts.length > 0 ? (
+            <div className="blog-grid">
+              {posts.map((post) => (
+                <Link key={post.id} to={`/blog/${post.id}`} className="blog-card" style={{ textDecoration: "none" }}>
+                  <div className="blog-card-img">
+                    <img src={post.image || "/img/bg-img/blog1.jpg"} alt={post.title} />
                   </div>
-                  <div className="hover-content">
-                    <div className="hover-post-title">
-                      <Link to={`/blog/${post.id}`}>{post.title}</Link>
+                  <div className="blog-card-body">
+                    <div className="blog-card-date">
+                      <i className="fa-regular fa-calendar" style={{ marginRight: 6 }}></i>
+                      {post.date}
                     </div>
-                    <p>{post.excerpt}</p>
-                    <Link to={`/blog/${post.id}`}>Lire la suite <i className="fa fa-angle-right"></i></Link>
+                    <h3 className="blog-card-title">{post.title}</h3>
                   </div>
-                </div>
-              </div>
-            ))}
-          </div>
+                </Link>
+              ))}
+            </div>
+          ) : (
+            <div className="empty-state">
+              <i className="fa-solid fa-newspaper"></i>
+              <p>Aucun article pour le moment.</p>
+            </div>
+          )}
         </div>
       </div>
     </>

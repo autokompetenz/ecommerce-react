@@ -1,23 +1,58 @@
+import Breadcrumb from "../components/Breadcrumb";
+
 export default function Contact() {
   return (
-    <div style={{ display: "flex", flexDirection: "column" }}>
-      <div style={{ width: "100%", minHeight: "300px", background: "#e5e5e5" }}>
-        <div style={{ width: "100%", height: "100%", minHeight: "300px", background: "#ccc", display: "flex", alignItems: "center", justifyContent: "center", color: "#888" }}>
-          <p>POWER Tools GmbH — Am Winkel 4, 15528 Spreenhagen</p>
+    <>
+      <Breadcrumb title="Contact" links={[{ label: "Contact" }]} />
+      <div className="section">
+        <div className="container">
+          <div className="contact-layout">
+            <div className="contact-map">
+              <div style={{ textAlign: "center", padding: 40 }}>
+                <i className="fa-solid fa-location-dot" style={{ fontSize: 48, color: "var(--brand)", marginBottom: 16, display: "block" }}></i>
+                <p>Am Winkel 4<br />15528 Spreenhagen, Allemagne</p>
+              </div>
+            </div>
+            <div className="contact-form-area">
+              <h2>Nous Contacter</h2>
+              <p>
+                Nous serions ravis de répondre à vos questions concernant nos outils de
+                coupe industriels, nos services ou tout autre sujet.
+              </p>
+              <div className="contact-info-list">
+                <div className="contact-info-item">
+                  <i className="fa-solid fa-location-dot"></i>
+                  <div>
+                    <strong>Adresse</strong>
+                    <span>Am Winkel 4, 15528 Spreenhagen, Allemagne</span>
+                  </div>
+                </div>
+                <div className="contact-info-item">
+                  <i className="fa-solid fa-phone"></i>
+                  <div>
+                    <strong>Téléphone</strong>
+                    <a href="tel:+49336524990">+49 (0) 33652 499 888 0</a>
+                  </div>
+                </div>
+                <div className="contact-info-item">
+                  <i className="fa-solid fa-envelope"></i>
+                  <div>
+                    <strong>Email</strong>
+                    <a href="mailto:info@powertools-gmbh.de">info@powertools-gmbh.de</a>
+                  </div>
+                </div>
+                <div className="contact-info-item">
+                  <i className="fa-solid fa-clock"></i>
+                  <div>
+                    <strong>Horaires</strong>
+                    <span>Lundi - Vendredi : 8h00 - 17h00</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <div style={{ padding: "40px 20px", maxWidth: "600px", margin: "0 auto" }}>
-        <h2 style={{ fontSize: "24px", fontWeight: 700, color: "#333", marginBottom: "12px" }}>Nous Contacter</h2>
-        <p style={{ fontSize: "15px", color: "#666", lineHeight: 1.7, marginBottom: "24px" }}>
-          Nous serions ravis de répondre à vos questions concernant nos outils de
-          coupe industriels, nos services ou tout autre sujet.
-        </p>
-        <div style={{ lineHeight: 2, color: "#555", fontSize: "14px" }}>
-          <p><strong>Adresse :</strong> Am Winkel 4, 15528 Spreenhagen, Allemagne</p>
-          <p><strong>Téléphone :</strong> +49 (0)33652 499 888 0</p>
-          <p><a href="mailto:info@powertools-gmbh.de" style={{ color: "#e57e25" }}>info@powertools-gmbh.de</a></p>
-        </div>
-      </div>
-    </div>
+    </>
   );
 }

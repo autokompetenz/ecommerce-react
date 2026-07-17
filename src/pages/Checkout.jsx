@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "../lib/supabase";
 import { useCart } from "../context/CartContext";
+import Breadcrumb from "../components/Breadcrumb";
 
 export default function Checkout() {
   const { items, subtotal, discount, total, clearCart } = useCart();
@@ -27,10 +28,8 @@ export default function Checkout() {
 
     setLoading(true);
     setMessage(null);
-
     const fullAddress = `${form.address}, ${form.postcode} ${form.city}, ${form.country}`;
 
-    // Create order
     const { data: order, error: orderError } = await supabase.from("orders").insert([{
       customer_name: `${form.firstName} ${form.lastName}`,
       customer_email: form.email,
@@ -40,20 +39,9 @@ export default function Checkout() {
       status: "pending",
     }]).select().single();
 
-    if (orderError) {
-      setLoading(false);
-      setMessage({ type: "error", text: orderError.message });
-      return;
-    }
+    if (orderError) { setLoading(false); setMessage({ type: "error", text: orderError.message }); return; }
 
-    // Create order items
-    const orderItems = items.map((item) => ({
-      order_id: order.id,
-      product_id: item.product_id,
-      quantity: item.quantity,
-      price: item.price,
-    }));
-
+    const orderItems = items.map((item) => ({ order_id: order.id, product_id: item.product_id, quantity: item.quantity, price: item.price }));
     const { error: itemsError } = await supabase.from("order_items").insert(orderItems);
 
     setLoading(false);
@@ -62,123 +50,106 @@ export default function Checkout() {
     } else {
       clearCart();
       setOrderId(order.id);
-      setMessage({ type: "success", text: `Commande passée avec succès ! Votre numéro de suivi : ${order.id.slice(0, 8).toUpperCase()}` });
+      setMessage({ type: "success", text: `Commande passée ! N° de suivi : ${order.id.slice(0, 8).toUpperCase()}` });
     }
   };
 
   return (
-    <div className="checkout_area section-padding-80">
-      <div className="container">
-        <div className="row">
-          {/* Billing Address */}
-          <div className="col-12 col-md-6">
-            <div className="checkout_details_area mt-50 clearfix">
-              <div className="cart-page-heading mb-30">
-                <h5>Adresse de facturation</h5>
-              </div>
-
+    <>
+      <Breadcrumb title="Commande" links={[{ label: "Commande" }]} />
+      <div className="section">
+        <div className="container">
+          <div className="checkout-layout">
+            {/* Form */}
+            <div>
+              <h3 style={{ fontSize: 20, fontWeight: 700, marginBottom: 24 }}>Adresse de facturation</h3>
               {message && (
-                <div style={{ padding: "16px", borderRadius: "8px", marginBottom: "20px", fontSize: "14px", background: message.type === "error" ? "#fdecea" : "#e8f5e9", color: message.type === "error" ? "#c62828" : "#2e7d32" }}>
+                <div className={`alert ${message.type === "error" ? "alert-error" : "alert-success"}`}>
                   {message.text}
                   {orderId && (
-                    <div style={{ marginTop: "12px" }}>
-                      <button onClick={() => navigate(`/tracking`)} style={{ padding: "8px 16px", background: "#27ae60", color: "#fff", border: "none", borderRadius: "6px", cursor: "pointer", fontSize: "13px", fontWeight: "600" }}>
-                        Suivre ma commande
-                      </button>
+                    <div style={{ marginTop: 12 }}>
+                      <button className="btn btn-brand btn-sm" onClick={() => navigate("/tracking")}>Suivre ma commande</button>
                     </div>
                   )}
                 </div>
               )}
-
               <form onSubmit={handleSubmit}>
-                <div className="row">
-                  <div className="col-md-6 mb-3">
-                    <label htmlFor="firstName">Prénom <span>*</span></label>
-                    <input type="text" className="form-control" id="firstName" value={form.firstName} onChange={handleChange} required />
+                <div className="checkout-form-row">
+                  <div className="checkout-form-group">
+                    <label>Prénom *</label>
+                    <input type="text" id="firstName" value={form.firstName} onChange={handleChange} required />
                   </div>
-                  <div className="col-md-6 mb-3">
-                    <label htmlFor="lastName">Nom <span>*</span></label>
-                    <input type="text" className="form-control" id="lastName" value={form.lastName} onChange={handleChange} required />
+                  <div className="checkout-form-group">
+                    <label>Nom *</label>
+                    <input type="text" id="lastName" value={form.lastName} onChange={handleChange} required />
                   </div>
-                  <div className="col-12 mb-3">
-                    <label htmlFor="company">Société</label>
-                    <input type="text" className="form-control" id="company" value={form.company} onChange={handleChange} />
+                </div>
+                <div className="checkout-form-group">
+                  <label>Société</label>
+                  <input type="text" id="company" value={form.company} onChange={handleChange} />
+                </div>
+                <div className="checkout-form-group">
+                  <label>Pays *</label>
+                  <select id="country" value={form.country} onChange={handleChange}>
+                    <option>Allemagne</option><option>France</option><option>Belgique</option>
+                    <option>Suisse</option><option>Luxembourg</option><option>Autriche</option><option>Pays-Bas</option>
+                  </select>
+                </div>
+                <div className="checkout-form-group">
+                  <label>Adresse *</label>
+                  <input type="text" id="address" value={form.address} onChange={handleChange} required />
+                </div>
+                <div className="checkout-form-row">
+                  <div className="checkout-form-group">
+                    <label>Code postal *</label>
+                    <input type="text" id="postcode" value={form.postcode} onChange={handleChange} required />
                   </div>
-                  <div className="col-12 mb-3">
-                    <label htmlFor="country">Pays <span>*</span></label>
-                    <select className="w-100" id="country" value={form.country} onChange={handleChange}>
-                      <option value="Allemagne">Allemagne</option>
-                      <option value="France">France</option>
-                      <option value="Belgique">Belgique</option>
-                      <option value="Suisse">Suisse</option>
-                      <option value="Luxembourg">Luxembourg</option>
-                      <option value="Autriche">Autriche</option>
-                      <option value="Pays-Bas">Pays-Bas</option>
-                    </select>
+                  <div className="checkout-form-group">
+                    <label>Ville *</label>
+                    <input type="text" id="city" value={form.city} onChange={handleChange} required />
                   </div>
-                  <div className="col-12 mb-3">
-                    <label htmlFor="address">Adresse <span>*</span></label>
-                    <input type="text" className="form-control" id="address" value={form.address} onChange={handleChange} required />
+                </div>
+                <div className="checkout-form-row">
+                  <div className="checkout-form-group">
+                    <label>Téléphone *</label>
+                    <input type="tel" id="phone" value={form.phone} onChange={handleChange} required />
                   </div>
-                  <div className="col-12 mb-3">
-                    <label htmlFor="postcode">Code postal <span>*</span></label>
-                    <input type="text" className="form-control" id="postcode" value={form.postcode} onChange={handleChange} required />
+                  <div className="checkout-form-group">
+                    <label>Email *</label>
+                    <input type="email" id="email" value={form.email} onChange={handleChange} required />
                   </div>
-                  <div className="col-12 mb-3">
-                    <label htmlFor="city">Ville <span>*</span></label>
-                    <input type="text" className="form-control" id="city" value={form.city} onChange={handleChange} required />
-                  </div>
-                  <div className="col-12 mb-3">
-                    <label htmlFor="phone">Téléphone <span>*</span></label>
-                    <input type="tel" className="form-control" id="phone" value={form.phone} onChange={handleChange} required />
-                  </div>
-                  <div className="col-12 mb-4">
-                    <label htmlFor="email">Email <span>*</span></label>
-                    <input type="email" className="form-control" id="email" value={form.email} onChange={handleChange} required />
-                  </div>
-                  <div className="col-12">
-                    <div className="custom-control custom-checkbox d-block mb-2">
-                      <input type="checkbox" className="custom-control-input" id="terms" checked={form.terms} onChange={handleChange} />
-                      <label className="custom-control-label" htmlFor="terms">J'accepte les conditions générales</label>
-                    </div>
-                    <div className="custom-control custom-checkbox d-block">
-                      <input type="checkbox" className="custom-control-input" id="newsletter" checked={form.newsletter} onChange={handleChange} />
-                      <label className="custom-control-label" htmlFor="newsletter">Newsletter</label>
-                    </div>
-                  </div>
+                </div>
+                <div style={{ display: "flex", flexDirection: "column", gap: 8, marginTop: 8 }}>
+                  <label style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 13, cursor: "pointer" }}>
+                    <input type="checkbox" id="terms" checked={form.terms} onChange={handleChange} /> J'accepte les conditions générales
+                  </label>
+                  <label style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 13, cursor: "pointer" }}>
+                    <input type="checkbox" id="newsletter" checked={form.newsletter} onChange={handleChange} /> Newsletter
+                  </label>
                 </div>
               </form>
             </div>
-          </div>
 
-          {/* Order Summary */}
-          <div className="col-12 col-md-6 col-lg-5 ml-lg-auto">
-            <div className="order-details-confirmation">
-              <div className="cart-page-heading">
-                <h5>Votre commande</h5>
-                <p>Détails</p>
-              </div>
-              <ul className="order-details-form mb-4">
-                <li><span>Produit</span> <span>Total</span></li>
-                {items.map((item) => (
-                  <li key={item.id}>
-                    <span>{item.name} x{item.quantity}</span>
-                    <span>{(item.price * item.quantity).toFixed(2)} €</span>
-                  </li>
-                ))}
-                <li><span>Sous-total</span> <span>{subtotal.toFixed(2)} €</span></li>
-                <li><span>Livraison</span> <span>Gratuite</span></li>
-                <li><span>Remise</span> <span>-{discount}%</span></li>
-                <li><span>Total</span> <span>{total.toFixed(2)} €</span></li>
-              </ul>
-
-              <button onClick={handleSubmit} disabled={loading} className="btn essence-btn" style={{ width: "100%" }}>
-                {loading ? "Envoi en cours..." : "Passer la commande"}
+            {/* Summary */}
+            <div className="order-summary">
+              <h3>Votre commande</h3>
+              {items.map((item) => (
+                <div key={item.id} className="order-line">
+                  <span>{item.name} × {item.quantity}</span>
+                  <span>{(item.price * item.quantity).toFixed(2)} €</span>
+                </div>
+              ))}
+              <div className="order-line"><span>Sous-total</span><span>{subtotal.toFixed(2)} €</span></div>
+              <div className="order-line"><span>Livraison</span><span>Gratuite</span></div>
+              <div className="order-line"><span>Remise</span><span>-{discount}%</span></div>
+              <div className="order-line total"><span>Total</span><span>{total.toFixed(2)} €</span></div>
+              <button onClick={handleSubmit} disabled={loading} className="btn btn-brand btn-block btn-lg" style={{ marginTop: 20 }}>
+                {loading ? "Envoi..." : "Passer la commande"}
               </button>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }

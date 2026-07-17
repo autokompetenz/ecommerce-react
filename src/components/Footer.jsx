@@ -2,82 +2,57 @@ import { Link } from "react-router-dom";
 
 export default function Footer() {
   return (
-    <footer className="footer_area clearfix">
+    <footer className="footer">
       <div className="container">
-        <div className="row">
-          <div className="col-12 col-md-6">
-            <div className="single_widget_area d-flex mb-30">
-              <div className="footer-logo mr-50">
-                <Link to="/" style={{ fontSize: "1.2rem", fontWeight: 700, color: "#333", textDecoration: "none" }}>POWER Tools</Link>
-              </div>
-              <div className="footer_menu">
-                <ul>
-                  <li><Link to="/shop">Boutique</Link></li>
-                  <li><Link to="/blog">Actualités</Link></li>
-                  <li><Link to="/contact">Contact</Link></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div className="col-12 col-md-6">
-            <div className="single_widget_area mb-30">
-              <ul className="footer_widget_menu">
-                <li><Link to="/tracking">Suivi de Commande</Link></li>
-                <li><a href="#">Options de Paiement</a></li>
-                <li><a href="#">Livraison</a></li>
-                <li><a href="#">Guides Techniques</a></li>
-                <li><a href="#">Politique de Confidentialité</a></li>
-                <li><a href="#">Conditions Générales</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <div className="row align-items-end">
-          <div className="col-12 col-md-6">
-            <div className="single_widget_area">
-              <div className="footer_heading mb-30">
-                <h6>POWER Tools GmbH</h6>
-              </div>
-              <div className="footer_address_text">
-                <p style={{ lineHeight: "1.8", marginBottom: "5px" }}>
-                  <strong>Adresse :</strong><br />
-                  Am Winkel 4<br />
-                  15528 Spreenhagen, Allemagne
-                </p>
-                <p style={{ lineHeight: "1.8", marginBottom: "5px" }}>
-                  <strong>Téléphone :</strong> +49 (0) 33652 / 45 0
-                </p>
-                <p style={{ lineHeight: "1.8" }}>
-                  <strong>Email :</strong>{" "}
-                  <a href="mailto:info@powertools.de">info@powertools.de</a>
-                </p>
-              </div>
-            </div>
-          </div>
-          <div className="col-12 col-md-6">
-            <div className="single_widget_area">
-              <div className="subscribtion_form">
-                <div className="footer_heading mb-30">
-                  <h6>Newsletter</h6>
-                </div>
-                <form>
-                  <input type="email" name="mail" className="mail" placeholder="Votre email" />
-                  <button type="submit" className="submit">
-                    <i className="fa fa-long-arrow-right" aria-hidden="true"></i>
-                  </button>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="row mt-5">
-          <div className="col-md-12 text-center">
+        <div className="footer-grid">
+          <div>
+            <h6>POWER Tools</h6>
             <p>
-              &copy; {new Date().getFullYear()} POWER Tools GmbH | HRB 11523 FF | Amtsgericht Frankfurt (Oder) | TVA : DE232530007 | Geschäftsführer : Oliver Haack
+              Distributeur spécialisé en outils de coupe industriels pour professionnels.
+              Tournevis, perceuses, clés à choc, riveteurs et meuleuses haute performance.
+            </p>
+            <p style={{ marginTop: 12 }}>
+              <strong style={{ color: "#fff" }}>POWER Tools GmbH</strong><br />
+              Am Winkel 4, 15528 Spreenhagen<br />
+              HRB 11523 FF | TVA : DE232530007
             </p>
           </div>
+          <div>
+            <h6>Boutique</h6>
+            <ul className="footer-links">
+              <li><Link to="/shop">Tous les produits</Link></li>
+              <li><Link to="/shop?cat=Tournevis">Tournevis</Link></li>
+              <li><Link to="/shop?cat=Perceuses">Perceuses</Link></li>
+              <li><Link to="/shop?cat=Clés à choc">Clés à choc</Link></li>
+              <li><Link to="/shop?cat=Rivets">Rivets</Link></li>
+              <li><Link to="/shop?cat=Meulage">Meulage</Link></li>
+            </ul>
+          </div>
+          <div>
+            <h6>Informations</h6>
+            <ul className="footer-links">
+              <li><Link to="/regular-page">À propos</Link></li>
+              <li><Link to="/contact">Contact</Link></li>
+              <li><Link to="/blog">Actualités</Link></li>
+              <li><Link to="/tracking">Suivi de commande</Link></li>
+              <li><a href="#">Conditions générales</a></li>
+              <li><a href="#">Politique de confidentialité</a></li>
+            </ul>
+          </div>
+          <div>
+            <h6>Contact</h6>
+            <p><i className="fa-solid fa-phone" style={{ color: "var(--brand)", marginRight: 8 }}></i> +49 (0) 33652 / 45 0</p>
+            <p><i className="fa-solid fa-envelope" style={{ color: "var(--brand)", marginRight: 8 }}></i> info@powertools.de</p>
+            <p><i className="fa-solid fa-clock" style={{ color: "var(--brand)", marginRight: 8 }}></i> Lun-Ven : 8h - 17h</p>
+            <h6 style={{ marginTop: 20 }}>Newsletter</h6>
+            <div className="footer-newsletter">
+              <input type="email" placeholder="Votre email" />
+              <button className="btn btn-brand btn-sm btn-block">S'abonner</button>
+            </div>
+          </div>
+        </div>
+        <div className="footer-bottom">
+          &copy; {new Date().getFullYear()} POWER Tools GmbH. Tous droits réservés. | Geschäftsführer : Oliver Haack
         </div>
       </div>
     </footer>
