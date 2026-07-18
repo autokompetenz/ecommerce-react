@@ -13,6 +13,7 @@ export default function ProductDetails() {
   const [activeImage, setActiveImage] = useState(0);
   const [activeTab, setActiveTab] = useState("description");
   const [added, setAdded] = useState(false);
+  const [relatedProducts, setRelatedProducts] = useState([]);
   const { addItem } = useCart();
 
   useEffect(() => {
@@ -26,7 +27,7 @@ export default function ProductDetails() {
           if (typeof val === "string") { try { return JSON.parse(val); } catch { return fallback; } }
           return val;
         };
-        setProduct({
+        const productData = {
           ...local,
           ...data,
           features: parseJSON(data.features, local && local.features) || [],
@@ -34,10 +35,37 @@ export default function ProductDetails() {
           delivery: data.delivery || (local && local.delivery) || "",
           ean: data.ean || (local && local.ean) || "",
           part_number: data.part_number || (local && local.part_number) || "",
-        });
+        };
+        setProduct(productData);
+
+        const { data: related } = await supabase
+          .from("products")
+          .select("*")
+          .eq("category", productData.category)
+          .neq("id", id)
+          .limit(4);
+        if (related && related.length > 0) {
+          setRelatedProducts(related.map((r) => {
+            const loc = localProducts.find((p) => p.id === Number(r.id));
+            return { ...loc, ...r };
+          }));
+        } else {
+          setRelatedProducts(
+            localProducts
+              .filter((p) => p.category === productData.category && p.id !== productData.id)
+              .slice(0, 4)
+          );
+        }
       } else {
         const local = localProducts.find((p) => p.id === Number(id));
         setProduct(local || null);
+        if (local) {
+          setRelatedProducts(
+            localProducts
+              .filter((p) => p.category === local.category && p.id !== local.id)
+              .slice(0, 4)
+          );
+        }
       }
       setLoading(false);
     };
@@ -59,9 +87,6 @@ export default function ProductDetails() {
   if (!product) return <div className="empty-state"><p>Produit non trouvé.</p><Link to="/shop" className="btn btn-brand" style={{ marginTop: 16 }}>Retour à la boutique</Link></div>;
 
   const images = [product.image, product.hover_image].filter(Boolean);
-  const relatedProducts = localProducts
-    .filter((p) => p.category === product.category && p.id !== product.id)
-    .slice(0, 4);
 
   const TABS = [
     { key: "description", label: "Description" },
