@@ -601,15 +601,15 @@ input, select, textarea { font-family: inherit; }
 /* =============================================
    PRODUCT DETAILS
    ============================================= */
-.pd-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 28px; }
+.pd-layout { display: grid; grid-template-columns: 1.2fr 1fr; gap: 48px; margin-top: 28px; }
 .pd-images-main {
-  border: 1px solid var(--border); border-radius: var(--radius); padding: 20px;
-  text-align: center; background: var(--bg-alt); margin-bottom: 10px;
+  border: 1px solid var(--border); border-radius: var(--radius); padding: 32px;
+  text-align: center; background: var(--bg-alt); margin-bottom: 12px;
 }
-.pd-images-main img { max-height: 360px; object-fit: contain; margin: 0 auto; }
-.pd-thumbnails { display: flex; gap: 6px; }
+.pd-images-main img { max-height: 480px; object-fit: contain; margin: 0 auto; }
+.pd-thumbnails { display: flex; gap: 8px; }
 .pd-thumb {
-  width: 64px; height: 64px; border: 2px solid var(--border); border-radius: var(--radius);
+  width: 80px; height: 80px; border: 2px solid var(--border); border-radius: var(--radius);
   overflow: hidden; cursor: pointer; padding: 4px; background: var(--bg-card);
 }
 .pd-thumb.active { border-color: var(--orange); }
@@ -1458,8 +1458,8 @@ input, select, textarea { font-family: inherit; }
 
   /* Product Details */
   .pd-layout { gap: 20px; }
-  .pd-images-main { padding: 16px; }
-  .pd-images-main img { max-height: 260px; }
+  .pd-images-main { padding: 20px; }
+  .pd-images-main img { max-height: 360px; }
   .pd-title { font-size: 20px; }
   .pd-price { font-size: 22px; }
   .pd-tabs { margin-top: 28px; }
@@ -1599,8 +1599,8 @@ input, select, textarea { font-family: inherit; }
 
   /* Product Details */
   .pd-layout { gap: 16px; }
-  .pd-images-main { padding: 12px; }
-  .pd-images-main img { max-height: 200px; }
+  .pd-images-main { padding: 16px; }
+  .pd-images-main img { max-height: 280px; }
   .pd-brand { font-size: 10px; }
   .pd-title { font-size: 17px; margin-bottom: 8px; }
   .pd-price { font-size: 20px; }
