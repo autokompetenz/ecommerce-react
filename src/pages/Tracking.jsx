@@ -24,18 +24,25 @@ export default function Tracking() {
 
     let data = null, fetchError = null;
     const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+    const q = query.trim();
 
-    if (uuidRegex.test(query.trim())) {
-      const result = await supabase.from("orders").select("*, order_items(*, products(name, image, price))").eq("id", query.trim()).single();
+    if (uuidRegex.test(q)) {
+      const result = await supabase.from("orders").select("*, order_items(*, products(name, image, price))").eq("id", q).single();
       data = result.data; fetchError = result.error;
     }
     if (!data && !fetchError) {
-      const result = await supabase.from("orders").select("*, order_items(*, products(name, image, price))").ilike("customer_email", query.trim()).order("created_at", { ascending: false }).limit(1).maybeSingle();
+      const result = await supabase.from("orders").select("*, order_items(*, products(name, image, price))").ilike("customer_email", q).order("created_at", { ascending: false }).limit(1).maybeSingle();
       data = result.data; fetchError = result.error;
     }
     if (!data && !fetchError) {
-      const result = await supabase.from("orders").select("*, order_items(*, products(name, image, price))").ilike("id", `%${query.trim()}%`).order("created_at", { ascending: false }).limit(1).maybeSingle();
-      data = result.data; fetchError = result.error;
+      const { data: all, error: allErr } = await supabase.from("orders").select("id").order("created_at", { ascending: false });
+      if (!allErr && all) {
+        const match = all.find((o) => o.id.slice(0, q.length).toLowerCase() === q.toLowerCase());
+        if (match) {
+          const result = await supabase.from("orders").select("*, order_items(*, products(name, image, price))").eq("id", match.id).single();
+          data = result.data; fetchError = result.error;
+        }
+      }
     }
 
     setLoading(false);
