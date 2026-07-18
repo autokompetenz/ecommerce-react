@@ -51,6 +51,21 @@ export default function Checkout() {
       clearCart();
       setOrderId(order.id);
       setMessage({ type: "success", text: `Commande passée ! N° de suivi : ${order.id.slice(0, 8).toUpperCase()}` });
+
+      fetch("/api/send-email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          id: order.id,
+          email: form.email,
+          customerName: `${form.firstName} ${form.lastName}`,
+          customerAddress: fullAddress,
+          customerPhone: form.phone,
+          customerEmail: form.email,
+          total: total,
+          items: items.map((i) => ({ name: i.name, quantity: i.quantity, price: i.price })),
+        }),
+      }).catch(() => {});
     }
   };
 
