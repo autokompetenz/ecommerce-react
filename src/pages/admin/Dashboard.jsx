@@ -2,126 +2,182 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { supabase } from "../../lib/supabase";
 
+const STATUS_LABELS = {
+  pending: "En attente",
+  confirmed: "Confirmée",
+  shipped: "Expédiée",
+  delivered: "Livrée",
+  cancelled: "Annulée",
+};
+const STATUS_COLORS = {
+  pending: "#d97706",
+  confirmed: "#3b82f6",
+  shipped: "#8b5cf6",
+  delivered: "#059669",
+  cancelled: "#dc2626",
+};
+
 export default function Dashboard() {
-  const [products, setProducts] = useState([]);
+  const [stats, setStats] = useState({ products: 0, orders: 0, revenue: 0, pending: 0 });
+  const [recentOrders, setRecentOrders] = useState([]);
+  const [recentProducts, setRecentProducts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [search, setSearch] = useState("");
-  const [deleting, setDeleting] = useState(null);
 
-  useEffect(() => { fetchProducts(); }, []);
+  useEffect(() => {
+    const fetchAll = async () => {
+      setLoading(true);
+      const [productsRes, ordersRes] = await Promise.all([
+        supabase.from("products").select("id, name, brand, price, image, category, created_at").order("created_at", { ascending: false }),
+        supabase.from("orders").select("*").order("created_at", { ascending: false }),
+      ]);
 
-  const fetchProducts = async () => {
-    setLoading(true);
-    const { data, error } = await supabase.from("products").select("*").order("created_at", { ascending: false });
-    if (!error) setProducts(data || []);
-    setLoading(false);
-  };
+      const products = productsRes.data || [];
+      const orders = ordersRes.data || [];
 
-  const handleDelete = async (id) => {
-    if (!window.confirm("Supprimer ce produit ?")) return;
-    setDeleting(id);
-    const { error } = await supabase.from("products").delete().eq("id", id);
-    if (!error) setProducts((prev) => prev.filter((p) => p.id !== id));
-    setDeleting(null);
-  };
+      const revenue = orders.reduce((sum, o) => sum + (Number(o.total) || 0), 0);
+      const pending = orders.filter((o) => o.status === "pending").length;
 
-  const filtered = products.filter(
-    (p) => (p.name && p.name.toLowerCase().includes(search.toLowerCase())) ||
-      (p.brand && p.brand.toLowerCase().includes(search.toLowerCase())) ||
-      (p.category && p.category.toLowerCase().includes(search.toLowerCase()))
-  );
+      setStats({
+        products: products.length,
+        orders: orders.length,
+        revenue,
+        pending,
+      });
+      setRecentOrders(orders.slice(0, 5));
+      setRecentProducts(products.slice(0, 5));
+      setLoading(false);
+    };
+    fetchAll();
+  }, []);
+
+  if (loading) return <p className="admin-loading">Chargement du tableau de bord...</p>;
 
   return (
     <div>
       <div className="admin-header-row">
-        <h1>Produits ({products.length})</h1>
-        <Link to="/admin/add" className="btn btn-primary admin-add-btn">
-          <i className="fa-solid fa-plus"></i> Ajouter
-        </Link>
+        <h1>Tableau de bord</h1>
+        <div style={{ display: "flex", gap: 8 }}>
+          <Link to="/admin/add" className="btn btn-primary admin-add-btn">
+            <i className="fa-solid fa-plus"></i> Ajouter un produit
+          </Link>
+        </div>
       </div>
 
-      <input
-        type="text"
-        placeholder="Rechercher un produit..."
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-        className="admin-search-input"
-      />
+      {/* Stats Cards */}
+      <div className="admin-stats-grid">
+        <div className="admin-stat-card admin-stat-products">
+          <div className="admin-stat-icon"><i className="fa-solid fa-box-open"></i></div>
+          <div className="admin-stat-info">
+            <span className="admin-stat-value">{stats.products}</span>
+            <span className="admin-stat-label">Produits</span>
+          </div>
+        </div>
+        <div className="admin-stat-card admin-stat-orders">
+          <div className="admin-stat-icon"><i className="fa-solid fa-bag-shopping"></i></div>
+          <div className="admin-stat-info">
+            <span className="admin-stat-value">{stats.orders}</span>
+            <span className="admin-stat-label">Commandes</span>
+          </div>
+        </div>
+        <div className="admin-stat-card admin-stat-revenue">
+          <div className="admin-stat-icon"><i className="fa-solid fa-euro-sign"></i></div>
+          <div className="admin-stat-info">
+            <span className="admin-stat-value">{stats.revenue.toFixed(2)} €</span>
+            <span className="admin-stat-label">Chiffre d'affaires</span>
+          </div>
+        </div>
+        <div className="admin-stat-card admin-stat-pending">
+          <div className="admin-stat-icon"><i className="fa-solid fa-clock"></i></div>
+          <div className="admin-stat-info">
+            <span className="admin-stat-value">{stats.pending}</span>
+            <span className="admin-stat-label">En attente</span>
+          </div>
+        </div>
+      </div>
 
-      {loading ? (
-        <p className="admin-loading">Chargement...</p>
-      ) : filtered.length === 0 ? (
-        <p className="admin-loading">Aucun produit trouvé.</p>
-      ) : (
-        <>
-          {/* Desktop table */}
-          <div className="admin-table-wrap">
-            <table className="admin-table">
-              <thead>
-                <tr>
-                  <th>Image</th>
-                  <th>Nom</th>
-                  <th>Marque</th>
-                  <th>Catégorie</th>
-                  <th className="text-right">Prix</th>
-                  <th className="text-center">Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {filtered.map((product) => (
-                  <tr key={product.id}>
-                    <td>
-                      <img src={product.image || "/img/product-img/product-1.jpg"} alt="" className="admin-table-img" />
-                    </td>
-                    <td className="font-medium">{product.name}</td>
-                    <td className="text-muted">{product.brand}</td>
-                    <td className="text-muted">{product.category || "-"}</td>
-                    <td className="text-right font-semibold">
-                      {product.old_price && <span className="old-price">${product.old_price}</span>}
-                      ${product.price}
-                    </td>
-                    <td className="text-center">
-                      <div className="admin-actions">
-                        <Link to={`/admin/edit/${product.id}`} className="admin-action-edit">
-                          <i className="fa-solid fa-pen"></i>
-                        </Link>
-                        <button onClick={() => handleDelete(product.id)} disabled={deleting === product.id} className="admin-action-delete">
-                          <i className="fa-solid fa-trash"></i>
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+      {/* Two columns: Recent Orders + Quick Actions */}
+      <div className="admin-dash-grid">
+        {/* Recent Orders */}
+        <div className="admin-dash-card">
+          <div className="admin-dash-card-header">
+            <h2><i className="fa-solid fa-clock-rotate-left"></i> Dernières commandes</h2>
+            <Link to="/admin/orders" className="admin-dash-link">Voir tout <i className="fa-solid fa-arrow-right"></i></Link>
+          </div>
+          {recentOrders.length === 0 ? (
+            <p className="admin-dash-empty">Aucune commande pour le moment.</p>
+          ) : (
+            <div className="admin-dash-orders">
+              {recentOrders.map((order) => (
+                <div key={order.id} className="admin-dash-order-row">
+                  <div className="admin-dash-order-info">
+                    <span className="admin-dash-order-id">#{order.id.slice(0, 8).toUpperCase()}</span>
+                    <span className="admin-dash-order-name">{order.customer_name}</span>
+                  </div>
+                  <div className="admin-dash-order-meta">
+                    <span className="admin-dash-order-total">{Number(order.total).toFixed(2)} €</span>
+                    <span
+                      className="admin-dash-order-status"
+                      style={{ color: STATUS_COLORS[STATUS_LABELS[order.status] ? order.status : "pending"] }}
+                    >
+                      {STATUS_LABELS[order.status] || order.status}
+                    </span>
+                  </div>
+                  <span className="admin-dash-order-date">
+                    {new Date(order.created_at).toLocaleDateString("fr-FR", { day: "2-digit", month: "short" })}
+                  </span>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* Quick Actions */}
+        <div className="admin-dash-card">
+          <div className="admin-dash-card-header">
+            <h2><i className="fa-solid fa-bolt"></i> Actions rapides</h2>
+          </div>
+          <div className="admin-dash-actions">
+            <Link to="/admin/add" className="admin-dash-action">
+              <i className="fa-solid fa-circle-plus"></i>
+              <span>Ajouter un produit</span>
+            </Link>
+            <Link to="/admin/orders" className="admin-dash-action">
+              <i className="fa-solid fa-bag-shopping"></i>
+              <span>Gérer les commandes</span>
+            </Link>
+            <Link to="/admin/settings" className="admin-dash-action">
+              <i className="fa-solid fa-gear"></i>
+              <span>Paramètres du site</span>
+            </Link>
+            <Link to="/shop" className="admin-dash-action" target="_blank">
+              <i className="fa-solid fa-eye"></i>
+              <span>Voir la boutique</span>
+            </Link>
+            <Link to="/" className="admin-dash-action" target="_blank">
+              <i className="fa-solid fa-house"></i>
+              <span>Voir l'accueil</span>
+            </Link>
           </div>
 
-          {/* Mobile cards */}
-          <div className="admin-product-cards">
-            {filtered.map((product) => (
-              <div key={product.id} className="admin-product-card">
-                <img src={product.image || "/img/product-img/product-1.jpg"} alt="" className="admin-product-card-img" />
-                <div className="admin-product-card-info">
-                  <h4>{product.name}</h4>
-                  <p className="text-muted">{product.brand} — {product.category || "-"}</p>
-                  <p className="admin-product-card-price">
-                    {product.old_price && <span className="old-price">${product.old_price}</span>}
-                    ${product.price}
-                  </p>
-                </div>
-                <div className="admin-product-card-actions">
-                  <Link to={`/admin/edit/${product.id}`} className="admin-action-edit">
-                    <i className="fa-solid fa-pen"></i>
-                  </Link>
-                  <button onClick={() => handleDelete(product.id)} disabled={deleting === product.id} className="admin-action-delete">
-                    <i className="fa-solid fa-trash"></i>
-                  </button>
-                </div>
-              </div>
-            ))}
+          <div className="admin-dash-card-header" style={{ marginTop: 20 }}>
+            <h2><i className="fa-solid fa-star"></i> Produits récents</h2>
           </div>
-        </>
-      )}
+          {recentProducts.length > 0 && (
+            <div className="admin-dash-recent-products">
+              {recentProducts.map((p) => (
+                <Link key={p.id} to={`/admin/edit/${p.id}`} className="admin-dash-product-row">
+                  <img src={p.image || "/img/product-img/product-1.jpg"} alt="" />
+                  <div>
+                    <span className="admin-dash-product-name">{p.name}</span>
+                    <span className="admin-dash-product-cat">{p.category || "—"}</span>
+                  </div>
+                  <span className="admin-dash-product-price">{Number(p.price).toFixed(2)} €</span>
+                </Link>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
     </div>
   );
 }
