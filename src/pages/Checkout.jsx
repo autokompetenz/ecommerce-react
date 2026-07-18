@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "../lib/supabase";
 import { useCart } from "../context/CartContext";
@@ -10,11 +10,26 @@ export default function Checkout() {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState(null);
   const [orderId, setOrderId] = useState(null);
+  const [confirmedItems, setConfirmedItems] = useState([]);
+  const [confirmedTotal, setConfirmedTotal] = useState(0);
+  const [bankInfo, setBankInfo] = useState({});
   const [form, setForm] = useState({
     firstName: "", lastName: "", company: "", country: "Allemagne",
     address: "", postcode: "", city: "", phone: "", email: "",
     terms: false, newsletter: false,
   });
+
+  useEffect(() => {
+    const fetchBank = async () => {
+      const { data } = await supabase.from("site_settings").select("*");
+      if (data) {
+        const map = {};
+        data.forEach((r) => { map[r.key] = r.value; });
+        setBankInfo(map);
+      }
+    };
+    fetchBank();
+  }, []);
 
   const handleChange = (e) => {
     const { id, value, type, checked } = e.target;
@@ -48,9 +63,11 @@ export default function Checkout() {
     if (itemsError) {
       setMessage({ type: "error", text: itemsError.message });
     } else {
+      setConfirmedItems([...items]);
+      setConfirmedTotal(total);
       clearCart();
       setOrderId(order.id);
-      setMessage({ type: "success", text: `Commande passée ! N° de suivi : ${order.id.slice(0, 8).toUpperCase()}` });
+      setMessage({ type: "success" });
 
       fetch("/api/send-email", {
         method: "POST",
@@ -69,23 +86,115 @@ export default function Checkout() {
     }
   };
 
+  // ---- CONFIRMATION SCREEN ----
+  if (orderId) {
+    return (
+      <>
+        <Breadcrumb title="Commande confirmée" links={[{ label: "Commande" }, { label: "Confirmée" }]} />
+        <div className="section">
+          <div className="container" style={{ maxWidth: 720 }}>
+            <div className="checkout-confirm">
+              <div className="checkout-confirm-header">
+                <i className="fa-solid fa-circle-check"></i>
+                <h1>Commande confirmée !</h1>
+                <p>Référence : <strong>#{orderId.slice(0, 8).toUpperCase()}</strong></p>
+              </div>
+
+              <div className="checkout-confirm-section">
+                <h2><i className="fa-solid fa-box"></i> Récapitulatif de la commande</h2>
+                <table className="checkout-confirm-table">
+                  <thead>
+                    <tr>
+                      <th>Produit</th>
+                      <th>Qté</th>
+                      <th>Prix</th>
+                      <th>Total</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {confirmedItems.map((item, i) => (
+                      <tr key={i}>
+                        <td>{item.name}</td>
+                        <td className="text-center">{item.quantity}</td>
+                        <td className="text-right">{Number(item.price).toFixed(2)} €</td>
+                        <td className="text-right font-semibold">{(Number(item.price) * item.quantity).toFixed(2)} €</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+                <div className="checkout-confirm-total">
+                  <span>Total à payer</span>
+                  <span>{confirmedTotal.toFixed(2)} € TTC</span>
+                </div>
+              </div>
+
+              <div className="checkout-confirm-section checkout-confirm-bank">
+                <h2><i className="fa-solid fa-university"></i> Informations de paiement par virement</h2>
+                <p className="checkout-confirm-bank-note">
+                  Effectuez votre virement en indiquant la référence ci-dessous.
+                </p>
+                <div className="checkout-confirm-bank-grid">
+                  <div className="checkout-confirm-bank-row">
+                    <span className="checkout-confirm-bank-label">Titulaire</span>
+                    <span className="checkout-confirm-bank-value">{bankInfo.bank_holder || "—"}</span>
+                  </div>
+                  <div className="checkout-confirm-bank-row">
+                    <span className="checkout-confirm-bank-label">IBAN</span>
+                    <span className="checkout-confirm-bank-value checkout-confirm-iban">{bankInfo.bank_iban || "—"}</span>
+                  </div>
+                  <div className="checkout-confirm-bank-row">
+                    <span className="checkout-confirm-bank-label">BIC / SWIFT</span>
+                    <span className="checkout-confirm-bank-value">{bankInfo.bank_bic || "—"}</span>
+                  </div>
+                  <div className="checkout-confirm-bank-row">
+                    <span className="checkout-confirm-bank-label">Banque</span>
+                    <span className="checkout-confirm-bank-value">{bankInfo.bank_bank || "—"}</span>
+                  </div>
+                  <div className="checkout-confirm-bank-row">
+                    <span className="checkout-confirm-bank-label">Référence à mentionner</span>
+                    <span className="checkout-confirm-bank-value checkout-confirm-ref">
+                      #{orderId.slice(0, 8).toUpperCase()}
+                    </span>
+                  </div>
+                </div>
+                {bankInfo.bank_note && (
+                  <p className="checkout-confirm-bank-footnote">{bankInfo.bank_note}</p>
+                )}
+              </div>
+
+              <div className="checkout-confirm-section">
+                <h2><i className="fa-solid fa-envelope"></i> Et après ?</h2>
+                <p>Un e-mail de confirmation avec le récapitulatif de votre commande vous a été envoyé à <strong>{form.email}</strong>.</p>
+                <p>Vous pouvez suivre l'état de votre commande depuis la page de suivi.</p>
+              </div>
+
+              <div className="checkout-confirm-actions">
+                <button className="btn btn-primary btn-lg" onClick={() => navigate("/tracking")}>
+                  <i className="fa-solid fa-truck"></i> Suivre ma commande
+                </button>
+                <button className="btn btn-outline btn-lg" onClick={() => navigate("/shop")}>
+                  <i className="fa-solid fa-bag-shopping"></i> Continuer vos achats
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </>
+    );
+  }
+
+  // ---- CHECKOUT FORM ----
   return (
     <>
       <Breadcrumb title="Commande" links={[{ label: "Commande" }]} />
       <div className="section">
         <div className="container">
           <div className="checkout-layout">
-            {/* Form */}
             <div>
               <h3 style={{ fontSize: 20, fontWeight: 700, marginBottom: 24 }}>Adresse de facturation</h3>
               {message && (
                 <div className={`alert ${message.type === "error" ? "alert-error" : "alert-success"}`}>
                   {message.text}
-                  {orderId && (
-                    <div style={{ marginTop: 12 }}>
-                      <button className="btn btn-brand btn-sm" onClick={() => navigate("/tracking")}>Suivre ma commande</button>
-                    </div>
-                  )}
                 </div>
               )}
               <form onSubmit={handleSubmit}>
@@ -145,7 +254,6 @@ export default function Checkout() {
               </form>
             </div>
 
-            {/* Summary */}
             <div className="order-summary">
               <h3>Votre commande</h3>
               {items.map((item) => (

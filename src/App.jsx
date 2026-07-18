@@ -21,6 +21,7 @@ import Dashboard from "./pages/admin/Dashboard";
 import AddProduct from "./pages/admin/AddProduct";
 import EditProduct from "./pages/admin/EditProduct";
 import Orders from "./pages/admin/Orders";
+import Settings from "./pages/admin/Settings";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -92,6 +93,7 @@ function AdminRoutes() {
         <Route path="add" element={<AddProduct />} />
         <Route path="edit/:id" element={<EditProduct />} />
         <Route path="orders" element={<Orders />} />
+        <Route path="settings" element={<Settings />} />
       </Route>
       <Route path="*" element={<Navigate to="/admin" replace />} />
     </Routes>

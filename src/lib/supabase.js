@@ -86,4 +86,25 @@ ALTER TABLE products ADD COLUMN IF NOT EXISTS specs JSONB DEFAULT '{}';
 ALTER TABLE products ADD COLUMN IF NOT EXISTS delivery TEXT DEFAULT '';
 ALTER TABLE products ADD COLUMN IF NOT EXISTS ean TEXT DEFAULT '';
 ALTER TABLE products ADD COLUMN IF NOT EXISTS part_number TEXT DEFAULT '';
+
+-- ====== TABLE SETTINGS (coordonnées bancaires modifiables) ======
+CREATE TABLE IF NOT EXISTS site_settings (
+  key TEXT PRIMARY KEY,
+  value TEXT DEFAULT '',
+  updated_at TIMESTAMPTZ DEFAULT now()
+);
+ALTER TABLE site_settings ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "Public read settings" ON site_settings FOR SELECT USING (true);
+CREATE POLICY "Upsert settings" ON site_settings FOR INSERT WITH CHECK (true);
+CREATE POLICY "Update settings" ON site_settings FOR UPDATE USING (true);
+
+-- Valeurs par défaut (bank transfer info)
+INSERT INTO site_settings (key, value) VALUES
+  ('bank_holder', 'POWER Tools GmbH'),
+  ('bank_iban', 'DE89 3704 0044 0532 0130 00'),
+  ('bank_bic', 'COBADEFFXXX'),
+  ('bank_bank', 'Commerzbank AG'),
+  ('bank_reference', 'POWER-TOOLS'),
+  ('bank_note', 'Veuillez indiquer le numéro de commande en référence du virement.')
+ON CONFLICT (key) DO NOTHING;
 */

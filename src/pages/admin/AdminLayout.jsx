@@ -50,6 +50,9 @@ export default function AdminLayout() {
           <NavLink to="/admin/add" className={({ isActive }) => `admin-nav-link ${isActive ? "active" : ""}`} onClick={() => setSidebarOpen(false)}>
             <i className="fa-solid fa-circle-plus"></i> Ajouter
           </NavLink>
+          <NavLink to="/admin/settings" className={({ isActive }) => `admin-nav-link ${isActive ? "active" : ""}`} onClick={() => setSidebarOpen(false)}>
+            <i className="fa-solid fa-gear"></i> Paramètres
+          </NavLink>
         </nav>
 
         <div className="admin-sidebar-footer">
