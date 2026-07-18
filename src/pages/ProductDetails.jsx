@@ -45,9 +45,6 @@ export default function ProductDetails() {
   if (!product) return <div className="empty-state"><p>Produit non trouvé.</p><Link to="/shop" className="btn btn-brand" style={{ marginTop: 16 }}>Retour à la boutique</Link></div>;
 
   const images = [product.image, product.hover_image].filter(Boolean);
-  const stockStatus = product.stock > 10 ? "available" : product.stock > 0 ? "low" : "out";
-  const stockLabel = product.stock > 10 ? "En stock" : product.stock > 0 ? `Plus que ${product.stock} en stock` : "Rupture de stock";
-
   const relatedProducts = localProducts
     .filter((p) => p.category === product.category && p.id !== product.id)
     .slice(0, 4);
@@ -117,10 +114,7 @@ export default function ProductDetails() {
                 <span className="ttc">TTC</span>
               </div>
 
-              <div className={`pd-stock`}>
-                <span className={`pd-stock-dot ${stockStatus}`}></span>
-                <span className={`pd-stock-text ${stockStatus}`}>{stockLabel}</span>
-              </div>
+
 
               <div className="pd-badges">
                 <span className="pd-badge-tag shipping">
