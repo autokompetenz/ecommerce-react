@@ -720,6 +720,18 @@ input, select, textarea { font-family: inherit; }
   padding: 12px 16px; background: var(--bg-alt); border-radius: var(--radius);
   margin-bottom: 16px; border-left: 3px solid var(--orange);
 }
+.pd-identifiers {
+  display: flex; flex-direction: column; gap: 6px;
+  margin-bottom: 16px; padding: 12px 14px;
+  background: var(--bg-alt); border-radius: var(--radius); border: 1px solid var(--border-light);
+}
+.pd-identifier-row { display: flex; align-items: center; gap: 10px; font-size: 13px; }
+.pd-id-label {
+  font-weight: 600; color: var(--text-sec); white-space: nowrap;
+  font-family: var(--font-display); text-transform: uppercase; letter-spacing: 0.3px;
+}
+.pd-id-label i { width: 14px; text-align: center; color: var(--orange); font-size: 12px; }
+.pd-id-value { font-family: var(--font-mono); font-weight: 500; color: var(--text); letter-spacing: 0.3px; }
 .pd-supplier-box-label { font-size: 12px; color: var(--text-muted); margin: 0 0 4px; }
 .pd-supplier-box-name {
   font-size: 15px; font-weight: 700; margin: 0;

@@ -1,1 +1,8 @@
-TypeError: NetworkError lorsque vous essayez de récupérer de la ressource.
+CREATE POLICY "Public read product-images" ON storage.objects
+  FOR SELECT USING (bucket_id = 'product-images');
+
+CREATE POLICY "Upload product-images" ON storage.objects
+  FOR INSERT WITH CHECK (bucket_id = 'product-images');
+
+CREATE POLICY "Delete product-images" ON storage.objects
+  FOR DELETE USING (bucket_id = 'product-images');

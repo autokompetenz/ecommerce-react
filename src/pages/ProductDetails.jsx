@@ -136,6 +136,21 @@ export default function ProductDetails() {
                 )}
               </div>
 
+              <div className="pd-identifiers">
+                {product.ean && (
+                  <div className="pd-identifier-row">
+                    <span className="pd-id-label"><i className="fa-solid fa-barcode"></i> EAN</span>
+                    <span className="pd-id-value">{product.ean}</span>
+                  </div>
+                )}
+                {product.part_number && (
+                  <div className="pd-identifier-row">
+                    <span className="pd-id-label"><i className="fa-solid fa-hashtag"></i> N° de pièce</span>
+                    <span className="pd-id-value">{product.part_number}</span>
+                  </div>
+                )}
+              </div>
+
               <div className="pd-supplier-box">
                 <p className="pd-supplier-box-label">Fournisseur</p>
                 <p className="pd-supplier-box-name">
