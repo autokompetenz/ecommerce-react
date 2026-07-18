@@ -1,4 +1,4 @@
-import nodemailer from "nodemailer";
+const nodemailer = require("nodemailer");
 
 const SMTP_HOST = process.env.SMTP_HOST;
 const SMTP_PORT = Number(process.env.SMTP_PORT) || 587;
@@ -109,7 +109,7 @@ function adminHTML(order) {
 </div></body></html>`;
 }
 
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
@@ -117,6 +117,7 @@ export default async function handler(req, res) {
   if (req.method !== "POST") return res.status(405).json({ error: "Method not allowed" });
 
   if (!SMTP_HOST || !SMTP_USER || !SMTP_PASS) {
+    console.error("SMTP vars missing:", { SMTP_HOST: !!SMTP_HOST, SMTP_USER: !!SMTP_USER, SMTP_PASS: !!SMTP_PASS });
     return res.status(500).json({ error: "SMTP non configuré. Ajoutez SMTP_HOST, SMTP_USER, SMTP_PASS dans les variables Vercel." });
   }
 
@@ -144,7 +145,7 @@ export default async function handler(req, res) {
 
     return res.status(200).json({ success: true });
   } catch (err) {
-    console.error("Email error:", err);
-    return res.status(500).json({ error: "Erreur lors de l'envoi des emails." });
+    console.error("Email send error:", err.message || err);
+    return res.status(500).json({ error: "Erreur lors de l'envoi des emails: " + (err.message || "unknown") });
   }
-}
+};
