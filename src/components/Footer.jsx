@@ -42,13 +42,13 @@ export default function Footer() {
           <div>
             <h6 className="footer-title">Mentions légales</h6>
             <ul className="footer-links">
-              <li><a href="#">Mentions légales</a></li>
-              <li><a href="#">Conditions générales de vente</a></li>
-              <li><a href="#">Politique de confidentialité</a></li>
-              <li><a href="#">Droit de rétractation</a></li>
-              <li><a href="#">Conditions d'expédition et de livraison</a></li>
-              <li><a href="#">Politique de retour et de remboursement</a></li>
-              <li><a href="#">Politique en matière de cookies</a></li>
+              <li><Link to="/legal/mentions">Mentions légales</Link></li>
+              <li><Link to="/legal/cgv">Conditions générales de vente</Link></li>
+              <li><Link to="/legal/confidentialite">Politique de confidentialité</Link></li>
+              <li><Link to="/legal/retractation">Droit de rétractation</Link></li>
+              <li><Link to="/legal/expedition">Conditions d'expédition et de livraison</Link></li>
+              <li><Link to="/legal/retour">Politique de retour et de remboursement</Link></li>
+              <li><Link to="/legal/cookies">Politique en matière de cookies</Link></li>
             </ul>
           </div>
           <div>

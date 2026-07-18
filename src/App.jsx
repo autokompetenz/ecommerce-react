@@ -14,6 +14,7 @@ import SingleBlog from "./pages/SingleBlog";
 import RegularPage from "./pages/RegularPage";
 import Contact from "./pages/Contact";
 import Tracking from "./pages/Tracking";
+import LegalPage from "./pages/LegalPage";
 import AdminLogin from "./pages/admin/AdminLogin";
 import AdminLayout from "./pages/admin/AdminLayout";
 import Dashboard from "./pages/admin/Dashboard";
@@ -68,6 +69,7 @@ function SiteLayout() {
         <Route path="/regular-page" element={<RegularPage />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/tracking" element={<Tracking />} />
+        <Route path="/legal/:type" element={<LegalPage />} />
       </Routes>
       <Footer />
     </>
