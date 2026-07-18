@@ -4,8 +4,23 @@ import { supabase } from "../../lib/supabase";
 import ImageUpload from "../../components/ImageUpload";
 
 const emptyProduct = {
-  name: "", brand: "", price: "", old_price: "", image: "", hover_image: "", badge: "", category: "", description: "", ean: "", part_number: "",
+  name: "", brand: "", price: "", old_price: "", image: "", hover_image: "",
+  badge: "", category: "", description: "", ean: "", part_number: "",
+  features_text: "", specs_text: "", delivery: "",
 };
+
+function parseSpecs(text) {
+  if (!text.trim()) return {};
+  const obj = {};
+  text.split("\n").forEach((line) => {
+    const sep = line.indexOf(":");
+    if (sep === -1) return;
+    const key = line.slice(0, sep).trim();
+    const val = line.slice(sep + 1).trim();
+    if (key) obj[key] = val;
+  });
+  return obj;
+}
 
 export default function AddProduct() {
   const [form, setForm] = useState(emptyProduct);
@@ -23,6 +38,9 @@ export default function AddProduct() {
     setLoading(true);
     setMessage(null);
 
+    const features = form.features_text.split("\n").map((l) => l.trim()).filter(Boolean);
+    const specs = parseSpecs(form.specs_text);
+
     const { error } = await supabase.from("products").insert([{
       name: form.name,
       brand: form.brand,
@@ -33,6 +51,9 @@ export default function AddProduct() {
       badge: form.badge,
       category: form.category,
       description: form.description,
+      features: features.length ? JSON.stringify(features) : "[]",
+      specs: Object.keys(specs).length ? JSON.stringify(specs) : "{}",
+      delivery: form.delivery || "",
       ean: form.ean || null,
       part_number: form.part_number || null,
     }]);
@@ -112,6 +133,33 @@ export default function AddProduct() {
         <div>
           <label className="admin-label">Description</label>
           <textarea name="description" value={form.description} onChange={handleChange} rows="4" className="admin-input admin-textarea" />
+        </div>
+
+        <div>
+          <label className="admin-label">Caractéristiques (une par ligne)</label>
+          <textarea
+            name="features_text" value={form.features_text} onChange={handleChange}
+            rows="5" className="admin-input admin-textarea"
+            placeholder={"Moteur brushless sans charbon\nCouple max 35 Nm\n2 vitesses mécaniques\nÉclairage LED intégré"}
+          />
+        </div>
+
+        <div>
+          <label className="admin-label">Données techniques (une par ligne, format Clé: Valeur)</label>
+          <textarea
+            name="specs_text" value={form.specs_text} onChange={handleChange}
+            rows="5" className="admin-input admin-textarea"
+            placeholder={"Couple max: 35 Nm\nVitesse: 0 - 1 700 tr/min\nMandrin: 6.35 mm\nTension batterie: 20 V Li-Ion\nPoids: 1.2 kg"}
+          />
+        </div>
+
+        <div>
+          <label className="admin-label">Livraison / Contenu du coffret</label>
+          <textarea
+            name="delivery" value={form.delivery} onChange={handleChange}
+            rows="2" className="admin-input admin-textarea"
+            placeholder="Livré avec 1 tournevis, 1 batterie 2.0Ah, 1 chargeur rapide, coffret de transport"
+          />
         </div>
 
         <div className="admin-form-grid admin-form-grid-2">
