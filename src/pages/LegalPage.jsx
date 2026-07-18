@@ -10,8 +10,8 @@ const COMPANY = {
   court: "Amtsgericht Frankfurt (Oder)",
   vat: "DE232530007",
   director: "Oliver Haack",
-  phone: "+49 (0) 33652 / 45 0",
-  email: "info@powertools.de",
+  phone: "",
+  email: "kontakt@powertoolsgmbh.com",
   website: "https://ecommerce-react-dun-zeta.vercel.app",
   activity: "Développement, fabrication et distribution d'outils de coupe haute performance pour machines industrielles de broyage et industrie agroalimentaire.",
   sector: "Fabrication d'outillage industriel et de machines de coupe",
@@ -37,7 +37,6 @@ const DOCS = {
           `• Adresse enregistrée : ${COMPANY.registeredAddress}`,
           `• Immatriculation : ${COMPANY.hrNumber} — ${COMPANY.court}`,
           `• N° de TVA intracommunautaire : ${COMPANY.vat}`,
-          `• Téléphone : ${COMPANY.phone}`,
           `• E-mail : ${COMPANY.email}`,
         ],
       },
@@ -321,7 +320,6 @@ const DOCS = {
           `• ${COMPANY.name}`,
           `• ${COMPANY.address}`,
           `• E-mail : ${COMPANY.email}`,
-          `• Téléphone : ${COMPANY.phone}`,
           `Vous pouvez utiliser le modèle de formulaire de rétractation ci-dessous, mais ce n'est pas obligatoire.`,
         ],
       },
@@ -620,7 +618,6 @@ export default function LegalPage() {
               <p>Pour toute question concernant ces {doc.breadcrumb.toLowerCase()}, contactez-nous :</p>
               <p><strong>{COMPANY.name}</strong></p>
               <p><i className="fa-solid fa-envelope" style={{ marginRight: 6, color: "var(--orange)" }}></i> {COMPANY.email}</p>
-              <p><i className="fa-solid fa-phone" style={{ marginRight: 6, color: "var(--orange)" }}></i> {COMPANY.phone}</p>
               <p><i className="fa-solid fa-location-dot" style={{ marginRight: 6, color: "var(--orange)" }}></i> {COMPANY.address}</p>
             </div>
           </ScrollReveal>

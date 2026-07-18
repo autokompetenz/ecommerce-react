@@ -53,8 +53,7 @@ export default function Footer() {
           </div>
           <div>
             <h6 className="footer-title">Contact</h6>
-            <p className="footer-contact-item"><i className="fa-solid fa-phone"></i> +49 (0) 33652 / 45 0</p>
-            <p className="footer-contact-item"><i className="fa-solid fa-envelope"></i> info@powertools.de</p>
+            <p className="footer-contact-item"><i className="fa-solid fa-envelope"></i> kontakt@powertoolsgmbh.com</p>
             <p className="footer-contact-item"><i className="fa-solid fa-clock"></i> Lun–Ven : 8h–17h</p>
           </div>
         </div>

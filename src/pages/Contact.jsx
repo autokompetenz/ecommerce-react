@@ -30,17 +30,10 @@ export default function Contact() {
                     </div>
                   </div>
                   <div className="contact-info-item">
-                    <i className="fa-solid fa-phone"></i>
-                    <div>
-                      <strong>Téléphone</strong>
-                      <a href="tel:+4933652450">+49 (0) 33652 / 45 0</a>
-                    </div>
-                  </div>
-                  <div className="contact-info-item">
                     <i className="fa-solid fa-envelope"></i>
                     <div>
                       <strong>Email</strong>
-                      <a href="mailto:info@powertools.de">info@powertools.de</a>
+                       <a href="mailto:kontakt@powertoolsgmbh.com">kontakt@powertoolsgmbh.com</a>
                     </div>
                   </div>
                   <div className="contact-info-item">

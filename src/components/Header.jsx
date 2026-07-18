@@ -207,8 +207,7 @@ export default function Header({ cartCount = 0, onCartToggle, theme, onToggleThe
         </div>
 
         <div className="mobile-nav-footer">
-          <a href="tel:+4933652450"><i className="fa-solid fa-phone"></i> +49 (0) 33652 / 45 0</a>
-          <a href="mailto:info@powertools.de"><i className="fa-solid fa-envelope"></i> info@powertools.de</a>
+           <a href="mailto:kontakt@powertoolsgmbh.com"><i className="fa-solid fa-envelope"></i> kontakt@powertoolsgmbh.com</a>
         </div>
       </div>
     </>
