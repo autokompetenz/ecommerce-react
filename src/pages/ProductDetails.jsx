@@ -45,27 +45,19 @@ export default function ProductDetails() {
           .neq("id", id)
           .limit(4);
         if (related && related.length > 0) {
-          setRelatedProducts(related.map((r) => {
-            const loc = localProducts.find((p) => p.id === Number(r.id));
-            return { ...loc, ...r };
-          }));
+          setRelatedProducts(related);
         } else {
-          setRelatedProducts(
-            localProducts
-              .filter((p) => p.category === productData.category && p.id !== productData.id)
-              .slice(0, 4)
-          );
+          const { data: allProducts } = await supabase
+            .from("products")
+            .select("*")
+            .neq("id", id)
+            .limit(4);
+          setRelatedProducts(allProducts || []);
         }
       } else {
         const local = localProducts.find((p) => p.id === Number(id));
         setProduct(local || null);
-        if (local) {
-          setRelatedProducts(
-            localProducts
-              .filter((p) => p.category === local.category && p.id !== local.id)
-              .slice(0, 4)
-          );
-        }
+        setRelatedProducts([]);
       }
       setLoading(false);
     };
