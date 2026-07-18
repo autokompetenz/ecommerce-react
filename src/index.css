@@ -1437,7 +1437,7 @@ input, select, textarea { font-family: inherit; }
 .hero-b2b { background: var(--bg); }
 .hero-b2b > .container { padding: 0; }
 .hero-grid {
-  display: grid; grid-template-columns: 220px 1fr 280px; gap: 0; min-height: 520px;
+  display: grid; grid-template-columns: 220px 1fr 280px; gap: 0; min-height: 620px;
 }
 
 /* Hero Sidebar */
@@ -1470,7 +1470,7 @@ input, select, textarea { font-family: inherit; }
   background: linear-gradient(135deg, #1a1a2e 0%, #2d2d44 100%);
   background-image: url('https://images.unsplash.com/photo-1745921204896-c2011440a4e2?w=1400&q=80&auto=format&fit=crop');
   background-size: cover; background-position: center;
-  display: flex; align-items: center; padding: 40px;
+  display: flex; align-items: center; padding: 56px;
 }
 .hero-banner-overlay {
   position: absolute; inset: 0;
@@ -1478,13 +1478,13 @@ input, select, textarea { font-family: inherit; }
 }
 .hero-banner-content { position: relative; z-index: 2; }
 .hero-banner-content h1 {
-  font-family: var(--font-display); color: #fff; font-size: 50px; font-weight: 800;
-  line-height: 1.05; letter-spacing: 1px; margin-bottom: 12px;
+  font-family: var(--font-display); color: #fff; font-size: 58px; font-weight: 800;
+  line-height: 1.05; letter-spacing: 1px; margin-bottom: 14px;
 }
 .hero-banner-content h1 span { color: var(--orange); }
 .hero-banner-content p {
-  color: rgba(255,255,255,0.65); font-size: 17px; max-width: 440px;
-  line-height: 1.7; margin-bottom: 20px;
+  color: rgba(255,255,255,0.65); font-size: 18px; max-width: 480px;
+  line-height: 1.7; margin-bottom: 24px;
 }
 .hero-banner-actions { display: flex; gap: 10px; flex-wrap: wrap; }
 .hero-badge {
@@ -1575,9 +1575,9 @@ input, select, textarea { font-family: inherit; }
   .hero-grid { grid-template-columns: 1fr; min-height: auto; }
   .hero-b2b .hero-sidebar { display: none; }
   .hero-b2b .hero-right { display: none; }
-  .hero-banner { min-height: 280px; padding: 32px 24px; }
-  .hero-banner-content h1 { font-size: 28px; }
-  .hero-banner-content p { font-size: 15px; margin-bottom: 16px; }
+  .hero-banner { min-height: 340px; padding: 40px 28px; }
+  .hero-banner-content h1 { font-size: 34px; }
+  .hero-banner-content p { font-size: 16px; margin-bottom: 18px; }
 
   /* Trust bar */
   .trust-bar { padding: 10px 0; }
@@ -1758,9 +1758,9 @@ input, select, textarea { font-family: inherit; }
   .header-cart-btn { padding: 6px 8px; }
 
   /* Hero */
-  .hero-banner { padding: 24px 14px; min-height: 240px; }
-  .hero-banner-content h1 { font-size: 22px; }
-  .hero-banner-content p { font-size: 14px; }
+  .hero-banner { padding: 32px 16px; min-height: 280px; }
+  .hero-banner-content h1 { font-size: 26px; }
+  .hero-banner-content p { font-size: 15px; }
   .hero-badge { font-size: 10px; padding: 4px 10px; }
   .hero-banner-actions { flex-direction: column; }
   .hero-banner-actions .btn { width: 100%; }
