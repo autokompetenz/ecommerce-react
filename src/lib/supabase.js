@@ -18,6 +18,11 @@ CREATE TABLE products (
   badge TEXT DEFAULT '',
   category TEXT DEFAULT '',
   description TEXT DEFAULT '',
+  features JSONB DEFAULT '[]',
+  specs JSONB DEFAULT '{}',
+  delivery TEXT DEFAULT '',
+  ean TEXT DEFAULT '',
+  part_number TEXT DEFAULT '',
   created_at TIMESTAMPTZ DEFAULT now()
 );
 
@@ -74,4 +79,11 @@ CREATE POLICY "Upload product-images" ON storage.objects
 -- Politique de suppression ouverte
 CREATE POLICY "Delete product-images" ON storage.objects
   FOR DELETE USING (bucket_id = 'product-images');
+
+-- ====== AJOUTER LES COLONNES MANQUANTES (si la table existe déjà) ======
+ALTER TABLE products ADD COLUMN IF NOT EXISTS features JSONB DEFAULT '[]';
+ALTER TABLE products ADD COLUMN IF NOT EXISTS specs JSONB DEFAULT '{}';
+ALTER TABLE products ADD COLUMN IF NOT EXISTS delivery TEXT DEFAULT '';
+ALTER TABLE products ADD COLUMN IF NOT EXISTS ean TEXT DEFAULT '';
+ALTER TABLE products ADD COLUMN IF NOT EXISTS part_number TEXT DEFAULT '';
 */

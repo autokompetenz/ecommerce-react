@@ -20,7 +20,21 @@ export default function ProductDetails() {
       setLoading(true);
       const { data } = await supabase.from("products").select("*").eq("id", id).single();
       if (data) {
-        setProduct(data);
+        const local = localProducts.find((p) => p.id === Number(id));
+        const parseJSON = (val, fallback) => {
+          if (!val) return fallback;
+          if (typeof val === "string") { try { return JSON.parse(val); } catch { return fallback; } }
+          return val;
+        };
+        setProduct({
+          ...local,
+          ...data,
+          features: parseJSON(data.features, local && local.features) || [],
+          specs: parseJSON(data.specs, local && local.specs) || {},
+          delivery: data.delivery || (local && local.delivery) || "",
+          ean: data.ean || (local && local.ean) || "",
+          part_number: data.part_number || (local && local.part_number) || "",
+        });
       } else {
         const local = localProducts.find((p) => p.id === Number(id));
         setProduct(local || null);
