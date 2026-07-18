@@ -35,14 +35,8 @@ export default function Tracking() {
       data = result.data; fetchError = result.error;
     }
     if (!data && !fetchError) {
-      const { data: all, error: allErr } = await supabase.from("orders").select("id").order("created_at", { ascending: false });
-      if (!allErr && all) {
-        const match = all.find((o) => o.id.slice(0, q.length).toLowerCase() === q.toLowerCase());
-        if (match) {
-          const result = await supabase.from("orders").select("*, order_items(*, products(name, image, price))").eq("id", match.id).single();
-          data = result.data; fetchError = result.error;
-        }
-      }
+      const result = await supabase.from("orders").select("*, order_items(*, products(name, image, price))").filter("id::text", "like", `%${q}%`).order("created_at", { ascending: false }).limit(1).maybeSingle();
+      data = result.data; fetchError = result.error;
     }
 
     setLoading(false);
