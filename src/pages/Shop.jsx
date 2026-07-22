@@ -5,7 +5,13 @@ import ProductCard from "../components/ProductCard";
 import ScrollReveal from "../components/ScrollReveal";
 import { supabase } from "../lib/supabase";
 
-const CATEGORIES = ["Schraubenzieher", "Schlagschlüssel", "Bohrmaschinen", "Nieten", "Schleifen"];
+const CATEGORIES = [
+  { label: "Schraubenzieher", db: "Tournevis" },
+  { label: "Schlagschlüssel", db: "Clés à choc" },
+  { label: "Bohrmaschinen", db: "Perceuses" },
+  { label: "Nieten", db: "Rivets" },
+  { label: "Schleifen", db: "Meulage" },
+];
 
 export default function Shop() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -52,7 +58,9 @@ export default function Shop() {
     }
 
     if (selectedCategory !== "all") {
-      result = result.filter((p) => p.category === selectedCategory);
+      const catObj = CATEGORIES.find((c) => c.label === selectedCategory || c.db === selectedCategory);
+      const dbValue = catObj ? catObj.db : selectedCategory;
+      result = result.filter((p) => p.category === dbValue);
     }
 
     if (minPrice !== "") {
@@ -77,8 +85,8 @@ export default function Shop() {
     if (filterOrigin) {
       result = result.filter(
         (p) =>
-          (p.origin && p.origin.toLowerCase().includes("allemagne")) ||
-          (p.country && p.country.toLowerCase().includes("allemagne"))
+          (p.origin && (p.origin.toLowerCase().includes("allemagne") || p.origin.toLowerCase().includes("deutschland"))) ||
+          (p.country && (p.country.toLowerCase().includes("allemagne") || p.country.toLowerCase().includes("deutschland")))
       );
     }
 
@@ -156,14 +164,14 @@ export default function Shop() {
                     <span>Alle Produkte</span>
                   </label>
                   {CATEGORIES.map((cat) => (
-                    <label className="filter-radio" key={cat}>
+                    <label className="filter-radio" key={cat.label}>
                       <input
                         type="radio"
                         name="category"
-                        checked={selectedCategory === cat}
-                        onChange={() => setSelectedCategory(cat)}
+                        checked={selectedCategory === cat.label}
+                        onChange={() => setSelectedCategory(cat.label)}
                       />
-                      <span>{cat}</span>
+                      <span>{cat.label}</span>
                     </label>
                   ))}
                 </div>
