@@ -184,7 +184,7 @@ export default function ProductDetails() {
               </div>
 
               <div className="pd-delivery">
-                <strong>Livraison :</strong> Expédié sous 24–48 h. Livraison gratuite dès 100 €.
+                <strong>Livraison :</strong> Livraison sous 5–7 jours ouvrés. Livraison gratuite dès 100 €.
               </div>
 
               <form onSubmit={handleAddToCart}>
@@ -239,7 +239,7 @@ export default function ProductDetails() {
               )}
               {activeTab === "delivery" && (
                 <div>
-                  <p style={{ marginBottom: 16 }}>{product.delivery || "Expédition sous 24–48 h ouvrées. Livraison gratuite dès 100 €."}</p>
+                  <p style={{ marginBottom: 16 }}>{product.delivery || "Livraison sous 5–7 jours ouvrés. Livraison gratuite dès 100 €."}</p>
                   <div className="pd-delivery-cards">
                     <div className="pd-delivery-card">
                       <strong><i className="fa-solid fa-truck" style={{ marginRight: 6, color: "var(--orange)" }}></i> Standard</strong>
