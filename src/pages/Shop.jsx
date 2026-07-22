@@ -123,13 +123,13 @@ export default function Shop() {
 
   return (
     <>
-      <Breadcrumb title="Boutique" links={[{ label: "Boutique" }]} />
+      <Breadcrumb title="Shop" links={[{ label: "Shop" }]} />
 
       <div className="section">
         <div className="container">
           {/* Mobile Filter Toggle */}
           <button className="shop-filter-toggle" onClick={() => setFilterOpen(true)}>
-            <i className="fa-solid fa-sliders"></i> Filtres
+            <i className="fa-solid fa-sliders"></i> Filter
           </button>
 
           {/* Mobile Filter Overlay */}
@@ -138,13 +138,13 @@ export default function Shop() {
           <div className="shop-layout">
             <aside className={`shop-sidebar ${filterOpen ? "active" : ""}`}>
               <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 16 }}>
-                <h6 style={{ margin: 0, fontFamily: "var(--font-display)", fontSize: 14, fontWeight: 700 }}>Filtres</h6>
+                <h6 style={{ margin: 0, fontFamily: "var(--font-display)", fontSize: 14, fontWeight: 700 }}>Filter</h6>
                 <button className="shop-sidebar-close" onClick={() => setFilterOpen(false)} style={{ border: "none", background: "none", fontSize: 18, cursor: "pointer", color: "var(--text-sec)" }}>
                   <i className="fa-solid fa-xmark"></i>
                 </button>
               </div>
               <div className="sidebar-widget">
-                <h6>Catégorie</h6>
+                <h6>Kategorie</h6>
                 <div className="sidebar-filter-group">
                   <label className="filter-radio">
                     <input
@@ -153,7 +153,7 @@ export default function Shop() {
                       checked={selectedCategory === "all"}
                       onChange={() => setSelectedCategory("all")}
                     />
-                    <span>Tous les produits</span>
+                    <span>Alle Produkte</span>
                   </label>
                   {CATEGORIES.map((cat) => (
                     <label className="filter-radio" key={cat}>
@@ -170,7 +170,7 @@ export default function Shop() {
               </div>
 
               <div className="sidebar-widget">
-                <h6>Fourchette de prix</h6>
+                <h6>Preisspanne</h6>
                 <div className="price-range-inputs">
                   <input
                     type="number"
@@ -189,7 +189,7 @@ export default function Shop() {
               </div>
 
               <div className="sidebar-widget">
-                <h6>Fournisseur</h6>
+                <h6>Lieferant</h6>
                 <div className="sidebar-filter-group">
                   <label className="filter-checkbox">
                     <input
@@ -203,7 +203,7 @@ export default function Shop() {
               </div>
 
               <div className="sidebar-widget">
-                <h6>Vérification</h6>
+                <h6>Verifizierung</h6>
                 <div className="sidebar-filter-group">
                   <label className="filter-checkbox">
                     <input
@@ -211,13 +211,13 @@ export default function Shop() {
                       checked={filterVerified}
                       onChange={(e) => setFilterVerified(e.target.checked)}
                     />
-                    <span>Fournisseur vérifié</span>
+                    <span>Verifizierter Lieferant</span>
                   </label>
                 </div>
               </div>
 
               <div className="sidebar-widget">
-                <h6>Origine</h6>
+                <h6>Herkunft</h6>
                 <div className="sidebar-filter-group">
                   <label className="filter-checkbox">
                     <input
@@ -225,13 +225,13 @@ export default function Shop() {
                       checked={filterOrigin}
                       onChange={(e) => setFilterOrigin(e.target.checked)}
                     />
-                    <span>Allemagne</span>
+                    <span>Deutschland</span>
                   </label>
                 </div>
               </div>
 
               <div className="sidebar-widget">
-                <h6>Livraison</h6>
+                <h6>Lieferung</h6>
                 <div className="sidebar-filter-group">
                   <label className="filter-checkbox">
                     <input
@@ -239,7 +239,7 @@ export default function Shop() {
                       checked={filterShipping}
                       onChange={(e) => setFilterShipping(e.target.checked)}
                     />
-                    <span>Expédié sous 24h</span>
+                    <span>Versand innerhalb von 24 h</span>
                   </label>
                 </div>
               </div>
@@ -249,13 +249,13 @@ export default function Shop() {
                   className="btn btn-orange"
                   onClick={() => setFilterOpen(false)}
                 >
-                  Appliquer
+                  Anwenden
                 </button>
                 <button
                   className="btn btn-outline"
                   onClick={() => { clearFilters(); setFilterOpen(false); }}
                 >
-                  Effacer
+                  Zurücksetzen
                 </button>
               </div>
             </aside>
@@ -263,26 +263,26 @@ export default function Shop() {
             <div className="shop-main">
               <div className="shop-topbar">
                 <p className="shop-result-count">
-                  {filtered.length} produit{filtered.length !== 1 ? "s" : ""} trouvé{filtered.length !== 1 ? "s" : ""}
+                  {filtered.length} Produkt{filtered.length !== 1 ? "e" : ""} gefunden
                 </p>
                 <select value={sort} onChange={(e) => setSort(e.target.value)} className="shop-sort-select">
-                  <option value="price-asc">Prix croissant</option>
-                  <option value="price-desc">Prix décroissant</option>
-                  <option value="newest">Nouveautés</option>
-                  <option value="top-rated">Mieux notés</option>
+                  <option value="price-asc">Preis aufsteigend</option>
+                  <option value="price-desc">Preis absteigend</option>
+                  <option value="newest">Neuheiten</option>
+                  <option value="top-rated">Bestbewertet</option>
                 </select>
               </div>
 
               {loading ? (
                 <div className="empty-state">
-                  <p>Chargement des produits...</p>
+                  <p>Produkte werden geladen...</p>
                 </div>
               ) : filtered.length === 0 ? (
                 <div className="empty-state">
                   <i className="fa-solid fa-box-open"></i>
-                  <p>Aucun produit ne correspond à vos filtres.</p>
+                  <p>Keine Produkte entsprechen Ihren Filtern.</p>
                   <button className="btn btn-orange" onClick={clearFilters}>
-                    Réinitialiser les filtres
+                    Filter zurücksetzen
                   </button>
                 </div>
               ) : (

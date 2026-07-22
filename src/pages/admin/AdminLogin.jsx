@@ -40,7 +40,7 @@ export default function AdminLogin() {
     <div className="admin-login-page">
       <div className="admin-login-card">
         <h2>POWER Tools</h2>
-        <p className="admin-login-subtitle">Espace Administration</p>
+        <p className="admin-login-subtitle">Bereich Administration</p>
 
         {/* PIN display */}
         <div className="admin-pin-display">
@@ -54,7 +54,7 @@ export default function AdminLogin() {
           ))}
         </div>
 
-        {error && <p className="admin-pin-error">Code incorrect</p>}
+        {error && <p className="admin-pin-error">Falscher Code</p>}
 
         {/* Keypad */}
         <div className="admin-keypad">

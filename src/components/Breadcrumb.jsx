@@ -7,7 +7,7 @@ export default function Breadcrumb({ title, links = [] }) {
         <h2>{title}</h2>
         {links.length > 0 && (
           <div className="breadcrumb-links">
-            <Link to="/">Accueil</Link>
+            <Link to="/">Startseite</Link>
             {links.map((link, i) => (
               <span key={i}>
                 <span>/</span>

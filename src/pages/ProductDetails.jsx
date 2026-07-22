@@ -75,16 +75,16 @@ export default function ProductDetails() {
     setTimeout(() => setAdded(false), 2000);
   };
 
-  if (loading) return <div className="empty-state"><p>Chargement...</p></div>;
-  if (!product) return <div className="empty-state"><p>Produit non trouvé.</p><Link to="/shop" className="btn btn-brand" style={{ marginTop: 16 }}>Retour à la boutique</Link></div>;
+  if (loading) return <div className="empty-state"><p>Wird geladen...</p></div>;
+  if (!product) return <div className="empty-state"><p>Produkt nicht gefunden.</p><Link to="/shop" className="btn btn-brand" style={{ marginTop: 16 }}>Zurück zum Shop</Link></div>;
 
   const images = [product.image, product.hover_image].filter(Boolean);
 
   const TABS = [
-    { key: "description", label: "Description" },
-    { key: "features", label: "Caractéristiques" },
-    { key: "specs", label: "Données techniques" },
-    { key: "delivery", label: "Livraison" },
+    { key: "description", label: "Beschreibung" },
+    { key: "features", label: "Eigenschaften" },
+    { key: "specs", label: "Technische Daten" },
+    { key: "delivery", label: "Lieferung" },
   ];
 
   return (
@@ -92,9 +92,9 @@ export default function ProductDetails() {
       <div className="container">
         {/* Breadcrumb */}
         <nav className="pd-breadcrumb">
-          <Link to="/">Accueil</Link>
+          <Link to="/">Startseite</Link>
           <span className="sep">/</span>
-          <Link to="/shop">Boutique</Link>
+          <Link to="/shop">Shop</Link>
           <span className="sep">/</span>
           <Link to={`/shop?cat=${product.category}`}>{product.category}</Link>
           <span className="sep">/</span>
@@ -124,12 +124,12 @@ export default function ProductDetails() {
           {/* Info */}
           <ScrollReveal direction="right">
             <div>
-              <div className="pd-brand">{product.brand} — Réf: {product.ref || "N/A"}</div>
+              <div className="pd-brand">{product.brand} — Ref.: {product.ref || "N/A"}</div>
               <h1 className="pd-title">{product.name}</h1>
 
               {product.badge && (
                 <span className={`pd-badge-tag ${product.badge === "New" ? "shipping" : "moq"}`} style={{ marginBottom: 12 }}>
-                  {product.badge === "New" ? "Nouveau" : product.badge}
+                  {product.badge === "New" ? "Neu" : product.badge}
                 </span>
               )}
 
@@ -142,21 +142,21 @@ export default function ProductDetails() {
                 <span className={`pd-price ${product.old_price ? "pd-price-sale" : ""}`}>
                   {product.price.toFixed(2)} €
                 </span>
-                <span className="ttc">TTC</span>
+                <span className="ttc">inkl. MwSt.</span>
               </div>
 
 
 
               <div className="pd-badges">
                 <span className="pd-badge-tag shipping">
-                  <i className="fa-solid fa-truck-fast"></i> Expédié sous 24h
+                  <i className="fa-solid fa-truck-fast"></i> Versand innerhalb von 24 h
                 </span>
                 <span className="pd-badge-tag verified">
-                  <i className="fa-solid fa-shield-halved"></i> Vendeur vérifié
+                  <i className="fa-solid fa-shield-halved"></i> Verifizierter Verkäufer
                 </span>
                 {product.moq && (
                   <span className="pd-badge-tag moq">
-                    <i className="fa-solid fa-boxes-stacked"></i> MOQ : {product.moq} pièces
+                    <i className="fa-solid fa-boxes-stacked"></i> MBM: {product.moq} Stück
                   </span>
                 )}
               </div>
@@ -170,26 +170,26 @@ export default function ProductDetails() {
                 )}
                 {product.part_number && (
                   <div className="pd-identifier-row">
-                    <span className="pd-id-label"><i className="fa-solid fa-hashtag"></i> N° de pièce</span>
+                    <span className="pd-id-label"><i className="fa-solid fa-hashtag"></i> Artikelnummer</span>
                     <span className="pd-id-value">{product.part_number}</span>
                   </div>
                 )}
               </div>
 
               <div className="pd-supplier-box">
-                <p className="pd-supplier-box-label">Fournisseur</p>
+                <p className="pd-supplier-box-label">Lieferant</p>
                 <p className="pd-supplier-box-name">
                   POWER Tools <i className="fa-solid fa-circle-check" style={{ color: "var(--success)", fontSize: 13 }}></i>
                 </p>
               </div>
 
               <div className="pd-delivery">
-                <strong>Livraison :</strong> Livraison sous 5–7 jours ouvrés. Livraison gratuite dès 100 €.
+                <strong>Lieferung:</strong> Lieferung innerhalb von 5–7 Werktagen. Kostenlose Lieferung ab 100 €.
               </div>
 
               <form onSubmit={handleAddToCart}>
                 <div className="pd-qty-row">
-                  <span className="pd-qty-label">Quantité :</span>
+                  <span className="pd-qty-label">Menge:</span>
                   <div className="pd-qty">
                     <button type="button" onClick={() => setQuantity(Math.max(1, quantity - 1))}>−</button>
                     <input type="number" min="1" value={quantity} onChange={(e) => setQuantity(Math.max(1, parseInt(e.target.value) || 1))} />
@@ -197,12 +197,12 @@ export default function ProductDetails() {
                   </div>
                 </div>
                 <button type="submit" className="btn btn-brand btn-lg btn-block">
-                  {added ? <><i className="fa-solid fa-check"></i> Ajouté !</> : <><i className="fa-solid fa-cart-plus"></i> Ajouter au panier</>}
+                  {added ? <><i className="fa-solid fa-check"></i> Hinzugefügt!</> : <><i className="fa-solid fa-cart-plus"></i> In den Warenkorb</>}
                 </button>
               </form>
 
               <p className="pd-return-note">
-                14 jours de retour inclus
+                14 Tage Rückgaberecht
               </p>
             </div>
           </ScrollReveal>
@@ -239,19 +239,19 @@ export default function ProductDetails() {
               )}
               {activeTab === "delivery" && (
                 <div>
-                  <p style={{ marginBottom: 16 }}>{product.delivery || "Livraison sous 5–7 jours ouvrés. Livraison gratuite dès 100 €."}</p>
+                  <p style={{ marginBottom: 16 }}>{product.delivery || "Lieferung innerhalb von 5–7 Werktagen. Kostenlose Lieferung ab 100 €."}</p>
                   <div className="pd-delivery-cards">
                     <div className="pd-delivery-card">
                       <strong><i className="fa-solid fa-truck" style={{ marginRight: 6, color: "var(--orange)" }}></i> Standard</strong>
-                      <p>5–7 jours ouvrés — Gratuit dès 100 €</p>
+                      <p>5–7 Werktage — Kostenlos ab 100 €</p>
                     </div>
                     <div className="pd-delivery-card">
                       <strong><i className="fa-solid fa-bolt" style={{ marginRight: 6, color: "var(--orange)" }}></i> Express</strong>
-                      <p>Sous 24 h — 9,90 €</p>
+                      <p>Innerhalb von 24 h — 9,90 €</p>
                     </div>
                     <div className="pd-delivery-card">
-                      <strong><i className="fa-solid fa-rotate" style={{ marginRight: 6, color: "var(--orange)" }}></i> Retour</strong>
-                      <p>14 jours pour retourner</p>
+                      <strong><i className="fa-solid fa-rotate" style={{ marginRight: 6, color: "var(--orange)" }}></i> Rückgabe</strong>
+                      <p>14 Tage Rückgaberecht</p>
                     </div>
                   </div>
                 </div>
@@ -263,7 +263,7 @@ export default function ProductDetails() {
         {/* Related */}
         {relatedProducts.length > 0 && (
           <div className="pd-related">
-            <h3>Produits similaires</h3>
+            <h3>Ähnliche Produkte</h3>
             <div className="pd-related-grid">
               {relatedProducts.map((p) => (
                 <Link key={p.id} to={`/product/${p.id}`} className="product-card pd-related-card">

@@ -9,7 +9,7 @@ export default function CartSidebar({ isOpen, onClose }) {
       <div className={`cart-overlay ${isOpen ? "active" : ""}`} onClick={onClose} />
       <div className={`cart-sidebar ${isOpen ? "active" : ""}`}>
         <div className="cart-sidebar-header">
-          <h3>Panier <span className="item-count">({count} article{count > 1 ? "s" : ""})</span></h3>
+          <h3>Warenkorb <span className="item-count">({count} Artikel{count > 1 ? "" : ""})</span></h3>
           <button className="cart-close" onClick={onClose}><i className="fa-solid fa-xmark"></i></button>
         </div>
 
@@ -17,8 +17,8 @@ export default function CartSidebar({ isOpen, onClose }) {
           {items.length === 0 ? (
             <div className="cart-empty">
               <i className="fa-solid fa-bag-shopping"></i>
-              <p>Votre panier est vide</p>
-              <Link to="/shop" className="btn btn-brand btn-sm" style={{ marginTop: 16 }} onClick={onClose}>Parcourir la boutique</Link>
+              <p>Ihr Warenkorb ist leer</p>
+              <Link to="/shop" className="btn btn-brand btn-sm" style={{ marginTop: 16 }} onClick={onClose}>Shop durchstöbern</Link>
             </div>
           ) : (
             items.map((item) => (
@@ -51,21 +51,21 @@ export default function CartSidebar({ isOpen, onClose }) {
         {items.length > 0 && (
           <div className="cart-sidebar-footer">
             <div className="cart-summary-row">
-              <span>Sous-total</span><span>{subtotal.toFixed(2)} €</span>
+              <span>Zwischensumme</span><span>{subtotal.toFixed(2)} €</span>
             </div>
             <div className="cart-summary-row">
-              <span>Livraison</span><span>Gratuite</span>
+              <span>Lieferung</span><span>Kostenlos</span>
             </div>
             {discount > 0 && (
               <div className="cart-summary-row">
-                <span>Remise</span><span>-{discount}%</span>
+                <span>Rabatt</span><span>-{discount}%</span>
               </div>
             )}
             <div className="cart-summary-row">
-              <span>Total</span><span>{total.toFixed(2)} €</span>
+              <span>Gesamt</span><span>{total.toFixed(2)} €</span>
             </div>
             <Link to="/checkout" className="btn btn-brand btn-block" onClick={onClose}>
-              Passer la commande
+              Bestellung aufgeben
             </Link>
           </div>
         )}

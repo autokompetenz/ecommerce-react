@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 import { supabase } from "../../lib/supabase";
 
 const STATUS_LABELS = {
-  pending: "En attente",
-  confirmed: "Confirmée",
-  shipped: "Expédiée",
-  delivered: "Livrée",
-  cancelled: "Annulée",
+  pending: "Ausstehend",
+  confirmed: "Bestätigt",
+  shipped: "Versandt",
+  delivered: "Zugestellt",
+  cancelled: "Storniert",
 };
 const STATUS_COLORS = {
   pending: "#d97706",
@@ -50,15 +50,15 @@ export default function Dashboard() {
     fetchAll();
   }, []);
 
-  if (loading) return <p className="admin-loading">Chargement du tableau de bord...</p>;
+  if (loading) return <p className="admin-loading">Wird geladen...</p>;
 
   return (
     <div>
       <div className="admin-header-row">
-        <h1>Tableau de bord</h1>
+        <h1>Dashboard</h1>
         <div style={{ display: "flex", gap: 8 }}>
           <Link to="/admin/add" className="btn btn-primary admin-add-btn">
-            <i className="fa-solid fa-plus"></i> Ajouter un produit
+            <i className="fa-solid fa-plus"></i> Produkt hinzufügen
           </Link>
         </div>
       </div>
@@ -69,28 +69,28 @@ export default function Dashboard() {
           <div className="admin-stat-icon"><i className="fa-solid fa-box-open"></i></div>
           <div className="admin-stat-info">
             <span className="admin-stat-value">{stats.products}</span>
-            <span className="admin-stat-label">Produits</span>
+            <span className="admin-stat-label">Produkte</span>
           </div>
         </div>
         <div className="admin-stat-card admin-stat-orders">
           <div className="admin-stat-icon"><i className="fa-solid fa-bag-shopping"></i></div>
           <div className="admin-stat-info">
             <span className="admin-stat-value">{stats.orders}</span>
-            <span className="admin-stat-label">Commandes</span>
+            <span className="admin-stat-label">Bestellungen</span>
           </div>
         </div>
         <div className="admin-stat-card admin-stat-revenue">
           <div className="admin-stat-icon"><i className="fa-solid fa-euro-sign"></i></div>
           <div className="admin-stat-info">
             <span className="admin-stat-value">{stats.revenue.toFixed(2)} €</span>
-            <span className="admin-stat-label">Chiffre d'affaires</span>
+            <span className="admin-stat-label">Umsatz</span>
           </div>
         </div>
         <div className="admin-stat-card admin-stat-pending">
           <div className="admin-stat-icon"><i className="fa-solid fa-clock"></i></div>
           <div className="admin-stat-info">
             <span className="admin-stat-value">{stats.pending}</span>
-            <span className="admin-stat-label">En attente</span>
+            <span className="admin-stat-label">Ausstehend</span>
           </div>
         </div>
       </div>
@@ -100,11 +100,11 @@ export default function Dashboard() {
         {/* Recent Orders */}
         <div className="admin-dash-card">
           <div className="admin-dash-card-header">
-            <h2><i className="fa-solid fa-clock-rotate-left"></i> Dernières commandes</h2>
-            <Link to="/admin/orders" className="admin-dash-link">Voir tout <i className="fa-solid fa-arrow-right"></i></Link>
+            <h2><i className="fa-solid fa-clock-rotate-left"></i> Letzte Bestellungen</h2>
+            <Link to="/admin/orders" className="admin-dash-link">Alle ansehen <i className="fa-solid fa-arrow-right"></i></Link>
           </div>
           {recentOrders.length === 0 ? (
-            <p className="admin-dash-empty">Aucune commande pour le moment.</p>
+            <p className="admin-dash-empty">Noch keine Bestellungen.</p>
           ) : (
             <div className="admin-dash-orders">
               {recentOrders.map((order) => (
@@ -123,7 +123,7 @@ export default function Dashboard() {
                     </span>
                   </div>
                   <span className="admin-dash-order-date">
-                    {new Date(order.created_at).toLocaleDateString("fr-FR", { day: "2-digit", month: "short" })}
+                    {new Date(order.created_at).toLocaleDateString("de-DE", { day: "2-digit", month: "short" })}
                   </span>
                 </div>
               ))}
@@ -134,33 +134,33 @@ export default function Dashboard() {
         {/* Quick Actions */}
         <div className="admin-dash-card">
           <div className="admin-dash-card-header">
-            <h2><i className="fa-solid fa-bolt"></i> Actions rapides</h2>
+            <h2><i className="fa-solid fa-bolt"></i> Schnellaktionen</h2>
           </div>
           <div className="admin-dash-actions">
             <Link to="/admin/add" className="admin-dash-action">
               <i className="fa-solid fa-circle-plus"></i>
-              <span>Ajouter un produit</span>
+              <span>Produkt hinzufügen</span>
             </Link>
             <Link to="/admin/orders" className="admin-dash-action">
               <i className="fa-solid fa-bag-shopping"></i>
-              <span>Gérer les commandes</span>
+              <span>Bestellungen verwalten</span>
             </Link>
             <Link to="/admin/settings" className="admin-dash-action">
               <i className="fa-solid fa-gear"></i>
-              <span>Paramètres du site</span>
+              <span>Website-Einstellungen</span>
             </Link>
             <Link to="/shop" className="admin-dash-action" target="_blank">
               <i className="fa-solid fa-eye"></i>
-              <span>Voir la boutique</span>
+              <span>Shop ansehen</span>
             </Link>
             <Link to="/" className="admin-dash-action" target="_blank">
               <i className="fa-solid fa-house"></i>
-              <span>Voir l'accueil</span>
+              <span>Startseite ansehen</span>
             </Link>
           </div>
 
           <div className="admin-dash-card-header" style={{ marginTop: 20 }}>
-            <h2><i className="fa-solid fa-star"></i> Produits récents</h2>
+            <h2><i className="fa-solid fa-star"></i> Neueste Produkte</h2>
           </div>
           {recentProducts.length > 0 && (
             <div className="admin-dash-recent-products">

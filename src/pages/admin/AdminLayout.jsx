@@ -42,28 +42,28 @@ export default function AdminLayout() {
 
         <nav className="admin-sidebar-nav">
           <NavLink to="/admin" end className={({ isActive }) => `admin-nav-link ${isActive ? "active" : ""}`} onClick={() => setSidebarOpen(false)}>
-            <i className="fa-solid fa-grid-2"></i> Tableau de bord
+            <i className="fa-solid fa-grid-2"></i> Dashboard
           </NavLink>
           <NavLink to="/admin/products" className={({ isActive }) => `admin-nav-link ${isActive ? "active" : ""}`} onClick={() => setSidebarOpen(false)}>
-            <i className="fa-solid fa-box-open"></i> Produits
+            <i className="fa-solid fa-box-open"></i> Produkte
           </NavLink>
           <NavLink to="/admin/orders" className={({ isActive }) => `admin-nav-link ${isActive ? "active" : ""}`} onClick={() => setSidebarOpen(false)}>
-            <i className="fa-solid fa-bag-shopping"></i> Commandes
+            <i className="fa-solid fa-bag-shopping"></i> Bestellungen
           </NavLink>
           <NavLink to="/admin/add" className={({ isActive }) => `admin-nav-link ${isActive ? "active" : ""}`} onClick={() => setSidebarOpen(false)}>
-            <i className="fa-solid fa-circle-plus"></i> Ajouter
+            <i className="fa-solid fa-circle-plus"></i> Hinzufügen
           </NavLink>
           <NavLink to="/admin/settings" className={({ isActive }) => `admin-nav-link ${isActive ? "active" : ""}`} onClick={() => setSidebarOpen(false)}>
-            <i className="fa-solid fa-gear"></i> Paramètres
+            <i className="fa-solid fa-gear"></i> Einstellungen
           </NavLink>
         </nav>
 
         <div className="admin-sidebar-footer">
           <a href="/" className="admin-nav-link">
-            <i className="fa-solid fa-house"></i> Voir le site
+            <i className="fa-solid fa-house"></i> Website ansehen
           </a>
           <button onClick={handleLogout} className="admin-nav-link admin-logout">
-            <i className="fa-solid fa-right-from-bracket"></i> Déconnexion
+            <i className="fa-solid fa-right-from-bracket"></i> Abmelden
           </button>
         </div>
       </aside>

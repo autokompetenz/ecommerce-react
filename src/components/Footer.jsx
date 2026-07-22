@@ -8,57 +8,56 @@ export default function Footer() {
           <div>
             <h6 className="footer-title">POWER Tools</h6>
             <p className="footer-desc">
-              Développement, fabrication et distribution d'outils de coupe haute
-              performance pour machines industrielles de broyage et industrie
-              agroalimentaire.
+              Entwicklung, Fertigung und Vertrieb von Hochleistungsschneidwerkzeugen
+              für industrielle Zerkleinerungsmaschinen und die Lebensmittelindustrie.
             </p>
             <p className="footer-company">
               <strong>POWER Tools GmbH</strong><br />
               Am Winkel 4, 15528 Spreenhagen<br />
               HRB 11523 FF — Amtsgericht Frankfurt (Oder)<br />
-              TVA : DE232530007
+              USt-IdNr.: DE232530007
             </p>
           </div>
           <div>
-            <h6 className="footer-title">Catalogue</h6>
+            <h6 className="footer-title">Katalog</h6>
             <ul className="footer-links">
-              <li><Link to="/shop">Tous les produits</Link></li>
-              <li><Link to="/shop?cat=Tournevis">Tournevis</Link></li>
-              <li><Link to="/shop?cat=Perceuses">Perceuses</Link></li>
-              <li><Link to="/shop?cat=Clés à choc">Clés à choc</Link></li>
-              <li><Link to="/shop?cat=Rivets">Rivets</Link></li>
-              <li><Link to="/shop?cat=Meulage">Meulage</Link></li>
+              <li><Link to="/shop">Alle Produkte</Link></li>
+              <li><Link to="/shop?cat=Tournevis">Schraubenzieher</Link></li>
+              <li><Link to="/shop?cat=Perceuses">Bohrmaschinen</Link></li>
+              <li><Link to="/shop?cat=Clés à choc">Schlagschlüssel</Link></li>
+              <li><Link to="/shop?cat=Rivets">Nieten</Link></li>
+              <li><Link to="/shop?cat=Meulage">Schleifen</Link></li>
             </ul>
           </div>
           <div>
-            <h6 className="footer-title">Informations</h6>
+            <h6 className="footer-title">Informationen</h6>
             <ul className="footer-links">
-              <li><Link to="/regular-page">À propos</Link></li>
-              <li><Link to="/contact">Contact</Link></li>
-              <li><Link to="/blog">Actualités</Link></li>
-              <li><Link to="/tracking">Suivi de commande</Link></li>
+              <li><Link to="/regular-page">Über uns</Link></li>
+              <li><Link to="/contact">Kontakt</Link></li>
+              <li><Link to="/blog">Blog</Link></li>
+              <li><Link to="/tracking">Bestellverfolgung</Link></li>
             </ul>
           </div>
           <div>
-            <h6 className="footer-title">Mentions légales</h6>
+            <h6 className="footer-title">Rechtliches</h6>
             <ul className="footer-links">
-              <li><Link to="/legal/mentions">Mentions légales</Link></li>
-              <li><Link to="/legal/cgv">Conditions générales de vente</Link></li>
-              <li><Link to="/legal/confidentialite">Politique de confidentialité</Link></li>
-              <li><Link to="/legal/retractation">Droit de rétractation</Link></li>
-              <li><Link to="/legal/expedition">Conditions d'expédition et de livraison</Link></li>
-              <li><Link to="/legal/retour">Politique de retour et de remboursement</Link></li>
-              <li><Link to="/legal/cookies">Politique en matière de cookies</Link></li>
+              <li><Link to="/legal/mentions">Impressum</Link></li>
+              <li><Link to="/legal/cgv">Allgemeine Geschäftsbedingungen</Link></li>
+              <li><Link to="/legal/confidentialite">Datenschutz</Link></li>
+              <li><Link to="/legal/retractation">Widerrufsrecht</Link></li>
+              <li><Link to="/legal/expedition">Versand und Lieferung</Link></li>
+              <li><Link to="/legal/retour">Rückgabebedingungen</Link></li>
+              <li><Link to="/legal/cookies">Cookie-Richtlinie</Link></li>
             </ul>
           </div>
           <div>
-            <h6 className="footer-title">Contact</h6>
+            <h6 className="footer-title">Kontakt</h6>
             <p className="footer-contact-item"><i className="fa-solid fa-envelope"></i> kontakt@powertoolsgmbh.com</p>
-            <p className="footer-contact-item"><i className="fa-solid fa-clock"></i> Lun–Ven : 8h–17h</p>
+            <p className="footer-contact-item"><i className="fa-solid fa-clock"></i> Mo–Fr: 8–17 Uhr</p>
           </div>
         </div>
         <div className="footer-bottom">
-          &copy; {new Date().getFullYear()} POWER Tools GmbH — Oliver Haack. Tous droits réservés.
+          &copy; {new Date().getFullYear()} POWER Tools GmbH — Oliver Haack. Alle Rechte vorbehalten.
         </div>
       </div>
     </footer>

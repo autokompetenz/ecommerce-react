@@ -3,12 +3,12 @@ import { useNavigate } from "react-router-dom";
 import { supabase } from "../../lib/supabase";
 
 const FIELDS = [
-  { key: "bank_holder", label: "Titulaire du compte", placeholder: "POWER Tools GmbH" },
+  { key: "bank_holder", label: "Kontoinhaber", placeholder: "POWER Tools GmbH" },
   { key: "bank_iban", label: "IBAN", placeholder: "DE89 3704 0044 0532 0130 00" },
   { key: "bank_bic", label: "BIC / SWIFT", placeholder: "COBADEFFXXX" },
-  { key: "bank_bank", label: "Nom de la banque", placeholder: "Commerzbank AG" },
-  { key: "bank_reference", label: "Référence / Motif", placeholder: "POWER-TOOLS" },
-  { key: "bank_note", label: "Note pour le client", placeholder: "Veuillez indiquer le numéro de commande en référence du virement." },
+  { key: "bank_bank", label: "Bankname", placeholder: "Commerzbank AG" },
+  { key: "bank_reference", label: "Referenz / Verwendungszweck", placeholder: "POWER-TOOLS" },
+  { key: "bank_note", label: "Hinweis für den Kunden", placeholder: "Bitte geben Sie die Bestellnummer als Verwendungszweck der Überweisung an." },
 ];
 
 export default function Settings() {
@@ -50,15 +50,15 @@ export default function Settings() {
     if (error) {
       setMessage({ type: "error", text: error.message });
     } else {
-      setMessage({ type: "success", text: "Paramètres enregistrés !" });
+      setMessage({ type: "success", text: "Einstellungen gespeichert!" });
     }
   };
 
-  if (loading) return <p className="admin-loading">Chargement...</p>;
+  if (loading) return <p className="admin-loading">Wird geladen...</p>;
 
   return (
     <div className="admin-form-wrap">
-      <h1 className="admin-page-title">Paramètres du site</h1>
+      <h1 className="admin-page-title">Website-Einstellungen</h1>
 
       {message && (
         <div className={`admin-alert ${message.type === "error" ? "error" : "success"}`}>
@@ -67,9 +67,9 @@ export default function Settings() {
       )}
 
       <form onSubmit={handleSubmit} className="admin-form">
-        <h2 className="admin-settings-section-title">Coordonnées bancaires (virement)</h2>
+        <h2 className="admin-settings-section-title">Bankverbindung (Überweisung)</h2>
         <p className="admin-settings-hint">
-          Ces informations s'affichent au client après la commande. Modifiez-les à tout moment.
+          Diese Informationen werden dem Kunden nach der Bestellung angezeigt. Sie können jederzeit geändert werden.
         </p>
 
         {FIELDS.map((f) => (
@@ -96,10 +96,10 @@ export default function Settings() {
 
         <div className="admin-form-actions">
           <button type="submit" disabled={saving} className="btn btn-primary">
-            {saving ? "Enregistrement..." : "Enregistrer"}
+            {saving ? "Wird gespeichert..." : "Speichern"}
           </button>
           <button type="button" onClick={() => navigate("/admin")} className="btn btn-outline">
-            Retour
+            Zurück
           </button>
         </div>
       </form>

@@ -3,13 +3,13 @@ import { supabase } from "../lib/supabase";
 import Breadcrumb from "../components/Breadcrumb";
 
 const steps = [
-  { key: "pending", label: "Commande reçue", icon: "fa-shopping-cart" },
-  { key: "confirmed", label: "Confirmée", icon: "fa-check-circle" },
-  { key: "shipped", label: "Expédiée", icon: "fa-truck" },
-  { key: "delivered", label: "Livrée", icon: "fa-house" },
+  { key: "pending", label: "Bestellung eingegangen", icon: "fa-shopping-cart" },
+  { key: "confirmed", label: "Bestätigt", icon: "fa-check-circle" },
+  { key: "shipped", label: "Versandt", icon: "fa-truck" },
+  { key: "delivered", label: "Zugestellt", icon: "fa-house" },
 ];
 const statusIndex = { pending: 0, confirmed: 1, shipped: 2, delivered: 3, cancelled: -1 };
-const statusLabels = { pending: "En attente", confirmed: "Confirmée", shipped: "Expédiée", delivered: "Livrée", cancelled: "Annulée" };
+const statusLabels = { pending: "Ausstehend", confirmed: "Bestätigt", shipped: "Versandt", delivered: "Zugestellt", cancelled: "Storniert" };
 const statusColors = {
   pending: { bg: "#fff3cd", text: "#856404" },
   confirmed: { bg: "#d1ecf1", text: "#0c5460" },
@@ -59,7 +59,7 @@ export default function Tracking() {
     }
 
     setLoading(false);
-    if (results.length === 0) { setError("Commande non trouvée."); return; }
+    if (results.length === 0) { setError("Bestellung nicht gefunden."); return; }
     setOrders(results);
     if (results.length === 1) {
       const enriched = await enrichOrder(results[0]);
@@ -79,20 +79,20 @@ export default function Tracking() {
 
   return (
     <>
-      <Breadcrumb title="Suivi de commande" links={[{ label: "Suivi" }]} />
+      <Breadcrumb title="Bestellverfolgung" links={[{ label: "Verfolgung" }]} />
       <div className="section" style={{ background: "var(--bg-alt)", minHeight: "60vh" }}>
         <div className="container">
           {/* Search */}
           <div style={{ maxWidth: 600, margin: "0 auto 40px" }}>
             <div className="tracking-card">
-              <h3 style={{ textAlign: "center", marginBottom: 8, fontFamily: "var(--font-display)", fontSize: 20, letterSpacing: "0.5px" }}>Suivi de commande</h3>
+              <h3 style={{ textAlign: "center", marginBottom: 8, fontFamily: "var(--font-display)", fontSize: 20, letterSpacing: "0.5px" }}>Bestellverfolgung</h3>
               <p style={{ textAlign: "center", color: "var(--text-muted)", fontSize: 14, marginBottom: 24 }}>
-                Entrez votre numéro de commande ou l'email utilisé.
+                Geben Sie Ihre Bestellnummer oder die verwendete E-Mail-Adresse ein.
               </p>
               <form onSubmit={handleSearch} className="search-form">
-                <input type="text" value={query} onChange={(e) => setQuery(e.target.value)} placeholder="N° de commande ou email..." />
+                <input type="text" value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Bestellnr. oder E-Mail..." />
                 <button type="submit" disabled={loading} className="btn btn-brand">
-                  {loading ? "..." : "Rechercher"}
+                  {loading ? "..." : "Suchen"}
                 </button>
               </form>
             </div>
@@ -105,7 +105,7 @@ export default function Tracking() {
             <div style={{ maxWidth: 700, margin: "0 auto 24px" }}>
               <div className="tracking-card">
                 <h3 style={{ marginBottom: 16, fontSize: 16, fontFamily: "var(--font-display)" }}>
-                  {orders.length} commandes trouvées
+                  {orders.length} Bestellungen gefunden
                 </h3>
                 {orders.map((o) => {
                   const sc = statusColors[o.status] || statusColors.pending;
@@ -128,7 +128,7 @@ export default function Tracking() {
                         </span>
                         <span style={{ margin: "0 8px", color: "var(--text-muted)" }}>·</span>
                         <span style={{ fontSize: 13, color: "var(--text-muted)" }}>
-                          {new Date(o.created_at).toLocaleDateString("fr-FR")}
+                          {new Date(o.created_at).toLocaleDateString("de-DE")}
                         </span>
                       </div>
                       <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
@@ -153,21 +153,21 @@ export default function Tracking() {
                   className="btn btn-outline"
                   style={{ marginBottom: 16, fontSize: 13 }}
                 >
-                  <i className="fa-solid fa-arrow-left"></i> Retour à la liste
+                  <i className="fa-solid fa-arrow-left"></i> Zurück zur Liste
                 </button>
               )}
               <div className="tracking-card">
                 <div className="tracking-header">
                   <div>
-                    <h3 style={{ margin: 0, fontSize: 18, fontFamily: "var(--font-display)", letterSpacing: "0.5px" }}>Commande</h3>
+                    <h3 style={{ margin: 0, fontSize: 18, fontFamily: "var(--font-display)", letterSpacing: "0.5px" }}>Bestellung</h3>
                     <p style={{ margin: "4px 0 0", color: "var(--text-muted)", fontSize: 13, fontFamily: "var(--font-mono)" }}>
-                      N° {selected.id.slice(0, 8).toUpperCase()}
+                      Nr. {selected.id.slice(0, 8).toUpperCase()}
                     </p>
                   </div>
                   <div style={{ textAlign: "right" }}>
                     <p style={{ margin: 0, fontSize: 22, fontWeight: 700, fontFamily: "var(--font-mono)" }}>{selected.total.toFixed(2)} €</p>
                     <p style={{ margin: "2px 0 0", fontSize: 12, color: "var(--text-muted)" }}>
-                      {new Date(selected.created_at).toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" })}
+                      {new Date(selected.created_at).toLocaleDateString("de-DE", { day: "numeric", month: "long", year: "numeric" })}
                     </p>
                   </div>
                 </div>
@@ -175,7 +175,7 @@ export default function Tracking() {
                 {isCancelled ? (
                   <div style={{ padding: 32, textAlign: "center" }}>
                     <i className="fa-solid fa-circle-xmark" style={{ fontSize: 48, color: "var(--danger)", marginBottom: 12, display: "block" }}></i>
-                    <p style={{ color: "var(--danger)", fontWeight: 600 }}>Commande annulée</p>
+                    <p style={{ color: "var(--danger)", fontWeight: 600 }}>Bestellung storniert</p>
                   </div>
                 ) : (
                   <div style={{ padding: "32px 0" }}>
@@ -200,13 +200,13 @@ export default function Tracking() {
 
                 <div className="tracking-info-grid">
                   <div>
-                    <p><strong>Client :</strong> {selected.customer_name}</p>
-                    <p><strong>Email :</strong> {selected.customer_email}</p>
-                    {selected.customer_phone && <p><strong>Tél :</strong> {selected.customer_phone}</p>}
+                    <p><strong>Kunde :</strong> {selected.customer_name}</p>
+                    <p><strong>E-Mail :</strong> {selected.customer_email}</p>
+                    {selected.customer_phone && <p><strong>Tel :</strong> {selected.customer_phone}</p>}
                   </div>
                   <div>
                     <p><strong>Adresse :</strong> {selected.customer_address}</p>
-                    <p><strong>Statut :</strong>{" "}
+                    <p><strong>Status :</strong>{" "}
                       <span style={{
                         background: statusColors[selected.status]?.bg || statusColors.pending.bg,
                         color: statusColors[selected.status]?.text || statusColors.pending.text,
@@ -221,13 +221,13 @@ export default function Tracking() {
 
                 {selected.order_items && selected.order_items.length > 0 && (
                   <div style={{ marginTop: 24, paddingTop: 20, borderTop: "1px solid var(--border)" }}>
-                    <h4 style={{ fontFamily: "var(--font-display)", fontSize: 14, marginBottom: 16, letterSpacing: "0.5px" }}>Produits commandés</h4>
+                    <h4 style={{ fontFamily: "var(--font-display)", fontSize: 14, marginBottom: 16, letterSpacing: "0.5px" }}>Bestellte Produkte</h4>
                     {selected.order_items.map((item) => (
                       <div key={item.id} className="tracking-item-row">
                         <img src={item.products?.image || "/img/product-img/product-1.jpg"} alt="" />
                         <div style={{ flex: 1 }}>
-                          <p style={{ fontWeight: 600, fontSize: 14, margin: 0 }}>{item.products?.name || "Produit"}</p>
-                          <p style={{ fontSize: 13, color: "var(--text-muted)", margin: "2px 0 0" }}>Qté: {item.quantity}</p>
+                          <p style={{ fontWeight: 600, fontSize: 14, margin: 0 }}>{item.products?.name || "Produkt"}</p>
+                          <p style={{ fontSize: 13, color: "var(--text-muted)", margin: "2px 0 0" }}>Menge: {item.quantity}</p>
                         </div>
                         <p style={{ fontWeight: 600, fontSize: 14, margin: 0 }}>{(item.price * item.quantity).toFixed(2)} €</p>
                       </div>
@@ -241,7 +241,7 @@ export default function Tracking() {
           {!searched && !selected && (
             <div className="empty-state">
               <i className="fa-solid fa-magnifying-glass"></i>
-              <p>Entrez vos informations de commande pour suivre son état.</p>
+              <p>Geben Sie Ihre Bestellinformationen ein, um den Status zu verfolgen.</p>
             </div>
           )}
         </div>

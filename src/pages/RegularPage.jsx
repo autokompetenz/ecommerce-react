@@ -4,7 +4,7 @@ import ScrollReveal from "../components/ScrollReveal";
 export default function RegularPage() {
   return (
     <>
-      <Breadcrumb title="À propos" links={[{ label: "À propos" }]} />
+      <Breadcrumb title="Über uns" links={[{ label: "Über uns" }]} />
       <div className="section">
         <div className="container" style={{ maxWidth: 800 }}>
           <ScrollReveal>
@@ -12,58 +12,57 @@ export default function RegularPage() {
             POWER Tools GmbH
           </h2>
           <p style={{ fontSize: 14, lineHeight: 1.8, color: "var(--text-sec)", marginBottom: 24 }}>
-            Développement, fabrication et distribution d'outils de coupe haute
-            performance pour machines industrielles de broyage et industrie
-            agroalimentaire.
+            Entwicklung, Fertigung und Vertrieb von Hochleistungs-Schneidwerkzeugen
+            für industrielle Zerkleinerungsmaschinen und die Lebensmittelindustrie.
           </p>
 
           <blockquote style={{ borderLeft: "3px solid var(--amber)", padding: "14px 20px", background: "var(--bg-alt)", marginBottom: 28 }}>
             <p style={{ fontStyle: "italic", fontSize: 15, color: "var(--text)", margin: "0 0 6px" }}>
-              « La précision allemande au service de vos machines industrielles. »
+              « Deutsche Präzision im Dienste Ihrer Industriemaschinen. »
             </p>
             <span style={{ fontFamily: "var(--font-mono)", fontSize: 12, color: "var(--text-muted)" }}>— Oliver Haack, Geschäftsführer</span>
           </blockquote>
 
           <h3 style={{ fontFamily: "var(--font-display)", fontSize: 18, fontWeight: 700, marginBottom: 10, letterSpacing: "0.5px" }}>
-            Informations Légales
+            Rechtliche Informationen
           </h3>
           <div style={{ fontSize: 13, lineHeight: 1.8, color: "var(--text-sec)", marginBottom: 28 }}>
-            <p><strong style={{ color: "var(--text)" }}>Nom légal :</strong> POWER Tools GmbH</p>
-            <p><strong style={{ color: "var(--text)" }}>Forme juridique :</strong> GmbH (Société à responsabilité limitée)</p>
-            <p><strong style={{ color: "var(--text)" }}>N° d'immatriculation :</strong> HRB 11523 FF</p>
-            <p><strong style={{ color: "var(--text)" }}>Tribunal :</strong> Amtsgericht Frankfurt (Oder)</p>
-            <p><strong style={{ color: "var(--text)" }}>N° de TVA :</strong> DE232530007</p>
+            <p><strong style={{ color: "var(--text)" }}>Firmenname:</strong> POWER Tools GmbH</p>
+            <p><strong style={{ color: "var(--text)" }}>Rechtsform:</strong> GmbH (Gesellschaft mit beschränkter Haftung)</p>
+            <p><strong style={{ color: "var(--text)" }}>Handelsregisternummer:</strong> HRB 11523 FF</p>
+            <p><strong style={{ color: "var(--text)" }}>Gericht:</strong> Amtsgericht Frankfurt (Oder)</p>
+            <p><strong style={{ color: "var(--text)" }}>USt-IdNr.:</strong> DE232530007</p>
           </div>
 
           <h3 style={{ fontFamily: "var(--font-display)", fontSize: 18, fontWeight: 700, marginBottom: 10, letterSpacing: "0.5px" }}>
             Adresse
           </h3>
           <p style={{ fontSize: 13, lineHeight: 1.8, color: "var(--text-sec)", marginBottom: 28 }}>
-            Am Winkel 4, 15528 Spreenhagen, Allemagne<br />
-            Adresse enregistrée : Am Winkel 2d, 15528 Spreenhagen
+            Am Winkel 4, 15528 Spreenhagen, Deutschland<br />
+            Eingetragene Adresse: Am Winkel 2d, 15528 Spreenhagen
           </p>
 
           <h3 style={{ fontFamily: "var(--font-display)", fontSize: 18, fontWeight: 700, marginBottom: 10, letterSpacing: "0.5px" }}>
-            Activité
+            Tätigkeit
           </h3>
           <p style={{ fontSize: 13, lineHeight: 1.8, color: "var(--text-sec)", marginBottom: 12 }}>
-            Outils de coupe industriels de haute précision pour :
+            Hochpräzise Industrieschneidwerkzeuge für:
           </p>
           <ul style={{ listStyle: "disc", marginLeft: 24, marginBottom: 28, fontSize: 13, lineHeight: 2, color: "var(--text-sec)" }}>
-            <li>Industrie agroalimentaire</li>
-            <li>Broyage industriel</li>
-            <li>Agriculture et paillage</li>
-            <li>Recyclage</li>
-            <li>Travail du bois</li>
+            <li>Lebensmittelindustrie</li>
+            <li>Industrielle Zerkleinerung</li>
+            <li>Landwirtschaft und Mulchung</li>
+            <li>Recycling</li>
+            <li>Holzbearbeitung</li>
           </ul>
 
           <h3 style={{ fontFamily: "var(--font-display)", fontSize: 18, fontWeight: 700, marginBottom: 10, letterSpacing: "0.5px" }}>
-            L'Équipe
+            Das Team
           </h3>
           <p style={{ fontSize: 13, lineHeight: 1.8, color: "var(--text-sec)" }}>
-            <strong style={{ color: "var(--text)" }}>Directeur :</strong> Oliver Haack<br />
-            <strong style={{ color: "var(--text)" }}>Effectif :</strong> 10 à 19 employés<br />
-            <strong style={{ color: "var(--text)" }}>Statut :</strong> Entreprise active
+            <strong style={{ color: "var(--text)" }}>Geschäftsführer:</strong> Oliver Haack<br />
+            <strong style={{ color: "var(--text)" }}>Mitarbeiterzahl:</strong> 10 bis 19<br />
+            <strong style={{ color: "var(--text)" }}>Status:</strong> Aktives Unternehmen
           </p>
           </ScrollReveal>
         </div>

@@ -2,12 +2,12 @@ import { useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 
 const CATEGORIES = [
-  { value: "", label: "Toutes catégories" },
-  { value: "tournevis", label: "Tournevis" },
-  { value: "cles-a-choc", label: "Clés à choc" },
-  { value: "perceuses", label: "Perceuses" },
-  { value: "rivets", label: "Rivets" },
-  { value: "meulage", label: "Meulage" },
+  { value: "", label: "Alle Kategorien" },
+  { value: "tournevis", label: "Schraubenzieher" },
+  { value: "cles-a-choc", label: "Schlagschlüssel" },
+  { value: "perceuses", label: "Bohrmaschinen" },
+  { value: "rivets", label: "Nieten" },
+  { value: "meulage", label: "Schleifen" },
 ];
 
 export default function Header({ cartCount = 0, onCartToggle, theme, onToggleTheme }) {
@@ -42,14 +42,14 @@ export default function Header({ cartCount = 0, onCartToggle, theme, onToggleThe
           <div className="header-top-left">
             <span className="header-brand-text">
               <i className="fa-solid fa-industry"></i>
-              POWER Tools — Outils Industriels
+              POWER Tools — Industriewerkzeuge
             </span>
           </div>
           <div className="header-top-right">
-            <Link to="/help"><i className="fa-solid fa-circle-question"></i> Aide</Link>
-            <Link to="/tracking"><i className="fa-solid fa-truck-fast"></i> Suivi de commande</Link>
+            <Link to="/help"><i className="fa-solid fa-circle-question"></i> Hilfe</Link>
+            <Link to="/tracking"><i className="fa-solid fa-truck-fast"></i> Bestellverfolgung</Link>
             <button className="header-top-selector" type="button">
-              <i className="fa-solid fa-globe"></i> FR
+              <i className="fa-solid fa-globe"></i> DE
             </button>
             <button className="header-top-selector" type="button">
               <i className="fa-solid fa-euro-sign"></i> EUR
@@ -75,7 +75,7 @@ export default function Header({ cartCount = 0, onCartToggle, theme, onToggleThe
                 className="mega-search-category-btn"
                 onClick={() => setCategoryOpen((o) => !o)}
               >
-                {CATEGORIES.find((c) => c.value === selectedCategory)?.label || "Toutes catégories"}
+                {CATEGORIES.find((c) => c.value === selectedCategory)?.label || "Alle Kategorien"}
                 <i className="fa-solid fa-chevron-down"></i>
               </button>
               {categoryOpen && (
@@ -95,7 +95,7 @@ export default function Header({ cartCount = 0, onCartToggle, theme, onToggleThe
             <input
               type="search"
               className="mega-search-input"
-              placeholder="Rechercher des outils industriels..."
+              placeholder="Industriewerkzeuge suchen..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
@@ -109,7 +109,7 @@ export default function Header({ cartCount = 0, onCartToggle, theme, onToggleThe
             <button
               className="theme-toggle-btn"
               onClick={onToggleTheme}
-              title={theme === "dark" ? "Mode clair" : "Mode sombre"}
+              title={theme === "dark" ? "Heller Modus" : "Dunkler Modus"}
             >
               <i className={`fa-solid ${theme === "dark" ? "fa-sun" : "fa-moon"}`}></i>
             </button>
@@ -131,15 +131,15 @@ export default function Header({ cartCount = 0, onCartToggle, theme, onToggleThe
         <div className="container">
           <nav className="header-nav-links">
             <Link to="/" className={isActive("/")}>
-              <i className="fa-solid fa-house"></i> Accueil
+              <i className="fa-solid fa-house"></i> Startseite
             </Link>
             <Link to="/shop" className={isActive("/shop")}>
-              <i className="fa-solid fa-store"></i> Boutique
+              <i className="fa-solid fa-store"></i> Shop
             </Link>
 
             <div className="nav-dropdown">
               <button type="button" className="nav-dropdown-trigger">
-                <i className="fa-solid fa-layer-group"></i> Catégories
+                <i className="fa-solid fa-layer-group"></i> Kategorien
                 <i className="fa-solid fa-chevron-down nav-chevron"></i>
               </button>
               <ul className="nav-dropdown-menu">
@@ -152,10 +152,10 @@ export default function Header({ cartCount = 0, onCartToggle, theme, onToggleThe
             </div>
 
             <Link to="/blog" className={isActive("/blog")}>
-              <i className="fa-solid fa-newspaper"></i> Actualités
+              <i className="fa-solid fa-newspaper"></i> Blog
             </Link>
             <Link to="/contact" className={isActive("/contact")}>
-              <i className="fa-solid fa-envelope"></i> Contact
+              <i className="fa-solid fa-envelope"></i> Kontakt
             </Link>
           </nav>
         </div>
@@ -170,7 +170,7 @@ export default function Header({ cartCount = 0, onCartToggle, theme, onToggleThe
       {/* ── Mobile Nav Drawer ── */}
       <div className={`mobile-nav ${mobileOpen ? "active" : ""}`}>
         <div className="mobile-nav-header">
-          <h3>Menu</h3>
+          <h3>Menü</h3>
           <button className="mobile-nav-close" onClick={() => setMobileOpen(false)}>
             <i className="fa-solid fa-xmark"></i>
           </button>
@@ -178,10 +178,10 @@ export default function Header({ cartCount = 0, onCartToggle, theme, onToggleThe
 
         <div className="mobile-nav-links">
           <Link to="/" onClick={() => setMobileOpen(false)}>
-            <i className="fa-solid fa-house"></i> Accueil
+            <i className="fa-solid fa-house"></i> Startseite
           </Link>
           <Link to="/shop" onClick={() => setMobileOpen(false)}>
-            <i className="fa-solid fa-store"></i> Boutique
+            <i className="fa-solid fa-store"></i> Shop
           </Link>
           {CATEGORIES.filter((c) => c.value !== "").map((cat) => (
             <Link
@@ -193,16 +193,16 @@ export default function Header({ cartCount = 0, onCartToggle, theme, onToggleThe
             </Link>
           ))}
           <Link to="/blog" onClick={() => setMobileOpen(false)}>
-            <i className="fa-solid fa-newspaper"></i> Actualités
+            <i className="fa-solid fa-newspaper"></i> Blog
           </Link>
           <Link to="/contact" onClick={() => setMobileOpen(false)}>
-            <i className="fa-solid fa-envelope"></i> Contact
+            <i className="fa-solid fa-envelope"></i> Kontakt
           </Link>
           <Link to="/tracking" onClick={() => setMobileOpen(false)}>
-            <i className="fa-solid fa-truck"></i> Suivi de commande
+            <i className="fa-solid fa-truck"></i> Bestellverfolgung
           </Link>
           <Link to="/help" onClick={() => setMobileOpen(false)}>
-            <i className="fa-solid fa-circle-info"></i> Aide
+            <i className="fa-solid fa-circle-info"></i> Hilfe
           </Link>
         </div>
 

@@ -10,8 +10,8 @@ export default function SingleBlog() {
     return (
       <div className="empty-state">
         <i className="fa-solid fa-newspaper"></i>
-        <p>Article non trouvé.</p>
-        <Link to="/blog" className="btn btn-brand" style={{ marginTop: 16 }}>Retour au blog</Link>
+        <p>Artikel nicht gefunden.</p>
+        <Link to="/blog" className="btn btn-brand" style={{ marginTop: 16 }}>Zurück zum Blog</Link>
       </div>
     );
   }
@@ -30,11 +30,11 @@ export default function SingleBlog() {
             <img src={post.image} alt={post.title} style={{ width: "100%", borderRadius: "var(--radius-lg)", marginBottom: 32, maxHeight: 400, objectFit: "cover" }} />
           )}
           <div style={{ fontSize: 15, lineHeight: 1.8, color: "var(--text-sec)" }}>
-            {post.content || post.excerpt || "Contenu de l'article à venir..."}
+            {post.content || post.excerpt || "Artikelinhalt folgt..."}
           </div>
           <div style={{ marginTop: 40, paddingTop: 24, borderTop: "1px solid var(--border)" }}>
             <Link to="/blog" className="btn btn-outline">
-              <i className="fa-solid fa-arrow-left"></i> Retour au blog
+              <i className="fa-solid fa-arrow-left"></i> Zurück zum Blog
             </Link>
           </div>
         </div>

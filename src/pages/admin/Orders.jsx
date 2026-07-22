@@ -51,22 +51,22 @@ export default function Orders() {
   };
 
   const statusLabels = {
-    pending: "En attente",
-    confirmed: "Confirmée",
-    shipped: "Expédiée",
-    delivered: "Livrée",
-    cancelled: "Annulée",
+    pending: "Ausstehend",
+    confirmed: "Bestätigt",
+    shipped: "Versandt",
+    delivered: "Zugestellt",
+    cancelled: "Storniert",
   };
 
   return (
     <div>
-      <h1 className="admin-page-title">Commandes ({orders.length})</h1>
+      <h1 className="admin-page-title">Bestellungen ({orders.length})</h1>
 
       {loading ? (
-        <p className="admin-loading">Chargement...</p>
+        <p className="admin-loading">Wird geladen...</p>
       ) : orders.length === 0 ? (
         <div className="admin-empty">
-          <p>Aucune commande pour le moment.</p>
+          <p>Noch keine Bestellungen.</p>
         </div>
       ) : (
         <div className="admin-orders-list">
@@ -78,7 +78,7 @@ export default function Orders() {
                 <div className="admin-order-header">
                   <div>
                     <strong>{order.customer_name}</strong>
-                    <span className="admin-order-date">{new Date(order.created_at).toLocaleDateString("fr-FR")}</span>
+                    <span className="admin-order-date">{new Date(order.created_at).toLocaleDateString("de-DE")}</span>
                   </div>
                   <div className="admin-order-header-right">
                     <span className="admin-order-status" style={{ background: sc.bg, color: sc.text }}>
@@ -91,16 +91,16 @@ export default function Orders() {
                 {/* Details */}
                 <div className="admin-order-details">
                   <div className="admin-order-info">
-                    <p><strong>Email :</strong> {order.customer_email}</p>
-                    <p><strong>Tél :</strong> {order.customer_phone || "-"}</p>
+                    <p><strong>E-Mail :</strong> {order.customer_email}</p>
+                    <p><strong>Tel :</strong> {order.customer_phone || "-"}</p>
                     <p><strong>Adresse :</strong> {order.customer_address}</p>
                   </div>
                   <div className="admin-order-products">
-                    <p className="admin-order-products-label">Produits :</p>
+                    <p className="admin-order-products-label">Produkte :</p>
                     {order.order_items?.map((item) => (
                       <div key={item.id} className="admin-order-product-item">
                         <img src={item.products?.image || ""} alt="" />
-                        <span>{item.products?.name || "Produit supprimé"}</span>
+                        <span>{item.products?.name || "Produkt gelöscht"}</span>
                         <span className="text-muted">x{item.quantity}</span>
                         <strong>${(item.price * item.quantity).toFixed(2)}</strong>
                       </div>

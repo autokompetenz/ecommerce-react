@@ -13,10 +13,10 @@ const CATEGORIES = [
 ];
 
 const WHY_US = [
-  { icon: "fa-certificate", title: "Conforme aux normes", desc: "Tous nos outils répondent aux normes européennes en vigueur." },
-  { icon: "fa-industry", title: "Fabrication allemande", desc: "Développement et fabrication en Allemagne, qualité certifiée." },
-  { icon: "fa-boxes-stacked", title: "Stock permanent", desc: "Large gamme de produits disponibles, expédition sous 24–48 h." },
-  { icon: "fa-headset", title: "Support technique", desc: "Une équipe d'experts pour vous conseiller sur le choix de vos outils." },
+  { icon: "fa-certificate", title: "Normenkonform", desc: "Alle unsere Werkzeuge entspreden den geltenden europäischen Normen." },
+  { icon: "fa-industry", title: "Deutsche Fertigung", desc: "Entwicklung und Fertigung in Deutschland, zertifizierte Qualität." },
+  { icon: "fa-boxes-stacked", title: "Ständiger Vorrat", desc: "Große Produktpalette verfügbar, Versand innerhalb von 24–48 Stunden." },
+  { icon: "fa-headset", title: "Technischer Support", desc: "Ein Expertenteam berät Sie bei der Auswahl Ihrer Werkzeuge." },
 ];
 
 function Hero() {
@@ -27,7 +27,7 @@ function Hero() {
           {/* Left Sidebar */}
           <ScrollReveal direction="left">
             <div className="hero-sidebar">
-              <h4>Catégories</h4>
+              <h4>Kategorien</h4>
               <ul>
                 {CATEGORIES.map((cat) => (
                   <li key={cat.name}>
@@ -50,9 +50,9 @@ function Hero() {
             >
               <div className="hero-banner-overlay"></div>
               <div className="hero-banner-content">
-                <h1>Outils de Coupe<br />Industriels</h1>
-                <p>Tournevis, perceuses, clés à choc, riveteurs et meuleuses haute performance pour professionnels.</p>
-                <Link to="/shop" className="btn btn-brand btn-lg">Voir le catalogue</Link>
+                <h1>Industrieschneidwerkzeuge<br />&nbsp;</h1>
+                <p>Schraubendreher, Bohrmaschinen, Schlagschrauber, Nietpistolen und Hochleistungsschleifer für Profis.</p>
+                <Link to="/shop" className="btn btn-brand btn-lg">Katalog ansehen</Link>
               </div>
             </div>
           </ScrollReveal>
@@ -63,19 +63,19 @@ function Hero() {
               <div className="hero-trust">
                 <div className="hero-trust-item">
                   <i className="fa-solid fa-truck-fast"></i>
-                  <span>Livraison 24-48h</span>
+                  <span>Lieferung 24–48 h</span>
                 </div>
                 <div className="hero-trust-item">
                   <i className="fa-solid fa-clock-rotate-left"></i>
-                  <span>Retour 14 jours</span>
+                  <span>Rückgabe 14 Tage</span>
                 </div>
                 <div className="hero-trust-item">
                   <i className="fa-solid fa-headset"></i>
-                  <span>Support technique</span>
+                  <span>Technischer Support</span>
                 </div>
                 <div className="hero-trust-item">
                   <i className="fa-solid fa-shield-halved"></i>
-                  <span>Paiement sécurisé</span>
+                  <span>Sichere Zahlung</span>
                 </div>
               </div>
             </div>
@@ -108,11 +108,11 @@ export default function Home() {
       {/* Trust Bar */}
       <div className="trust-bar">
         <div className="container">
-          <div className="trust-item"><i className="fa-solid fa-building-columns"></i> GmbH — Allemagne</div>
+          <div className="trust-item"><i className="fa-solid fa-building-columns"></i> GmbH — Deutschland</div>
           <div className="trust-item"><i className="fa-solid fa-map-pin"></i> Spreenhagen, DE</div>
-          <div className="trust-item"><i className="fa-solid fa-truck-fast"></i> Livraison 24–48 h</div>
-          <div className="trust-item"><i className="fa-solid fa-shield-halved"></i> Paiement sécurisé</div>
-          <div className="trust-item"><i className="fa-solid fa-clock-rotate-left"></i> Retour 14 jours</div>
+          <div className="trust-item"><i className="fa-solid fa-truck-fast"></i> Lieferung 24–48 h</div>
+          <div className="trust-item"><i className="fa-solid fa-shield-halved"></i> Sichere Zahlung</div>
+          <div className="trust-item"><i className="fa-solid fa-clock-rotate-left"></i> Rückgabe 14 Tage</div>
         </div>
       </div>
 
@@ -121,7 +121,7 @@ export default function Home() {
         <div className="container">
           <ScrollReveal>
             <div className="section-heading">
-              <h2>Nos Catégories</h2>
+              <h2>Unsere Kategorien</h2>
             </div>
           </ScrollReveal>
           <div className="cat-grid">
@@ -146,9 +146,9 @@ export default function Home() {
           <ScrollReveal>
             <div className="cta-banner">
               <div className="cta-banner-content">
-                <h2>Performance Industrielle</h2>
-                <p>Outils de coupe haute performance pour broyage industriel et agroalimentaire.</p>
-                <Link to="/shop" className="btn btn-white btn-lg">Voir le catalogue</Link>
+                <h2>Industrielle Leistung</h2>
+                <p>Hochleistungs-Schneidwerkzeuge für die industrielle und lebensmittelverarbeitende Zerkleinerung.</p>
+                <Link to="/shop" className="btn btn-white btn-lg">Katalog ansehen</Link>
               </div>
             </div>
           </ScrollReveal>
@@ -160,7 +160,7 @@ export default function Home() {
         <div className="container">
           <ScrollReveal>
             <div className="section-heading">
-              <h2>Produits Vedettes</h2>
+              <h2>Produkte im Highlight</h2>
             </div>
           </ScrollReveal>
           {products.length > 0 ? (
@@ -174,13 +174,13 @@ export default function Home() {
           ) : (
             <div className="empty-state">
               <i className="fa-solid fa-box-open"></i>
-              <p>Ajoutez des produits depuis l'<Link to="/admin">admin</Link> pour les afficher ici.</p>
+              <p>Fügen Sie Produkte über das <Link to="/admin">Admin</Link>-Panel hinzu, um sie hier anzuzeigen.</p>
             </div>
           )}
           {products.length > 0 && (
             <ScrollReveal>
               <div style={{ textAlign: "center", marginTop: 28 }}>
-                <Link to="/shop" className="btn btn-outline btn-lg">Voir tout le catalogue</Link>
+                <Link to="/shop" className="btn btn-outline btn-lg">Ganzen Katalog ansehen</Link>
               </div>
             </ScrollReveal>
           )}
@@ -192,7 +192,7 @@ export default function Home() {
         <div className="container">
           <ScrollReveal>
             <div className="section-heading">
-              <h2>Pourquoi POWER Tools ?</h2>
+              <h2>Warum POWER Tools ?</h2>
             </div>
           </ScrollReveal>
           <div className="home-why-grid">

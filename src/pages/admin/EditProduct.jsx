@@ -111,16 +111,16 @@ export default function EditProduct() {
     if (error) {
       setMessage({ type: "error", text: error.message });
     } else {
-      setMessage({ type: "success", text: "Produit mis à jour !" });
+      setMessage({ type: "success", text: "Produkt aktualisiert!" });
       setTimeout(() => navigate("/admin"), 1500);
     }
   };
 
-  if (loading) return <p className="admin-loading">Chargement...</p>;
+  if (loading) return <p className="admin-loading">Wird geladen...</p>;
 
   return (
     <div className="admin-form-wrap">
-      <h1 className="admin-page-title">Modifier le produit</h1>
+      <h1 className="admin-page-title">Produkt bearbeiten</h1>
 
       {message && (
         <div className={`admin-alert ${message.type === "error" ? "error" : "success"}`}>
@@ -131,28 +131,28 @@ export default function EditProduct() {
       <form onSubmit={handleSubmit} className="admin-form">
         <div className="admin-form-grid admin-form-grid-2">
           <div>
-            <label className="admin-label">Nom du produit *</label>
+            <label className="admin-label">Produktname *</label>
             <input name="name" value={form.name} onChange={handleChange} required className="admin-input" />
           </div>
           <div>
-            <label className="admin-label">Marque</label>
+            <label className="admin-label">Marke</label>
             <input name="brand" value={form.brand} onChange={handleChange} className="admin-input" />
           </div>
         </div>
 
         <div className="admin-form-grid admin-form-grid-3">
           <div>
-            <label className="admin-label">Prix (€) *</label>
+            <label className="admin-label">Preis (€) *</label>
             <input name="price" type="number" step="0.01" value={form.price} onChange={handleChange} required className="admin-input" />
           </div>
           <div>
-            <label className="admin-label">Ancien prix (€)</label>
+            <label className="admin-label">Alter Preis (€)</label>
             <input name="old_price" type="number" step="0.01" value={form.old_price} onChange={handleChange} className="admin-input" />
           </div>
           <div>
             <label className="admin-label">Badge</label>
             <select name="badge" value={form.badge} onChange={handleChange} className="admin-input">
-              <option value="">Aucun</option>
+              <option value="">Kein</option>
               <option value="New">New</option>
               <option value="-10%">-10%</option>
               <option value="-15%">-15%</option>
@@ -163,72 +163,72 @@ export default function EditProduct() {
         </div>
 
         <div>
-          <label className="admin-label">Catégorie</label>
+          <label className="admin-label">Kategorie</label>
           <input name="category" value={form.category} onChange={handleChange} className="admin-input" />
         </div>
 
         <div className="admin-form-grid admin-form-grid-2">
           <ImageUpload
-            label="Image principale"
+            label="Hauptbild"
             value={form.image}
             onChange={(url) => setForm((prev) => ({ ...prev, image: url }))}
           />
           <ImageUpload
-            label="Image secondaire (hover)"
+            label="Sekundärbild (Hover)"
             value={form.hover_image}
             onChange={(url) => setForm((prev) => ({ ...prev, hover_image: url }))}
           />
         </div>
 
         <div>
-          <label className="admin-label">Description</label>
+          <label className="admin-label">Beschreibung</label>
           <textarea name="description" value={form.description} onChange={handleChange} rows="4" className="admin-input admin-textarea" />
         </div>
 
         <div>
-          <label className="admin-label">Caractéristiques (une par ligne)</label>
+          <label className="admin-label">Eigenschaften (eine pro Zeile)</label>
           <textarea
             name="features_text" value={form.features_text} onChange={handleChange}
             rows="5" className="admin-input admin-textarea"
-            placeholder={"Moteur brushless sans charbon\nCouple max 35 Nm\n2 vitesses mécaniques\nÉclairage LED intégré"}
+            placeholder={"Bürstenloser Motor\nDrehmoment max. 35 Nm\n2 mechanische Geschwindigkeiten\nIntegrierte LED-Beleuchtung"}
           />
         </div>
 
         <div>
-          <label className="admin-label">Données techniques (une par ligne, format Clé: Valeur)</label>
+          <label className="admin-label">Technische Daten (eine pro Zeile, Format Schlüssel: Wert)</label>
           <textarea
             name="specs_text" value={form.specs_text} onChange={handleChange}
             rows="5" className="admin-input admin-textarea"
-            placeholder={"Couple max: 35 Nm\nVitesse: 0 - 1 700 tr/min\nMandrin: 6.35 mm\nTension batterie: 20 V Li-Ion\nPoids: 1.2 kg"}
+            placeholder={"Drehmoment max.: 35 Nm\nDrehzahl: 0 - 1.700 U/min\nSpannkraft: 6.35 mm\nAkkuspannung: 20 V Li-Ion\nGewicht: 1,2 kg"}
           />
         </div>
 
         <div>
-          <label className="admin-label">Livraison / Contenu du coffret</label>
+          <label className="admin-label">Lieferung / Kartoninhalt</label>
           <textarea
             name="delivery" value={form.delivery} onChange={handleChange}
             rows="2" className="admin-input admin-textarea"
-            placeholder="Livré avec 1 tournevis, 1 batterie 2.0Ah, 1 chargeur rapide, coffret de transport"
+            placeholder="Lieferumfang: 1 Schraubendreher, 1 Akku 2.0Ah, 1 Schnelllader, Transportkoffer"
           />
         </div>
 
         <div className="admin-form-grid admin-form-grid-2">
           <div>
             <label className="admin-label">EAN</label>
-            <input name="ean" value={form.ean} onChange={handleChange} placeholder="ex: 7392248567205" className="admin-input" />
+            <input name="ean" value={form.ean} onChange={handleChange} placeholder="z.B. 7392248567205" className="admin-input" />
           </div>
           <div>
-            <label className="admin-label">N° de pièce</label>
-            <input name="part_number" value={form.part_number} onChange={handleChange} placeholder="ex: MT320B, WR14-125" className="admin-input" />
+            <label className="admin-label">Teilenummer</label>
+            <input name="part_number" value={form.part_number} onChange={handleChange} placeholder="z.B. MT320B, WR14-125" className="admin-input" />
           </div>
         </div>
 
         <div className="admin-form-actions">
           <button type="submit" disabled={saving} className="btn btn-primary">
-            {saving ? "Enregistrement..." : "Enregistrer"}
+            {saving ? "Wird gespeichert..." : "Speichern"}
           </button>
           <button type="button" onClick={() => navigate("/admin")} className="btn btn-outline">
-            Annuler
+            Abbrechen
           </button>
         </div>
       </form>

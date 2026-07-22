@@ -38,8 +38,8 @@ export default function Checkout() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!form.terms) { setMessage({ type: "error", text: "Veuillez accepter les conditions." }); return; }
-    if (items.length === 0) { setMessage({ type: "error", text: "Votre panier est vide." }); return; }
+    if (!form.terms) { setMessage({ type: "error", text: "Bitte akzeptieren Sie die Bedingungen." }); return; }
+    if (items.length === 0) { setMessage({ type: "error", text: "Ihr Warenkorb ist leer." }); return; }
 
     setLoading(true);
     setMessage(null);
@@ -90,25 +90,25 @@ export default function Checkout() {
   if (orderId) {
     return (
       <>
-        <Breadcrumb title="Commande confirmée" links={[{ label: "Commande" }, { label: "Confirmée" }]} />
+        <Breadcrumb title="Bestellung bestätigt" links={[{ label: "Bestellung" }, { label: "Bestätigt" }]} />
         <div className="section">
           <div className="container" style={{ maxWidth: 720 }}>
             <div className="checkout-confirm">
               <div className="checkout-confirm-header">
                 <i className="fa-solid fa-circle-check"></i>
-                <h1>Commande confirmée !</h1>
-                <p>Référence : <strong>#{orderId.slice(0, 8).toUpperCase()}</strong></p>
+                <h1>Bestellung bestätigt!</h1>
+                <p>Referenz: <strong>#{orderId.slice(0, 8).toUpperCase()}</strong></p>
               </div>
 
               <div className="checkout-confirm-section">
-                <h2><i className="fa-solid fa-box"></i> Récapitulatif de la commande</h2>
+                <h2><i className="fa-solid fa-box"></i> Bestellübersicht</h2>
                 <table className="checkout-confirm-table">
                   <thead>
                     <tr>
-                      <th>Produit</th>
-                      <th>Qté</th>
-                      <th>Prix</th>
-                      <th>Total</th>
+                      <th>Produkt</th>
+                      <th>Menge</th>
+                      <th>Preis</th>
+                      <th>Gesamt</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -123,19 +123,19 @@ export default function Checkout() {
                   </tbody>
                 </table>
                 <div className="checkout-confirm-total">
-                  <span>Total à payer</span>
-                  <span>{confirmedTotal.toFixed(2)} € TTC</span>
+                  <span>Gesamtbetrag</span>
+                  <span>{confirmedTotal.toFixed(2)} € inkl. MwSt.</span>
                 </div>
               </div>
 
               <div className="checkout-confirm-section checkout-confirm-bank">
-                <h2><i className="fa-solid fa-university"></i> Informations de paiement par virement</h2>
+                <h2><i className="fa-solid fa-university"></i> Banküberweisungsinformationen</h2>
                 <p className="checkout-confirm-bank-note">
-                  Effectuez votre virement en indiquant la référence ci-dessous.
+                  Bitte überweisen Sie den Betrag unter Angabe der untenstehenden Referenz.
                 </p>
                 <div className="checkout-confirm-bank-grid">
                   <div className="checkout-confirm-bank-row">
-                    <span className="checkout-confirm-bank-label">Titulaire</span>
+                    <span className="checkout-confirm-bank-label">Kontoinhaber</span>
                     <span className="checkout-confirm-bank-value">{bankInfo.bank_holder || "—"}</span>
                   </div>
                   <div className="checkout-confirm-bank-row">
@@ -147,11 +147,11 @@ export default function Checkout() {
                     <span className="checkout-confirm-bank-value">{bankInfo.bank_bic || "—"}</span>
                   </div>
                   <div className="checkout-confirm-bank-row">
-                    <span className="checkout-confirm-bank-label">Banque</span>
+                    <span className="checkout-confirm-bank-label">Bank</span>
                     <span className="checkout-confirm-bank-value">{bankInfo.bank_bank || "—"}</span>
                   </div>
                   <div className="checkout-confirm-bank-row">
-                    <span className="checkout-confirm-bank-label">Référence à mentionner</span>
+                    <span className="checkout-confirm-bank-label">Referenz anzugeben</span>
                     <span className="checkout-confirm-bank-value checkout-confirm-ref">
                       #{orderId.slice(0, 8).toUpperCase()}
                     </span>
@@ -163,17 +163,17 @@ export default function Checkout() {
               </div>
 
               <div className="checkout-confirm-section">
-                <h2><i className="fa-solid fa-envelope"></i> Et après ?</h2>
-                <p>Un e-mail de confirmation avec le récapitulatif de votre commande vous a été envoyé à <strong>{form.email}</strong>.</p>
-                <p>Vous pouvez suivre l'état de votre commande depuis la page de suivi.</p>
+                <h2><i className="fa-solid fa-envelope"></i> Und danach?</h2>
+                <p>Eine Bestätigungs-E-Mail mit der Zusammenfassung Ihrer Bestellung wurde an <strong>{form.email}</strong> gesendet.</p>
+                <p>Sie können den Status Ihrer Bestellung auf der Verfolgungsseite einsehen.</p>
               </div>
 
               <div className="checkout-confirm-actions">
                 <button className="btn btn-primary btn-lg" onClick={() => navigate("/tracking")}>
-                  <i className="fa-solid fa-truck"></i> Suivre ma commande
+                  <i className="fa-solid fa-truck"></i> Meine Bestellung verfolgen
                 </button>
                 <button className="btn btn-outline btn-lg" onClick={() => navigate("/shop")}>
-                  <i className="fa-solid fa-bag-shopping"></i> Continuer vos achats
+                  <i className="fa-solid fa-bag-shopping"></i> Weiter einkaufen
                 </button>
               </div>
             </div>
@@ -186,12 +186,12 @@ export default function Checkout() {
   // ---- CHECKOUT FORM ----
   return (
     <>
-      <Breadcrumb title="Commande" links={[{ label: "Commande" }]} />
+      <Breadcrumb title="Bestellung" links={[{ label: "Bestellung" }]} />
       <div className="section">
         <div className="container">
           <div className="checkout-layout">
             <div>
-              <h3 style={{ fontSize: 20, fontWeight: 700, marginBottom: 24 }}>Adresse de facturation</h3>
+              <h3 style={{ fontSize: 20, fontWeight: 700, marginBottom: 24 }}>Rechnungsadresse</h3>
               {message && (
                 <div className={`alert ${message.type === "error" ? "alert-error" : "alert-success"}`}>
                   {message.text}
@@ -200,23 +200,23 @@ export default function Checkout() {
               <form onSubmit={handleSubmit}>
                 <div className="checkout-form-row">
                   <div className="checkout-form-group">
-                    <label>Prénom *</label>
+                    <label>Vorname *</label>
                     <input type="text" id="firstName" value={form.firstName} onChange={handleChange} required />
                   </div>
                   <div className="checkout-form-group">
-                    <label>Nom *</label>
+                    <label>Name *</label>
                     <input type="text" id="lastName" value={form.lastName} onChange={handleChange} required />
                   </div>
                 </div>
                 <div className="checkout-form-group">
-                  <label>Société</label>
+                  <label>Unternehmen</label>
                   <input type="text" id="company" value={form.company} onChange={handleChange} />
                 </div>
                 <div className="checkout-form-group">
-                  <label>Pays *</label>
+                  <label>Land *</label>
                   <select id="country" value={form.country} onChange={handleChange}>
-                    <option>Allemagne</option><option>France</option><option>Belgique</option>
-                    <option>Suisse</option><option>Luxembourg</option><option>Autriche</option><option>Pays-Bas</option>
+                    <option>Deutschland</option><option>Frankreich</option><option>Belgien</option>
+                    <option>Schweiz</option><option>Luxemburg</option><option>Österreich</option><option>Niederlande</option>
                   </select>
                 </div>
                 <div className="checkout-form-group">
@@ -225,27 +225,27 @@ export default function Checkout() {
                 </div>
                 <div className="checkout-form-row">
                   <div className="checkout-form-group">
-                    <label>Code postal *</label>
+                    <label>PLZ *</label>
                     <input type="text" id="postcode" value={form.postcode} onChange={handleChange} required />
                   </div>
                   <div className="checkout-form-group">
-                    <label>Ville *</label>
+                    <label>Stadt *</label>
                     <input type="text" id="city" value={form.city} onChange={handleChange} required />
                   </div>
                 </div>
                 <div className="checkout-form-row">
                   <div className="checkout-form-group">
-                    <label>Téléphone *</label>
+                    <label>Telefon *</label>
                     <input type="tel" id="phone" value={form.phone} onChange={handleChange} required />
                   </div>
                   <div className="checkout-form-group">
-                    <label>Email *</label>
+                    <label>E-Mail *</label>
                     <input type="email" id="email" value={form.email} onChange={handleChange} required />
                   </div>
                 </div>
                 <div style={{ display: "flex", flexDirection: "column", gap: 8, marginTop: 8 }}>
                   <label style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 13, cursor: "pointer" }}>
-                    <input type="checkbox" id="terms" checked={form.terms} onChange={handleChange} /> J'accepte les conditions générales
+                    <input type="checkbox" id="terms" checked={form.terms} onChange={handleChange} /> Ich akzeptiere die AGB
                   </label>
                   <label style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 13, cursor: "pointer" }}>
                     <input type="checkbox" id="newsletter" checked={form.newsletter} onChange={handleChange} /> Newsletter
@@ -255,19 +255,19 @@ export default function Checkout() {
             </div>
 
             <div className="order-summary">
-              <h3>Votre commande</h3>
+              <h3>Ihre Bestellung</h3>
               {items.map((item) => (
                 <div key={item.id} className="order-line">
                   <span>{item.name} × {item.quantity}</span>
                   <span>{(item.price * item.quantity).toFixed(2)} €</span>
                 </div>
               ))}
-              <div className="order-line"><span>Sous-total</span><span>{subtotal.toFixed(2)} €</span></div>
-              <div className="order-line"><span>Livraison</span><span>Gratuite</span></div>
-              <div className="order-line"><span>Remise</span><span>-{discount}%</span></div>
-              <div className="order-line total"><span>Total</span><span>{total.toFixed(2)} €</span></div>
+              <div className="order-line"><span>Zwischensumme</span><span>{subtotal.toFixed(2)} €</span></div>
+              <div className="order-line"><span>Lieferung</span><span>Kostenlos</span></div>
+              <div className="order-line"><span>Rabatt</span><span>-{discount}%</span></div>
+              <div className="order-line total"><span>Gesamt</span><span>{total.toFixed(2)} €</span></div>
               <button onClick={handleSubmit} disabled={loading} className="btn btn-brand btn-block btn-lg" style={{ marginTop: 20 }}>
-                {loading ? "Envoi..." : "Passer la commande"}
+                {loading ? "Wird gesendet..." : "Bestellung aufgeben"}
               </button>
             </div>
           </div>

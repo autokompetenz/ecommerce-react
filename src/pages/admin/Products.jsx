@@ -22,7 +22,7 @@ export default function Products() {
   };
 
   const handleDelete = async (id, name) => {
-    if (!window.confirm(`Supprimer "${name}" ? Cette action est irréversible.`)) return;
+    if (!window.confirm(`Löschen "${name}" ? Diese Aktion kann nicht rückgängig gemacht werden.`)) return;
     setDeleting(id);
     const { error } = await supabase.from("products").delete().eq("id", id);
     if (!error) setProducts((prev) => prev.filter((p) => p.id !== id));
@@ -42,9 +42,9 @@ export default function Products() {
   return (
     <div>
       <div className="admin-header-row">
-        <h1>Produits ({products.length})</h1>
+        <h1>Produkte ({products.length})</h1>
         <Link to="/admin/add" className="btn btn-primary admin-add-btn">
-          <i className="fa-solid fa-plus"></i> Ajouter
+          <i className="fa-solid fa-plus"></i> Hinzufügen
         </Link>
       </div>
 
@@ -53,19 +53,19 @@ export default function Products() {
           type="text"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          placeholder="Rechercher par nom, marque, catégorie..."
+          placeholder="Suche nach Name, Marke, Kategorie..."
           className="admin-input"
           style={{ maxWidth: 400 }}
         />
       </div>
 
       {loading ? (
-        <p className="admin-loading">Chargement...</p>
+        <p className="admin-loading">Wird geladen...</p>
       ) : filtered.length === 0 ? (
         <div className="admin-empty">
-          <p>{search ? "Aucun produit ne correspond à votre recherche." : "Aucun produit."}</p>
+          <p>{search ? "Kein Produkt gefunden." : "Keine Produkte."}</p>
           <Link to="/admin/add" className="btn btn-primary" style={{ marginTop: 12 }}>
-            <i className="fa-solid fa-plus"></i> Ajouter un produit
+            <i className="fa-solid fa-plus"></i> Produkt hinzufügen
           </Link>
         </div>
       ) : (
@@ -74,11 +74,11 @@ export default function Products() {
             <thead>
               <tr>
                 <th style={{ width: 60 }}></th>
-                <th>Nom</th>
-                <th>Catégorie</th>
-                <th>Prix</th>
+                <th>Name</th>
+                <th>Kategorie</th>
+                <th>Preis</th>
                 <th>Badge</th>
-                <th style={{ width: 160 }}>Actions</th>
+                <th style={{ width: 160 }}>Aktionen</th>
               </tr>
             </thead>
             <tbody>
@@ -123,14 +123,14 @@ export default function Products() {
                         onClick={() => navigate(`/admin/edit/${p.id}`)}
                         className="btn btn-sm btn-outline"
                       >
-                        <i className="fa-solid fa-pen"></i> Modifier
+                        <i className="fa-solid fa-pen"></i> Bearbeiten
                       </button>
                       <button
                         onClick={() => handleDelete(p.id, p.name)}
                         disabled={deleting === p.id}
                         className="btn btn-sm btn-danger"
                       >
-                        {deleting === p.id ? "..." : <><i className="fa-solid fa-trash"></i> Supprimer</>}
+                        {deleting === p.id ? "..." : <><i className="fa-solid fa-trash"></i> Löschen</>}
                       </button>
                     </div>
                   </td>

@@ -5,7 +5,7 @@ import { blogPosts as posts } from "../data/products";
 export default function Blog() {
   return (
     <>
-      <Breadcrumb title="Actualités" links={[{ label: "Blog" }]} />
+      <Breadcrumb title="Aktuelles" links={[{ label: "Blog" }]} />
       <div className="section">
         <div className="container">
           {posts.length > 0 ? (
@@ -28,7 +28,7 @@ export default function Blog() {
           ) : (
             <div className="empty-state">
               <i className="fa-solid fa-newspaper"></i>
-              <p>Aucun article pour le moment.</p>
+              <p>Derzeit keine Artikel vorhanden.</p>
             </div>
           )}
         </div>

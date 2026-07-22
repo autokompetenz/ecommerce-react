@@ -10,7 +10,7 @@ export default function ProductCard({ product }) {
     if (product.badge === "Verified") {
       return (
         <span className="product-card-badge verified">
-          <i className="fa-solid fa-shield-halved" /> Verified
+          <i className="fa-solid fa-shield-halved" /> Geprüft
         </span>
       );
     }
@@ -23,7 +23,7 @@ export default function ProductCard({ product }) {
       );
     }
     if (product.badge === "New") {
-      return <span className="product-card-badge new">New</span>;
+      return <span className="product-card-badge new">Neu</span>;
     }
     return <span className="product-card-badge">{product.badge}</span>;
   };
@@ -68,7 +68,7 @@ export default function ProductCard({ product }) {
           </div>
 
           <div className="product-card-moq">
-            {moq} Pièces <span>(Min. Order)</span>
+            {moq} Stück <span>(Mindestbestellung)</span>
           </div>
         </div>
       </Link>
