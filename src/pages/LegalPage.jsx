@@ -399,7 +399,7 @@ const DOCS = {
       {
         heading: "3. Délais de livraison",
         content: [
-          `• Livraison standard : 2 à 5 jours ouvrés selon la destination`,
+          `• Livraison standard : 5 à 7 jours ouvrés selon la destination`,
           `• Livraison express : 1 à 2 jours ouvrés (disponible en France et en Allemagne)`,
           `Ces délais sont donnés à titre indicatif et courent à compter de la date d'expédition. ${COMPANY.name} ne saurait être tenue responsable des retards imputables au transporteur.`,
         ],

@@ -243,7 +243,7 @@ export default function ProductDetails() {
                   <div className="pd-delivery-cards">
                     <div className="pd-delivery-card">
                       <strong><i className="fa-solid fa-truck" style={{ marginRight: 6, color: "var(--orange)" }}></i> Standard</strong>
-                      <p>2–3 jours ouvrés — Gratuit dès 100 €</p>
+                      <p>5–7 jours ouvrés — Gratuit dès 100 €</p>
                     </div>
                     <div className="pd-delivery-card">
                       <strong><i className="fa-solid fa-bolt" style={{ marginRight: 6, color: "var(--orange)" }}></i> Express</strong>
