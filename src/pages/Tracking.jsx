@@ -17,6 +17,17 @@ export default function Tracking() {
   const [error, setError] = useState(null);
   const [searched, setSearched] = useState(false);
 
+  const enrichOrder = async (orderData) => {
+    const { data: itemsData } = await supabase.from("order_items").select("*").eq("order_id", orderData.id);
+    const { data: productsData } = await supabase.from("products").select("id, name, image, price");
+    const productsMap = {};
+    (productsData || []).forEach((p) => { productsMap[p.id] = p; });
+    return {
+      ...orderData,
+      order_items: (itemsData || []).map((item) => ({ ...item, products: productsMap[item.product_id] || null })),
+    };
+  };
+
   const handleSearch = async (e) => {
     e.preventDefault();
     if (!query.trim()) return;
@@ -27,21 +38,22 @@ export default function Tracking() {
     const q = query.trim();
 
     if (uuidRegex.test(q)) {
-      const result = await supabase.from("orders").select("*, order_items(*, products(name, image, price))").eq("id", q).single();
+      const result = await supabase.from("orders").select("*").eq("id", q).single();
       data = result.data; fetchError = result.error;
     }
     if (!data && !fetchError) {
-      const result = await supabase.from("orders").select("*, order_items(*, products(name, image, price))").ilike("customer_email", q).order("created_at", { ascending: false }).limit(1).maybeSingle();
+      const result = await supabase.from("orders").select("*").ilike("customer_email", q).order("created_at", { ascending: false }).limit(1).maybeSingle();
       data = result.data; fetchError = result.error;
     }
     if (!data && !fetchError) {
-      const result = await supabase.from("orders").select("*, order_items(*, products(name, image, price))").filter("id::text", "like", `%${q}%`).order("created_at", { ascending: false }).limit(1).maybeSingle();
+      const result = await supabase.from("orders").select("*").filter("id::text", "like", `%${q}%`).order("created_at", { ascending: false }).limit(1).maybeSingle();
       data = result.data; fetchError = result.error;
     }
 
     setLoading(false);
-    if (fetchError || !data) setError("Commande non trouvée.");
-    else setOrder(data);
+    if (fetchError || !data) { setError("Commande non trouvée."); return; }
+    const enriched = await enrichOrder(data);
+    setOrder(enriched);
   };
 
   const currentStep = order ? (statusIndex[order.status] ?? -1) : -1;
