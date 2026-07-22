@@ -10,11 +10,26 @@ export default function Orders() {
 
   const fetchOrders = async () => {
     setLoading(true);
-    const { data, error } = await supabase
+    const { data: ordersData, error: ordersErr } = await supabase
       .from("orders")
-      .select("*, order_items(*, products(name, image))")
+      .select("*")
       .order("created_at", { ascending: false });
-    if (!error) setOrders(data || []);
+    if (ordersErr) { setLoading(false); return; }
+
+    const { data: itemsData } = await supabase.from("order_items").select("*");
+    const { data: productsData } = await supabase.from("products").select("id, name, image");
+
+    const productsMap = {};
+    (productsData || []).forEach((p) => { productsMap[p.id] = p; });
+
+    const ordersWithItems = (ordersData || []).map((order) => ({
+      ...order,
+      order_items: (itemsData || [])
+        .filter((item) => item.order_id === order.id)
+        .map((item) => ({ ...item, products: productsMap[item.product_id] || null })),
+    }));
+
+    setOrders(ordersWithItems);
     setLoading(false);
   };
 
