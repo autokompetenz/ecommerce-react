@@ -29,7 +29,7 @@ export default function AdminLayout() {
       <div className={`admin-sidebar-overlay ${sidebarOpen ? "active" : ""}`} onClick={() => setSidebarOpen(false)} />
 
       {/* Sidebar */}
-      <aside className={`admin-sidebar ${sidebarOpen ? "active" : ""}`}>
+      <aside className={`admin-sidebar ${sidebarOpen ? "open" : ""}`}>
         <div className="admin-sidebar-header">
           <div>
             <h3>POWER Tools</h3>
