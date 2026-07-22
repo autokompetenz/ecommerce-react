@@ -42,7 +42,10 @@ export default function AdminLayout() {
 
         <nav className="admin-sidebar-nav">
           <NavLink to="/admin" end className={({ isActive }) => `admin-nav-link ${isActive ? "active" : ""}`} onClick={() => setSidebarOpen(false)}>
-            <i className="fa-solid fa-grid-2"></i> Produits
+            <i className="fa-solid fa-grid-2"></i> Tableau de bord
+          </NavLink>
+          <NavLink to="/admin/products" className={({ isActive }) => `admin-nav-link ${isActive ? "active" : ""}`} onClick={() => setSidebarOpen(false)}>
+            <i className="fa-solid fa-box-open"></i> Produits
           </NavLink>
           <NavLink to="/admin/orders" className={({ isActive }) => `admin-nav-link ${isActive ? "active" : ""}`} onClick={() => setSidebarOpen(false)}>
             <i className="fa-solid fa-bag-shopping"></i> Commandes

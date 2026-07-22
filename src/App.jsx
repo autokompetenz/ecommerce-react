@@ -21,6 +21,7 @@ import Dashboard from "./pages/admin/Dashboard";
 import AddProduct from "./pages/admin/AddProduct";
 import EditProduct from "./pages/admin/EditProduct";
 import Orders from "./pages/admin/Orders";
+import Products from "./pages/admin/Products";
 import Settings from "./pages/admin/Settings";
 
 function ScrollToTop() {
@@ -90,6 +91,7 @@ function AdminRoutes() {
         }
       >
         <Route index element={<Dashboard />} />
+        <Route path="products" element={<Products />} />
         <Route path="add" element={<AddProduct />} />
         <Route path="edit/:id" element={<EditProduct />} />
         <Route path="orders" element={<Orders />} />
