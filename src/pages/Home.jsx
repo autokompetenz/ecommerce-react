@@ -5,11 +5,11 @@ import ScrollReveal from "../components/ScrollReveal";
 import { supabase } from "../lib/supabase";
 
 const CATEGORIES = [
-  { name: "Tournevis", icon: "fa-screwdriver-wrench", link: "/shop?cat=Tournevis", desc: "Sans fil, à cliquets, articulés" },
-  { name: "Clés à choc", icon: "fa-wrench", link: "/shop?cat=Clés à choc", desc: "Sans fil, rotatives, pneumatiques" },
-  { name: "Perceuses", icon: "fa-bolt", link: "/shop?cat=Perceuses", desc: "À fil, sans fil, marteau" },
-  { name: "Rivets", icon: "fa-link", link: "/shop?cat=Rivets", desc: "Pistolets à rivets batterie" },
-  { name: "Meulage", icon: "fa-gear", link: "/shop?cat=Meulage", desc: "Meuleuses d'angle, disques" },
+  { name: "Schraubenzieher", icon: "fa-screwdriver-wrench", link: "/shop?cat=Schraubenzieher", desc: "Akkuschrauber, Ratschen, Gelenk" },
+  { name: "Schlagschlüssel", icon: "fa-wrench", link: "/shop?cat=Schlagschlüssel", desc: "Akkuschrauber, drehend, pneumatisch" },
+  { name: "Bohrmaschinen", icon: "fa-bolt", link: "/shop?cat=Bohrmaschinen", desc: "Elektro, Akku, Schlag" },
+  { name: "Nieten", icon: "fa-link", link: "/shop?cat=Nieten", desc: "Akkur-Nietenpistolen" },
+  { name: "Schleifen", icon: "fa-gear", link: "/shop?cat=Schleifen", desc: "Winkelschleifer, Trennscheiben" },
 ];
 
 const WHY_US = [

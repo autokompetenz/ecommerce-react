@@ -5,7 +5,7 @@ import ProductCard from "../components/ProductCard";
 import ScrollReveal from "../components/ScrollReveal";
 import { supabase } from "../lib/supabase";
 
-const CATEGORIES = ["Tournevis", "Clés à choc", "Perceuses", "Rivets", "Meulage"];
+const CATEGORIES = ["Schraubenzieher", "Schlagschlüssel", "Bohrmaschinen", "Nieten", "Schleifen"];
 
 export default function Shop() {
   const [searchParams, setSearchParams] = useSearchParams();

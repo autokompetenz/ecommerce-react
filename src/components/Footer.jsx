@@ -22,11 +22,11 @@ export default function Footer() {
             <h6 className="footer-title">Katalog</h6>
             <ul className="footer-links">
               <li><Link to="/shop">Alle Produkte</Link></li>
-              <li><Link to="/shop?cat=Tournevis">Schraubenzieher</Link></li>
-              <li><Link to="/shop?cat=Perceuses">Bohrmaschinen</Link></li>
-              <li><Link to="/shop?cat=Clés à choc">Schlagschlüssel</Link></li>
-              <li><Link to="/shop?cat=Rivets">Nieten</Link></li>
-              <li><Link to="/shop?cat=Meulage">Schleifen</Link></li>
+              <li><Link to="/shop?cat=Schraubenzieher">Schraubenzieher</Link></li>
+              <li><Link to="/shop?cat=Bohrmaschinen">Bohrmaschinen</Link></li>
+              <li><Link to="/shop?cat=Schlagschlüssel">Schlagschlüssel</Link></li>
+              <li><Link to="/shop?cat=Nieten">Nieten</Link></li>
+              <li><Link to="/shop?cat=Schleifen">Schleifen</Link></li>
             </ul>
           </div>
           <div>
