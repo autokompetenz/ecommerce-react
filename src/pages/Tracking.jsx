@@ -46,8 +46,9 @@ export default function Tracking() {
       data = result.data; fetchError = result.error;
     }
     if (!data && !fetchError) {
-      const result = await supabase.from("orders").select("*").filter("id::text", "like", `%${q}%`).order("created_at", { ascending: false }).limit(1).maybeSingle();
-      data = result.data; fetchError = result.error;
+      const result = await supabase.from("orders").select("*").order("created_at", { ascending: false }).limit(50);
+      const match = (result.data || []).find((o) => o.id.toLowerCase().startsWith(q.toLowerCase()));
+      if (match) data = match;
     }
 
     setLoading(false);
