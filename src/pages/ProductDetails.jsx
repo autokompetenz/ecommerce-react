@@ -24,8 +24,11 @@ export default function ProductDetails() {
         const local = localProducts.find((p) => p.id === Number(id));
         const parseJSON = (val, fallback) => {
           if (!val) return fallback;
-          if (typeof val === "string") { try { return JSON.parse(val); } catch { return fallback; } }
-          return val;
+          let parsed;
+          if (typeof val === "string") { try { parsed = JSON.parse(val); } catch { return fallback; } }
+          else { parsed = val; }
+          if (parsed && typeof parsed === "object" && !Array.isArray(parsed) && Object.keys(parsed).length === 0) return fallback;
+          return parsed;
         };
         const productData = {
           ...local,
