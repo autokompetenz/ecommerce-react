@@ -52,6 +52,7 @@ CREATE POLICY "Delete products" ON products FOR DELETE USING (true);
 CREATE POLICY "Insert orders" ON orders FOR INSERT WITH CHECK (true);
 CREATE POLICY "Read orders" ON orders FOR SELECT USING (true);
 CREATE POLICY "Update orders" ON orders FOR UPDATE USING (true);
+CREATE POLICY "Delete orders" ON orders FOR DELETE USING (true);
 
 CREATE POLICY "Insert order_items" ON order_items FOR INSERT WITH CHECK (true);
 CREATE POLICY "Read order_items" ON order_items FOR SELECT USING (true);

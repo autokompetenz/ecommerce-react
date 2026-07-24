@@ -5,6 +5,7 @@ export default function Orders() {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [updating, setUpdating] = useState(null);
+  const [deleting, setDeleting] = useState(null);
 
   useEffect(() => { fetchOrders(); }, []);
 
@@ -40,6 +41,16 @@ export default function Orders() {
       setOrders((prev) => prev.map((o) => (o.id === orderId ? { ...o, status } : o)));
     }
     setUpdating(null);
+  };
+
+  const deleteOrder = async (orderId) => {
+    if (!window.confirm("Bestellung wirklich löschen?")) return;
+    setDeleting(orderId);
+    const { error } = await supabase.from("orders").delete().eq("id", orderId);
+    if (!error) {
+      setOrders((prev) => prev.filter((o) => o.id !== orderId));
+    }
+    setDeleting(null);
   };
 
   const statusColors = {
@@ -120,6 +131,13 @@ export default function Orders() {
                       {label}
                     </button>
                   ))}
+                  <button
+                    onClick={() => deleteOrder(order.id)}
+                    disabled={deleting === order.id}
+                    className="admin-status-btn delete"
+                  >
+                    {deleting === order.id ? "Wird gelöscht..." : "Löschen"}
+                  </button>
                 </div>
               </div>
             );

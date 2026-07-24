@@ -1261,6 +1261,12 @@ input, select, textarea { font-family: inherit; }
 .admin-status-btn.active {
   background: var(--text); color: #fff; border-color: var(--text); cursor: default;
 }
+.admin-status-btn.delete {
+  border-color: #dc3545; color: #dc3545; margin-left: auto;
+}
+.admin-status-btn.delete:hover {
+  background: #dc3545; color: #fff;
+}
 
 .admin-empty {
   background: var(--bg-card); padding: 40px; border-radius: var(--radius);
